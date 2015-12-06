@@ -52,3 +52,581 @@ Traceback (most recent call last):
   File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/conf/__init__.py", line 56, in __getattr__
     return getattr(self._wrapped, name)
 AttributeError: 'Settings' object has no attribute 'DJOSER'
+ERROR 2015-12-06 23:51:48,164 django.request base Internal Server Error: /auth/activate/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:51:48,164 django.request base Internal Server Error: /auth/activate/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:54:18,278 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:54:18,278 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:55:49,577 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:55:49,577 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:01,393 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:01,393 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:11,896 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: DjangoUnicodeDecodeError('utf8', '\x8e\xe9\xe1\xb9', 0, 1, 'invalid start byte') is not JSON serializable
+ERROR 2015-12-06 23:56:11,896 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: DjangoUnicodeDecodeError('utf8', '\x8e\xe9\xe1\xb9', 0, 1, 'invalid start byte') is not JSON serializable
+ERROR 2015-12-06 23:56:19,118 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:19,118 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:41,731 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:41,731 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-07 00:26:54,865 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-07 00:26:54,865 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-07 01:15:24,552 django.request base Internal Server Error: /auth/login
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 235, in get_response
+    response = middleware_method(request, response)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/middleware/common.py", line 114, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/middleware/common.py", line 98, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/auth/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2015-12-07 01:15:24,552 django.request base Internal Server Error: /auth/login
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 235, in get_response
+    response = middleware_method(request, response)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/middleware/common.py", line 114, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/middleware/common.py", line 98, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/auth/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.

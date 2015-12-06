@@ -38,7 +38,7 @@ Back-end is a RESTful API engine which includes:
 * Django
 * Django-Rest-Framework
 
-The design pattern of Django will be mainly the 
+The design pattern of Project will split into Front-end and Back-end, where front-end will be handled by AngularJS whereas the back-end will be a pure REST API server by Django and DRF.
 
 ### Host
 The source code is hosted at Github:

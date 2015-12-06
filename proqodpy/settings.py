@@ -72,16 +72,18 @@ REST_FRAMEWORK = {
 DJOSER = {
     # 'DOMAIN': 'cloud.proqod.com',
     'SITE_NAME': 'ProQod',
-    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': 'auth/password/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'auth/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
 }
 
 ROOT_URLCONF = 'proqodpy.urls'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # LIB_DIR = os.path.join(BASE_DIR, 'libs')
 LOG_DIR = os.path.join(BASE_DIR, 'log')
@@ -111,8 +113,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                # 'django.template.context_processors.debug',
+                # 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -123,7 +125,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'proqodpy.wsgi.application'
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'email')
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'log/email')
 
 import sys
 LOGGING = {
@@ -184,8 +186,6 @@ LOGGING = {
         }
     }
 }
-
-
 
 
 # Database
