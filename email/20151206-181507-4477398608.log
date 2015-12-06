@@ -1,0 +1,25 @@
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: junhua.viva@gmail.com
+Date: Sun, 06 Dec 2015 10:15:07 -0000
+Message-ID: <20151206101507.4620.53706@lius-mbp.home>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/#/password/reset/confirm/MQ/47g-45ce654f42a1c350747d
+
+Your username, in case you've forgotten: junhua
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------
