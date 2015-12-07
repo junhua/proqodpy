@@ -10,4 +10,4 @@ lib
 lib64
 .DS_Store
 static/
-.pyc
+*.pyc
