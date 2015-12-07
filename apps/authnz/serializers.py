@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'Uid']
+        fields = ['email', ]
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -16,7 +16,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'email','Uid']
+        fields = ['username', 'email',]
 
 
 class StudentRegistrationSerializer(serializers.ModelSerializer):
@@ -31,6 +31,8 @@ class StudentRegistrationSerializer(serializers.ModelSerializer):
             User._meta.pk.name,
             'password',
             'student_id',
+            'school',
+            'department'
         )
 
         write_only_fields = (
@@ -62,4 +64,4 @@ class StudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Student
-        fields = ('first_name', 'last_name', 'student_id')
+        fields = ('first_name', 'last_name', 'student_id', 'school', 'department')

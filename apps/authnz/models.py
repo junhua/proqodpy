@@ -12,7 +12,8 @@ class Student(models.Model):
     student_id = models.CharField(max_length=55, null=True, blank=True)
     school = models.CharField(max_length=100, null=True, blank=True)
     department = models.CharField(max_length=100, null=True, blank=True)
-    
+    user_type = models.CharField(max_length=10, default="student", editable=False)
+
     def __str__(self):              # __unicode__ on Python 2
         return self.user.username
 
@@ -22,6 +23,7 @@ class Teacher(models.Model):
     teacher_id = models.CharField(max_length=55, null=True, blank=True)
     school = models.CharField(max_length=100, null=True, blank=True)
     department = models.CharField(max_length=100, null=True, blank=True)
+    user_type = models.CharField(max_length=10, default="teacher", editable=False)
     
     def __str__(self):              # __unicode__ on Python 2
         return self.user.username
@@ -32,6 +34,7 @@ class TeachingAssistant(models.Model):
     ta_id = models.CharField(max_length=55, null=True, blank=True)
     school = models.CharField(max_length=100, null=True, blank=True)
     department = models.CharField(max_length=100, null=True, blank=True)
-    
+    user_type = models.CharField(max_length=10, default="ta", editable=False)
+
     def __str__(self):              # __unicode__ on Python 2
         return self.user.username
