@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib import admin
 # from apps.authnz.views import CustomRegistrationView, TeacherLoginView, get_user_info
 from rest_framework.urlpatterns import format_suffix_patterns
-# from apps.authnz import views
+from apps.web.views import IndexView
 
 
 urlpatterns = [
@@ -16,8 +16,12 @@ urlpatterns = [
 
     # Api
     # url(r'^api/', include('apps.api.urls')),
+
+    # All
+    url(r'^(.*)', IndexView.as_view(), name='index')
 ]
 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -1,0 +1,19 @@
+{
+  "name": "ngproject",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "junhua liu",
+    "ProQod Pte Ltd"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/junhua/proqodpy",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

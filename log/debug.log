@@ -1162,3 +1162,37 @@ Traceback (most recent call last):
   File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 1319, in _get_model_fields
     if '.' in source or source == '*':
 TypeError: argument of type 'BooleanField' is not iterable
+ERROR 2015-12-08 17:26:05,856 django.request base Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 135, in rendered_content
+    template = self._resolve_template(self.template_name)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 90, in _resolve_template
+    new_template = self.resolve_template(template)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 80, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/loader.py", line 74, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+TemplateDoesNotExist: login.html
+ERROR 2015-12-08 17:26:05,856 django.request base Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 135, in rendered_content
+    template = self._resolve_template(self.template_name)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 90, in _resolve_template
+    new_template = self.resolve_template(template)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 80, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/loader.py", line 74, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+TemplateDoesNotExist: login.html
