@@ -2,9 +2,8 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
-# from apps.authnz.views import CustomRegistrationView, TeacherLoginView, get_user_info
 from rest_framework.urlpatterns import format_suffix_patterns
-from apps.web.views import IndexView
+# from apps.web.views import IndexView
 
 
 urlpatterns = [
@@ -18,7 +17,7 @@ urlpatterns = [
     # url(r'^api/', include('apps.api.urls')),
 
     # web
-    url(r'^web/', include('apps.web.urls'), name='front-end')
+    # url(r'^web/', include('apps.web.urls'), name='front-end')
 ]
 
 
