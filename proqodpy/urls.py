@@ -18,7 +18,7 @@ urlpatterns = [
     # url(r'^api/', include('apps.api.urls')),
 
     # All
-    url(r'^(.*)', IndexView.as_view(), name='index')
+    url(r'^index/', IndexView.as_view(), name='index')
 ]
 
 
