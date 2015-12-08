@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'authnz.ProqodUser'
 
 # Application definition
 
@@ -43,9 +44,8 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'djoser',
     'django_filters',
-    
-    # Custom apps
-    'apps.authnz',
+    'authnz',
+    # Custom auth
 
 )
 
@@ -97,7 +97,7 @@ MEDIA_URL = '/media/'
 # LIB_URL = '/libs/'
 
 FIXTURE_DIRS = (
-   '/dev/data/',
+    '/dev/data/',
 )
 
 STATICFILES_FINDERS = (
@@ -147,7 +147,7 @@ LOGGING = {
         }
     },
     'handlers': {
-        #Send all messages to console
+        # Send all messages to console
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
@@ -157,7 +157,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': LOG_DIR+'/debug.log',
+            'filename': LOG_DIR + '/debug.log',
             'formatter': 'verbose'
         },
         'mail_admins': {
@@ -211,4 +211,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-

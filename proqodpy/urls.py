@@ -8,15 +8,14 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'proqodpy.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
+    # Admin
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^auth/', include('djoser.urls.authtoken')),
-    url(r'^logout/', 'django.contrib.auth.views.logout', {'next_page': '/'}),
-    # url(r'^auth/me/', views.get_user_info),
-    # url(r'^register/$', CustomRegistrationView.as_view()),
+
+    # Auth
+    url(r'^auth/', include('authnz.urls')),
+
+    # Api
+    # url(r'^api/', include('apps.api.urls')),
 ]
 
 

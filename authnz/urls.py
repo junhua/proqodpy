@@ -6,4 +6,7 @@ from . import views
 router = routers.DefaultRouter(trailing_slash=False)
 # router.register(r'courses',views.CourseViewSet)
 
-urlpatterns = [url(r'^api/', include(router.urls)),]
+urlpatterns = [
+    url(r'^', include('djoser.urls.authtoken')),
+    url(r'^custom_register/$', views.RegistrationView.as_view()),
+]
