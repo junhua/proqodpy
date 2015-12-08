@@ -10,6 +10,5 @@ lib
 lib64
 .DS_Store
 *.pyc
-static/
-media/
-templates/
+static/*
+media/*
