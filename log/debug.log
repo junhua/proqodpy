@@ -1,0 +1,1232 @@
+ERROR 2015-12-06 08:51:59,211 django.request base Internal Server Error: /auth/password/reset/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/djoser/utils.py", line 57, in post
+    return self.action(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/djoser/views.py", line 116, in action
+    self.send_email(**self.get_send_email_kwargs(user))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/djoser/utils.py", line 78, in get_send_email_kwargs
+    'context': self.get_email_context(user),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/djoser/views.py", line 127, in get_email_context
+    context = super(PasswordResetView, self).get_email_context(user)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/djoser/utils.py", line 101, in get_email_context
+    domain = django_settings.DJOSER['DOMAIN']
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/conf/__init__.py", line 56, in __getattr__
+    return getattr(self._wrapped, name)
+AttributeError: 'Settings' object has no attribute 'DJOSER'
+ERROR 2015-12-06 08:51:59,211 django.request base Internal Server Error: /auth/password/reset/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/djoser/utils.py", line 57, in post
+    return self.action(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/djoser/views.py", line 116, in action
+    self.send_email(**self.get_send_email_kwargs(user))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/djoser/utils.py", line 78, in get_send_email_kwargs
+    'context': self.get_email_context(user),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/djoser/views.py", line 127, in get_email_context
+    context = super(PasswordResetView, self).get_email_context(user)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/djoser/utils.py", line 101, in get_email_context
+    domain = django_settings.DJOSER['DOMAIN']
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/conf/__init__.py", line 56, in __getattr__
+    return getattr(self._wrapped, name)
+AttributeError: 'Settings' object has no attribute 'DJOSER'
+ERROR 2015-12-06 23:51:48,164 django.request base Internal Server Error: /auth/activate/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:51:48,164 django.request base Internal Server Error: /auth/activate/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:54:18,278 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:54:18,278 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:55:49,577 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:55:49,577 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:01,393 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:01,393 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:11,896 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: DjangoUnicodeDecodeError('utf8', '\x8e\xe9\xe1\xb9', 0, 1, 'invalid start byte') is not JSON serializable
+ERROR 2015-12-06 23:56:11,896 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: DjangoUnicodeDecodeError('utf8', '\x8e\xe9\xe1\xb9', 0, 1, 'invalid start byte') is not JSON serializable
+ERROR 2015-12-06 23:56:19,118 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:19,118 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:41,731 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-06 23:56:41,731 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-07 00:26:54,865 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-07 00:26:54,865 django.request base Internal Server Error: /auth/password/reset/confirm/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 635, in get_context
+    'content': self.get_content(renderer, data, accepted_media_type, renderer_context),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 397, in get_content
+    content = renderer.render(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 103, in render
+    separators=separators
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.py", line 250, in dumps
+    sort_keys=sort_keys, **kw).encode(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 209, in encode
+    chunks = list(chunks)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 434, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 408, in _iterencode_dict
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 332, in _iterencode_list
+    for chunk in chunks:
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 442, in _iterencode
+    o = _default(o)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/utils/encoders.py", line 64, in default
+    return super(JSONEncoder, self).default(obj)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/encoder.py", line 184, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: TypeError(Error('Incorrect padding',),) is not JSON serializable
+ERROR 2015-12-07 01:15:24,552 django.request base Internal Server Error: /auth/login
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 235, in get_response
+    response = middleware_method(request, response)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/middleware/common.py", line 114, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/middleware/common.py", line 98, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/auth/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2015-12-07 01:15:24,552 django.request base Internal Server Error: /auth/login
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 235, in get_response
+    response = middleware_method(request, response)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/middleware/common.py", line 114, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/middleware/common.py", line 98, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/auth/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2015-12-08 14:43:28,230 django.request base Internal Server Error: /auth/custom_register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 20, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 213, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 407, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 437, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 696, in run_validation
+    return super(CharField, self).run_validation(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 483, in run_validation
+    self.run_validators(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 497, in run_validators
+    validator(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/validators.py", line 62, in __call__
+    if queryset.exists():
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/query.py", line 651, in exists
+    return self.query.has_results(using=self.db)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/query.py", line 501, in has_results
+    return compiler.has_results()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 823, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 852, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+ProgrammingError: relation "authnz_proqoduser" does not exist
+LINE 1: SELECT (1) AS "a" FROM "authnz_proqoduser" WHERE "authnz_pro...
+                               ^
+
+ERROR 2015-12-08 14:43:28,230 django.request base Internal Server Error: /auth/custom_register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 20, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 213, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 407, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 437, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 696, in run_validation
+    return super(CharField, self).run_validation(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 483, in run_validation
+    self.run_validators(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 497, in run_validators
+    validator(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/validators.py", line 62, in __call__
+    if queryset.exists():
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/query.py", line 651, in exists
+    return self.query.has_results(using=self.db)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/query.py", line 501, in has_results
+    return compiler.has_results()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 823, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 852, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+ProgrammingError: relation "authnz_proqoduser" does not exist
+LINE 1: SELECT (1) AS "a" FROM "authnz_proqoduser" WHERE "authnz_pro...
+                               ^
+
+ERROR 2015-12-08 14:52:08,753 django.request base Internal Server Error: /auth/custom_register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 20, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 213, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 407, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 437, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 696, in run_validation
+    return super(CharField, self).run_validation(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 483, in run_validation
+    self.run_validators(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 497, in run_validators
+    validator(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/validators.py", line 62, in __call__
+    if queryset.exists():
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/query.py", line 651, in exists
+    return self.query.has_results(using=self.db)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/query.py", line 501, in has_results
+    return compiler.has_results()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 823, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 852, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+ProgrammingError: relation "authnz_proqoduser" does not exist
+LINE 1: SELECT (1) AS "a" FROM "authnz_proqoduser" WHERE "authnz_pro...
+                               ^
+
+ERROR 2015-12-08 14:52:08,753 django.request base Internal Server Error: /auth/custom_register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 20, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 213, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 407, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 437, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 696, in run_validation
+    return super(CharField, self).run_validation(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 483, in run_validation
+    self.run_validators(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 497, in run_validators
+    validator(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/validators.py", line 62, in __call__
+    if queryset.exists():
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/query.py", line 651, in exists
+    return self.query.has_results(using=self.db)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/query.py", line 501, in has_results
+    return compiler.has_results()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 823, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 852, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+ProgrammingError: relation "authnz_proqoduser" does not exist
+LINE 1: SELECT (1) AS "a" FROM "authnz_proqoduser" WHERE "authnz_pro...
+                               ^
+
+ERROR 2015-12-08 15:12:20,476 django.request base Internal Server Error: /auth/custom_register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 20, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 213, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 407, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 437, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 696, in run_validation
+    return super(CharField, self).run_validation(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 483, in run_validation
+    self.run_validators(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 497, in run_validators
+    validator(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/validators.py", line 62, in __call__
+    if queryset.exists():
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/query.py", line 651, in exists
+    return self.query.has_results(using=self.db)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/query.py", line 501, in has_results
+    return compiler.has_results()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 823, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 852, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+ProgrammingError: relation "authnz_proqoduser" does not exist
+LINE 1: SELECT (1) AS "a" FROM "authnz_proqoduser" WHERE "authnz_pro...
+                               ^
+
+ERROR 2015-12-08 15:12:20,476 django.request base Internal Server Error: /auth/custom_register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 20, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 213, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 407, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 437, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 696, in run_validation
+    return super(CharField, self).run_validation(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 483, in run_validation
+    self.run_validators(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 497, in run_validators
+    validator(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/validators.py", line 62, in __call__
+    if queryset.exists():
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/query.py", line 651, in exists
+    return self.query.has_results(using=self.db)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/query.py", line 501, in has_results
+    return compiler.has_results()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 823, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 852, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+ProgrammingError: relation "authnz_proqoduser" does not exist
+LINE 1: SELECT (1) AS "a" FROM "authnz_proqoduser" WHERE "authnz_pro...
+                               ^
+
+ERROR 2015-12-08 15:12:47,153 django.request base Internal Server Error: /auth/register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 20, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 213, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 407, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 437, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 696, in run_validation
+    return super(CharField, self).run_validation(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 483, in run_validation
+    self.run_validators(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 497, in run_validators
+    validator(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/validators.py", line 62, in __call__
+    if queryset.exists():
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/query.py", line 651, in exists
+    return self.query.has_results(using=self.db)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/query.py", line 501, in has_results
+    return compiler.has_results()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 823, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 852, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+ProgrammingError: relation "authnz_proqoduser" does not exist
+LINE 1: SELECT (1) AS "a" FROM "authnz_proqoduser" WHERE "authnz_pro...
+                               ^
+
+ERROR 2015-12-08 15:12:47,153 django.request base Internal Server Error: /auth/register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 20, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 213, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 407, in run_validation
+    value = self.to_internal_value(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 437, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 696, in run_validation
+    return super(CharField, self).run_validation(data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 483, in run_validation
+    self.run_validators(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/fields.py", line 497, in run_validators
+    validator(value)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/validators.py", line 62, in __call__
+    if queryset.exists():
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/query.py", line 651, in exists
+    return self.query.has_results(using=self.db)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/query.py", line 501, in has_results
+    return compiler.has_results()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 823, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 852, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+ProgrammingError: relation "authnz_proqoduser" does not exist
+LINE 1: SELECT (1) AS "a" FROM "authnz_proqoduser" WHERE "authnz_pro...
+                               ^
+
+ERROR 2015-12-08 15:14:15,299 django.request base Internal Server Error: /auth/custom_register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/sutd/Playground/proqod_py/authnz/views.py", line 25, in perform_create
+    instance = serializer.save()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/djoser/serializers.py", line 34, in create
+    return User.objects.create_user(**validated_data)
+  File "/Users/sutd/Playground/proqod_py/authnz/models.py", line 44, in create_user
+    user.department = department
+NameError: global name 'department' is not defined
+ERROR 2015-12-08 15:14:15,299 django.request base Internal Server Error: /auth/custom_register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/sutd/Playground/proqod_py/authnz/views.py", line 25, in perform_create
+    instance = serializer.save()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/djoser/serializers.py", line 34, in create
+    return User.objects.create_user(**validated_data)
+  File "/Users/sutd/Playground/proqod_py/authnz/models.py", line 44, in create_user
+    user.department = department
+NameError: global name 'department' is not defined
+ERROR 2015-12-08 16:10:22,314 django.request base Internal Server Error: /auth/custom_register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/renderers.py", line 616, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/renderers.py", line 539, in get_raw_data_form
+    content = renderer.render(serializer.data, accepted, context)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 503, in data
+    ret = super(Serializer, self).data
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 243, in data
+    self._data = self.get_initial()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 386, in get_initial
+    for field in self.fields.values()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 339, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 925, in get_fields
+    field_names, declared_fields, extra_kwargs
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 1236, in get_uniqueness_extra_kwargs
+    field_names, declared_fields, extra_kwargs
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 1319, in _get_model_fields
+    if '.' in source or source == '*':
+TypeError: argument of type 'BooleanField' is not iterable
+ERROR 2015-12-08 16:10:22,314 django.request base Internal Server Error: /auth/custom_register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/renderers.py", line 616, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/renderers.py", line 539, in get_raw_data_form
+    content = renderer.render(serializer.data, accepted, context)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 503, in data
+    ret = super(Serializer, self).data
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 243, in data
+    self._data = self.get_initial()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 386, in get_initial
+    for field in self.fields.values()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 339, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 925, in get_fields
+    field_names, declared_fields, extra_kwargs
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 1236, in get_uniqueness_extra_kwargs
+    field_names, declared_fields, extra_kwargs
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 1319, in _get_model_fields
+    if '.' in source or source == '*':
+TypeError: argument of type 'BooleanField' is not iterable
+ERROR 2015-12-08 17:26:05,856 django.request base Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 135, in rendered_content
+    template = self._resolve_template(self.template_name)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 90, in _resolve_template
+    new_template = self.resolve_template(template)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 80, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/loader.py", line 74, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+TemplateDoesNotExist: login.html
+ERROR 2015-12-08 17:26:05,856 django.request base Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 135, in rendered_content
+    template = self._resolve_template(self.template_name)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 90, in _resolve_template
+    new_template = self.resolve_template(template)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 80, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/loader.py", line 74, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+TemplateDoesNotExist: login.html
+ERROR 2015-12-08 17:47:13,726 django.request base Internal Server Error: /index/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 135, in rendered_content
+    template = self._resolve_template(self.template_name)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 90, in _resolve_template
+    new_template = self.resolve_template(template)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 80, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/loader.py", line 74, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+TemplateDoesNotExist: login.html
+ERROR 2015-12-08 17:47:13,726 django.request base Internal Server Error: /index/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 135, in rendered_content
+    template = self._resolve_template(self.template_name)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 90, in _resolve_template
+    new_template = self.resolve_template(template)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/response.py", line 80, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/loader.py", line 74, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+TemplateDoesNotExist: login.html

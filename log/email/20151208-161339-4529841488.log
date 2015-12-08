@@ -1,0 +1,26 @@
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Account activation on localhost:8000
+From: webmaster@localhost
+To: junhuaviva@gmail.com
+Date: Tue, 08 Dec 2015 08:13:39 -0000
+Message-ID: <20151208081339.33687.9450@sutds-macbook-air.local>
+
+
+
+
+You're receiving this email because you created an account on localhost:8000.
+
+Please go to the following page to activate account:
+
+http://localhost:8000/auth/activate/Mg/47i-2ee7b285bbc9865b2034
+
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------
