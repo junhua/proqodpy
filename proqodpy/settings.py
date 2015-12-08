@@ -112,7 +112,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                 os.path.join(BASE_DIR, 'templates/djoser')],
+                 os.path.join(BASE_DIR, 'templates/djoser'),
+                 os.path.join(BASE_DIR, 'static/ngproject')
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
