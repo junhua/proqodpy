@@ -31,6 +31,20 @@ class ProqodUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+def create_superuser(self, email, sid, password, is_active=True, user_type=1,
+                    school=None, department=None, is_admin=True):
+    return create_user(
+        email,
+        sid,
+        password,
+        is_active,
+        user_type,
+        school,
+        department,
+        is_admin
+        )
+
+
     def which_type(self):
         return self.user_type
 
