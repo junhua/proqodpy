@@ -54,7 +54,10 @@ class ProqodUser(AbstractBaseUser, PermissionsMixin):
     department = models.CharField(max_length=100, null=True, blank=True)
     
     user_type = models.PositiveSmallIntegerField(default=STUDENT, choices=USER_TYPE)
-    is_admin = models.BooleanField(_('staff status'), default=False, help_text=_('Designates whether the user is admin.'))
+    is_admin = models.BooleanField(_('staff status'), default=False, 
+        help_text=_('Designates whether the user is admin.'))
+    is_superuser = models.BooleanField(_('superuser status'), default=False, 
+        help_text=_('Designates whether the user is superuser.'))
     is_active = models.BooleanField(_('active'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
