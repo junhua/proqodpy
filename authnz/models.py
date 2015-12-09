@@ -9,7 +9,7 @@ from django.contrib.auth.models import (
 class ProqodUserManager(BaseUserManager):
 
     def _create_user(self, email, password,
-                     is_admin, is_superuser, **extra_fields):
+                     is_admin, **extra_fields):
         """
         Creates and saves a User with the given email and password.
         """
@@ -19,25 +19,22 @@ class ProqodUserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email,
                           is_admin=is_admin, is_active=True,
-                          is_superuser=is_superuser, last_login=now,
+                          last_login=now,
                           date_joined=now, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
     def create_user(self, email, password=None, **extra_fields):
-        return self._create_user(email, password, False, False,
+        return self._create_user(email, password, False, 
                                  **extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
-        return self._create_user(email, password, True, True,
+        return self._create_user(email, password, True, 
                                  **extra_fields)
 
 
-
-
-
-class ProqodUser(AbstractBaseUser, PermissionsMixin):
+class ProqodUser(AbstractBaseUser):
     STUDENT, TEACHER = range(2)
     USER_TYPE = (
         (STUDENT, 'student'),
@@ -56,8 +53,7 @@ class ProqodUser(AbstractBaseUser, PermissionsMixin):
     user_type = models.PositiveSmallIntegerField(default=STUDENT, choices=USER_TYPE)
     is_admin = models.BooleanField(_('staff status'), default=False, 
         help_text=_('Designates whether the user is admin.'))
-    # is_superuser = models.BooleanField(_('superuser status'), default=False, 
-    #     help_text=_('Designates whether the user is superuser.'))
+    
     is_active = models.BooleanField(_('active'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
