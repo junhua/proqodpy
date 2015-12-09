@@ -46,7 +46,7 @@ class ProqodUser(AbstractBaseUser, PermissionsMixin):
     # Fields
     email = models.EmailField(verbose_name='email address',max_length=255,unique=True)
     sid = models.CharField(verbose_name='sid',max_length=55,unique=True)
-    username = models.CharField(verbose_name='username',max_length=255,unique=True)
+    # username = models.CharField(verbose_name='username',max_length=255,unique=True)
 
     first_name = models.CharField(_('first name'), max_length=30, blank=True, null=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True, null=True)
@@ -62,9 +62,9 @@ class ProqodUser(AbstractBaseUser, PermissionsMixin):
 
     objects = ProqodUserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'sid'
     REQUIRED_FIELDS = [
-                    'sid', 'username', 'first_name', 'last_name',
+                    'email', 'first_name', 'last_name',
                     'school', 'department'
                     ]
 
