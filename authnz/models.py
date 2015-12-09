@@ -1,90 +1,86 @@
 from __future__ import unicode_literals
-
+from django.utils.translation import ugettext_lazy as _
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser, User
+    BaseUserManager, AbstractBaseUser, User, PermissionsMixin
 )
 
 class ProqodUserManager(BaseUserManager):
 
-    def create_user(self, email, sid, password, is_active=True, user_type=0,
-                    school=None, department=None, is_admin=False):
+    def _create_user(self, email, password,
+                     is_admin, is_superuser, **extra_fields):
         """
-        Creates and saves a User with the given information.
+        Creates and saves a User with the given email and password.
         """
+        now = timezone.now()
         if not email:
-            raise ValueError('Users must have an email address')
-
-        if not sid:
-            raise ValueError('Users must have an id')
-
-        user = self.model(
-            email=self.normalize_email(email),
-            sid=sid,
-        )
-
+            raise ValueError('The given email must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email,
+                          is_admin=is_admin, is_active=True,
+                          is_superuser=is_superuser, last_login=now,
+                          date_joined=now, **extra_fields)
         user.set_password(password)
-        user.is_admin = is_admin
-        user.user_type = user_type
-        user.school = school
-        user.department = department
         user.save(using=self._db)
         return user
 
-def create_superuser(self, email, sid, password, is_active=True, user_type=1,
-                    school=None, department=None, is_admin=True):
-    return create_user(
-        email,
-        sid,
-        password,
-        is_active,
-        user_type,
-        school,
-        department,
-        is_admin
-        )
+    def create_user(self, email, password=None, **extra_fields):
+        return self._create_user(email, password, False, False,
+                                 **extra_fields)
+
+    def create_superuser(self, email, password, **extra_fields):
+        return self._create_user(email, password, True, True,
+                                 **extra_fields)
 
 
-    def which_type(self):
-        return self.user_type
 
 
-class ProqodUser(AbstractBaseUser):
+
+class ProqodUser(AbstractBaseUser, PermissionsMixin):
     STUDENT, TEACHER = range(2)
     USER_TYPE = (
         (STUDENT, 'student'),
         (TEACHER, 'teacher')
     )
     # Fields
-    email = models.EmailField(
-        verbose_name='email address',
-        max_length=255,
-        unique=True,
-    )
-    sid = models.CharField(
-        verbose_name='sid',
-        max_length=55,
-        unique=True,
-    )
+    email = models.EmailField(verbose_name='email address',max_length=255,unique=True)
+    sid = models.CharField(verbose_name='sid',max_length=55,unique=True)
+    username = models.CharField(verbose_name='username',max_length=255,unique=True)
 
+    first_name = models.CharField(_('first name'), max_length=30, blank=True, null=True)
+    last_name = models.CharField(_('last name'), max_length=30, blank=True, null=True)
     school = models.CharField(max_length=100, null=True, blank=True)
     department = models.CharField(max_length=100, null=True, blank=True)
-    user_type = models.PositiveSmallIntegerField(
-        default=STUDENT, choices=USER_TYPE)
-    is_admin = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    
+    user_type = models.PositiveSmallIntegerField(default=STUDENT, choices=USER_TYPE)
+    is_admin = models.BooleanField(_('staff status'), default=False, help_text=_('Designates whether the user is admin.'))
+    is_active = models.BooleanField(_('active'), default=True,
+        help_text=_('Designates whether this user should be treated as '
+                    'active. Unselect this instead of deleting accounts.'))
+    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+
     objects = ProqodUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['sid', 'user_type','is_admin', 'is_active', 'school', 'department', ]
+    REQUIRED_FIELDS = [
+                    'sid', 'username', 'first_name', 'last_name',
+                    'school', 'department'
+                    ]
+
+    class Meta:
+        verbose_name=_('user')
+        verbose_name_plural=_('users')
 
     def get_full_name(self):
-        # The user is identified by their email address
-        return self.email
+        """
+        Returns the first_name plus the last_name, with a space in between.
+        """
+        fullname = "%s %s" % (self.first_name, self.last_name)
+        return fullname.strip()
 
     def get_short_name(self):
-        # The user is identified by their email address
-        return self.email
+        return self.first_name
 
     def __str__(self):              # __unicode__ on Python 2
         return self.email
@@ -99,6 +95,12 @@ class ProqodUser(AbstractBaseUser):
         # Simplest possible answer: Yes, always
 
         return True
+
+    def email_user(self, subject, message, from_email=None):
+        """
+        Sends an email to this User.
+        """
+        send_mail(subject, message, from_email, [self.email])
 
     @property
     def is_staff(self):
