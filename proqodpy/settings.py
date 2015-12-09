@@ -85,15 +85,15 @@ ROOT_URLCONF = 'proqodpy.urls'
 
 
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # LIB_DIR = os.path.join(BASE_DIR, 'libs')
 LOG_DIR = os.path.join(BASE_DIR, 'log')
 
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, 'static'),
+#)
 
 ADMIN_MEDIA_PREFIX = '/static/admin'
 
