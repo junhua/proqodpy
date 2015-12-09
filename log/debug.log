@@ -1230,3 +1230,53 @@ Traceback (most recent call last):
   File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/template/loader.py", line 74, in select_template
     raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
 TemplateDoesNotExist: login.html
+ERROR 2015-12-09 14:55:11,616 django.request base Internal Server Error: /auth/register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/djoser/views.py", line 58, in perform_create
+    instance = serializer.save()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/djoser/serializers.py", line 34, in create
+    return User.objects.create_user(**validated_data)
+TypeError: create_user() got an unexpected keyword argument 'is_active'
+ERROR 2015-12-09 14:55:11,616 django.request base Internal Server Error: /auth/register/
+Traceback (most recent call last):
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/generics.py", line 192, in post
+    return self.create(request, *args, **kwargs)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/djoser/views.py", line 58, in perform_create
+    instance = serializer.save()
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/sutd/Playground/venv/pqp/lib/python2.7/site-packages/djoser/serializers.py", line 34, in create
+    return User.objects.create_user(**validated_data)
+TypeError: create_user() got an unexpected keyword argument 'is_active'

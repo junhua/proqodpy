@@ -7,7 +7,7 @@ from django.contrib.auth.models import (
 
 class ProqodUserManager(BaseUserManager):
 
-    def create_user(self, email, sid, password, user_type=0,
+    def create_user(self, email, sid, password, is_active=True, user_type=0,
                     school=None, department=None, is_admin=False):
         """
         Creates and saves a User with the given information.
