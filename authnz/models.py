@@ -5,20 +5,6 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, User
 )
 
-# Create your models here.
-
-# class Student(models.Model):
-# Fields
-#     user = models.OneToOneField(User)
-#     student_id = models.CharField(max_length=55, null=True, blank=True)
-#     school = models.CharField(max_length=100, null=True, blank=True)
-#     department = models.CharField(max_length=100, null=True, blank=True)
-#     user_type = models.CharField(max_length=10, default="student", editable=False)
-
-# def __str__(self):              # __unicode__ on Python 2
-#         return self.user.username
-
-
 class ProqodUserManager(BaseUserManager):
 
     def create_user(self, email, sid, password, user_type=0,
@@ -30,7 +16,7 @@ class ProqodUserManager(BaseUserManager):
             raise ValueError('Users must have an email address')
 
         if not sid:
-            raise ValueError('Users must have a student id')
+            raise ValueError('Users must have an id')
 
         user = self.model(
             email=self.normalize_email(email),
@@ -105,15 +91,3 @@ class ProqodUser(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
-
-
-# class Teacher(models.Model):
-# Fields
-#     user = models.OneToOneField(User)
-#     teacher_id = models.CharField(max_length=55, null=True, blank=True)
-#     school = models.CharField(max_length=100, null=True, blank=True)
-#     department = models.CharField(max_length=100, null=True, blank=True)
-#     user_type = models.CharField(max_length=10, default="teacher", editable=False)
-
-# def __str__(self):              # __unicode__ on Python 2
-#         return self.user.username

@@ -14,3 +14,11 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "proqodpy.settings")
 
 application = get_wsgi_application()
+
+'''
+gunicorn --name=proqodpy \
+    --pythonpath=proqodpy \
+    --bind=127.0.0.1:9000 \
+    --config /etc/gunicorn.d/gunicorn.py \
+    proqodpy.wsgi:application
+'''

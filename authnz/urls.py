@@ -8,5 +8,5 @@ router = routers.DefaultRouter(trailing_slash=False)
 
 urlpatterns = [
     url(r'^', include('djoser.urls.authtoken')),
-    url(r'^custom_register/$', views.RegistrationView.as_view()),
+    # url(r'^custom_register/$', views.RegistrationView.as_view()),
 ]
