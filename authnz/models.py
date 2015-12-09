@@ -19,7 +19,6 @@ class ProqodUserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email,
                           is_admin=is_admin, is_active=True,
-                          last_login=now,
                           date_joined=now, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
