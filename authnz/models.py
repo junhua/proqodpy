@@ -58,11 +58,11 @@ class ProqodUser(AbstractBaseUser):
     user_type = models.PositiveSmallIntegerField(
         default=STUDENT, choices=USER_TYPE)
     is_admin = models.BooleanField(default=False)
-
+    is_active = models.BooleanField(default=True)
     objects = ProqodUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['sid', 'user_type','is_admin', 'school', 'department', ]
+    REQUIRED_FIELDS = ['sid', 'user_type','is_admin', 'is_active', 'school', 'department', ]
 
     def get_full_name(self):
         # The user is identified by their email address
