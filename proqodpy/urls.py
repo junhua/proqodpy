@@ -4,7 +4,9 @@ from django.conf import settings
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from apps.courses.urls import router
+
+# from apps.courses.urls import router
+from api.v1 import routers
 
 urlpatterns = [
     # Admin
@@ -15,7 +17,7 @@ urlpatterns = [
 
     # Api
     # url(r'^api/v1/courses/', include('apps.courses.urls'), name='courses'),
-    url(r'^api/v1/', include(router.urls))
+    url(r'^api/v1/', include(routers.router.urls)),
 
 ]
 

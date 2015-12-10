@@ -19,3 +19,5 @@ class CourseSerializer(serializers.ModelSerializer):
                     'end_date',
                     'participants',
                 )
+        search_fields = ('school', )
+        ordering_fields = ('school', 'department', 'date_created', )
