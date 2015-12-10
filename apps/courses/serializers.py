@@ -2,9 +2,21 @@ from rest_framework import serializers
 from .models import Course
 from django.contrib.auth.models import User
 
-class CourseSerializer(serializers.HyperlinkedModelSerializer):
+class CourseSerializer(serializers.ModelSerializer):
+    students = serializers.StringRelatedField(many=True)
+    teachers = serializers.StringRelatedField(many=True)
+
+
 	class Meta:
 		model = Course
-		fields = ('school', 'courseCode', 'title', 'department', 'description', 
-				'programming_language', 'startDate', 'endDate')
-		
+		fields = ('course_batch',
+					'course_code',
+					'school',
+					'department',
+					'title',
+					'description',
+					'programming_language',
+					'start_date',
+					'end_date',
+					'teachers',
+					'students',)
