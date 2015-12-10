@@ -3,8 +3,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
-# from apps.web.views import IndexView
 
+from apps.courses.urls import router
 
 urlpatterns = [
     # Admin
@@ -14,13 +14,11 @@ urlpatterns = [
     url(r'^auth/', include('authnz.urls')),
 
     # Api
-    # url(r'^api/', include('apps.api.urls')),
+    # url(r'^api/v1/courses/', include('apps.courses.urls'), name='courses'),
+    url(r'^api/v1/', include(router.urls))
 
-    # web
-    # url(r'^web/', include('apps.web.urls'), name='front-end')
 ]
 
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

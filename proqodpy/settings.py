@@ -47,7 +47,10 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'djoser',
     'django_filters',
-    'authnz', # Custom auth
+
+    # Custom
+    'authnz',
+    'apps.courses',
 
 )
 
