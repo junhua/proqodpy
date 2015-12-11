@@ -47,7 +47,7 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = ProqodUser
         fields = (
-            'email', 'password', 'sid', 'is_admin', 'school', 'department')
+            'email', 'password', 'sid', 'is_admin', 'is_active', 'first_name', 'last_name', 'school', 'department')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -64,7 +64,7 @@ class ProqodUserAdmin(UserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'sid', 'is_admin', 'school', 'department')
+    list_display = ('email', 'sid', 'is_admin', 'is_active', 'first_name', 'last_name', 'school', 'department')
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('email', 'sid', 'password')}),
