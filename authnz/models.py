@@ -49,11 +49,11 @@ class ProqodUser(AbstractBaseUser):
     school = models.CharField(max_length=100, null=True, blank=True)
     department = models.CharField(max_length=100, null=True, blank=True)
     
-    user_type = models.PositiveSmallIntegerField(default=STUDENT, choices=USER_TYPE)
+    user_type = models.PositiveSmallIntegerField(default=STUDENT, choices=USER_TYPE, editable=False)
     is_admin = models.BooleanField(_('staff status'), default=False, 
         help_text=_('Designates whether the user is admin.'))
     
-    is_active = models.BooleanField(_('active'), default=True,
+    is_active = models.BooleanField(_('active'), default=False,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
@@ -62,7 +62,7 @@ class ProqodUser(AbstractBaseUser):
 
     USERNAME_FIELD = 'sid'
     REQUIRED_FIELDS = [
-                    'email', 'first_name', 'last_name',
+                    'email', 'user_type','first_name', 'last_name',
                     'school', 'department'
                     ]
 
