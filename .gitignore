@@ -12,4 +12,4 @@ lib64
 *.pyc
 static/*
 media/*
-log/
+log/*
