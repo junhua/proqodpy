@@ -4,13 +4,13 @@ from django.utils import timezone
 # Create your models here.
 
 class CourseManager(models.Manager):
-
+    pass
 
 class Course(models.Model):
 
     # Unique-together fields
     course_batch = models.CharField(_('course batch'), max_length=20, blank=True, null=False, 
-                                    help_text=_('Identify the batch of the course e.g. FY15T3 for Year 2015 Term 3')) # e.g. FY15T3
+                                    help_text=_('e.g. FY15T3 (for Year 2015 Term 3)')) # e.g. FY15T3
     course_code = models.CharField(_('course code'), max_length=20, blank=True, null=False, 
                                     help_text=_('e.g. CS101')) # e.g. CS101
     school = models.CharField(max_length=100, blank=True, null=True, help_text=_('e.g. SUTD')) # e.g. SUTD
@@ -26,10 +26,10 @@ class Course(models.Model):
     date_created = models.DateTimeField(_('date created'), default=timezone.now)
 
     # Foreign keys
-    teachers = models.ManyToManyField('authnz.ProqodUser', blank=True, null=False, related_name='teachers')
-    students = models.ManyToManyField('authnz.ProqodUser', blank=True, null=False, related_name='students')
+    participants = models.ManyToManyField('authnz.ProqodUser', related_name='courses')
+    
 
-    objects = managers.CourseManager()
+    objects = CourseManager()
 
     class Meta:
         verbose_name=_('course')
