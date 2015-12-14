@@ -44,6 +44,7 @@ Back-end is a RESTful API engine which includes:
 2. Students can see other's submissions. Improve the code / leaderboard gets updated even after assignment deadline.
 3. Teacher can give optional *editorial* to provide different levels of hints for student's reference (e.g. basic, good practice, smart implementation).
 4. Badges for best performance, most growth, most hardworking, fastest hand(always submit first)... with *unique* names. Generate certificate by the end of the course.
+5. Heatmap to show code's complexity/memory/time.
 
 
 ### Host
