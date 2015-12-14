@@ -15,7 +15,7 @@ ProQod is an autograder for institutes for programming assessment marking. ProQo
 5. Exam. Time-limited and requirement same as Assessment.
 
 ### Teachers' interaction specs
-1. Course Management. Teachers have an UI to customize courses, classes, students, weeks, Assessments and types, allocate marks and grades.
+1. Course Management. Teachers have an UI to customize courses, classes, students, weeks, Assessments and types, allocate marks and grades. Teacher can give optional *editorial* to provide different levels of hints for student's reference.
 2. Course Statistics. Teachers can see the statistics of the class and cohort.
 3. Window to execute SQL.
 
