@@ -15,9 +15,10 @@ ProQod is an autograder for institutes for programming assessment marking. ProQo
 5. Exam. Time-limited and requirement same as Assessment.
 
 ### Teachers' interaction specs
-1. Course Management. Teachers have an UI to customize courses, classes, students, weeks, Assessments and types, allocate marks and grades. Teacher can give optional *editorial* to provide different levels of hints for student's reference.
-2. Course Statistics. Teachers can see the statistics of the class and cohort.
-3. Window to execute SQL.
+1. Course Management. Teachers have an UI to customize courses, classes, students, weeks, Assessments and types, allocate marks and grades. 
+2. Teacher can give optional *editorial* to provide different levels of hints for student's reference.
+3. Course Statistics. Teachers can see the statistics of the class and cohort.
+4. Window to execute SQL.
 
 ## System Requiremnet
 The system architecture uses a Front-Back approach which loosely couples the Front-end and Back-end of the system and communicate via JSON.
@@ -38,7 +39,12 @@ Back-end is a RESTful API engine which includes:
 * Django
 * Django-Rest-Framework
 
-The design pattern of Django will be mainly the 
+## Implementation of *Innovation*
+1. Challenge: students can challenge other students/teachers to write better version of code. Only the performance metrics will be reviewd but source code will not be revealed to other students or *teachers* before the deadline of the assessment.
+2. Students can see other's submissions. Improve the code / leaderboard gets updated even after assignment deadline.
+3. Teacher can give optional *editorial* to provide different levels of hints for student's reference (e.g. basic, good practice, smart implementation).
+4. Badges for best performance, most growth, most hardworking, fastest hand(always submit first)... with *unique* names. Generate certificate by the end of the course.
+
 
 ### Host
 The source code is hosted at Github:
