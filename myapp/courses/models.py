@@ -1,44 +1,1 @@
-from django.db import models
-from django.utils.translation import ugettext_lazy as _
-from django.utils import timezone
-# Create your models here.
-
-class CourseManager(models.Manager):
-    pass
-
-class Course(models.Model):
-
-    # Unique-together fields
-    course_batch = models.CharField(_('course batch'), max_length=20, blank=True, null=False, 
-                                    help_text=_('e.g. FY15T3 (for Year 2015 Term 3)')) # e.g. FY15T3
-    course_code = models.CharField(_('course code'), max_length=20, blank=True, null=False, 
-                                    help_text=_('e.g. CS101')) # e.g. CS101
-    school = models.CharField(max_length=100, blank=True, null=True, help_text=_('e.g. SUTD')) # e.g. SUTD
-    department = models.CharField(max_length=100, blank=True, null=True, help_text=_('e.g. ISTD')) # e.g. ISTD
-    
-    # Other fields
-    title = models.CharField(max_length=50, blank=True, null=True, help_text=_('e.g. Digital World')) # e.g. Introduction to programming
-    description = models.TextField(max_length=255, blank=True, null=True, 
-                                    help_text=_('e.g. An introduction course to programming using Python')) # e.g. An introduction course to programming using Python
-    programming_language = models.CharField(_('programming language'), max_length=55, blank=False, null=False, help_text=_('e.g. Python')) # e.g. Python
-    start_date = models.DateField(_('start date'), null=False, blank=False) # 1/30/16
-    end_date = models.DateField(_('end date'), null=False, blank=False) # 4/30/16
-    date_created = models.DateTimeField(_('date created'), default=timezone.now)
-
-    # Foreign keys
-    participants = models.ManyToManyField('authnz.ProqodUser', related_name='courses')
-    
-
-    objects = CourseManager()
-
-    class Meta:
-        verbose_name=_('course')
-        verbose_name_plural=_('courses')
-        ordering = ['date_created']
-        unique_together=("course_batch", "course_code", "school", "department")
-
-    def get_absolute_path(self):
-    	return "/courses/%i/" % self.pk
-
-    def __str__(self):
-        return "%s_%s_%s_%s"%(school, department, courseCode, title)
+from django.db import modelsfrom django.utils.translation import ugettext_lazy as _from django.utils import timezone# Create your models here.class CourseManager(models.Manager):    passclass Course(models.Model):    # Unique-together fields    course_batch = models.CharField(        _('course batch'),        max_length=20,        blank=True,        null=False,        help_text=_('e.g. FY15T3 (for Year 2015 Term 3)')    )    course_code = models.CharField(        _('course code'),        max_length=20,        blank=True,        null=False,        help_text=_('e.g. CS101')    )    school = models.CharField(        max_length=100,        blank=True,        null=True,        help_text=_('e.g. SUTD')    )    department = models.CharField(        max_length=100,        blank=True,        null=True,        help_text=_('e.g. ISTD')    )    # Other fields    title = models.CharField(        max_length=50,        blank=True,        null=True,        help_text=_('e.g. Digital World')    )    description = models.TextField(        max_length=255,        blank=True,        null=True,        help_text=_('e.g. An introduction course to programming using Python')    )    programming_language = models.CharField(        _('programming language'),        max_length=55,        blank=False,        null=False,        help_text=_('e.g. Python')    )  # e.g. Python    start_date = models.DateField(        _('start date'),        null=False,        blank=False    )    end_date = models.DateField(        _('end date'),        null=False,        blank=False    )    date_created = models.DateTimeField(        _('date created'),        default=timezone.now    )    # Foreign keys    participants = models.ManyToManyField(        'authnz.ProqodUser',        related_name='courses'    )    objects = CourseManager()    class Meta:        verbose_name = _('course')        verbose_name_plural = _('courses')        ordering = ['date_created']        unique_together = (            "course_batch", "course_code", "school", "department")    def get_absolute_path(self):        return "/courses/%i/" % self.pk    def __str__(self):        return "%s_%s_%s_%s" % (            self.school, self.department, self.courseCode, self.title        )class Assessment(models.Model):    """    A short test of knowledge to particular topics that    can be a form of coding problem, MCQ or Blanks    """    LAB, QUIZ, PROJECT, EXAM = range(4)    ASSESSMENT_TYPE = (        (LAB, 'lab'),        (QUIZ, 'quiz'),        (PROJECT, 'project'),        (EXAM, 'exam'),    )    # fields    assessment_type = models.CharField(        _("assessment type"),        max_length=5,        default=LAB,        choices=ASSESSMENT_TYPE,        null=False,        blank=False    )    assessment_id = models.PositiveSmallIntegerField(        _("assessment id"),        null=False,        blank=False    )    # If null, available all the time    duration = models.DurationField(        _('available duration'),        null=True,        blank=False    )    # OneToMany: A course can have many quizes    course = models.ForeignKey('Course', related_name='quizes')    class Meta:        verbose_name = _('assessment')        verbose_name_plural = _('assessments')        ordering = ['assessment_type', 'assessment_id']        unique_together = ("assessment_type", "assessment_id")class Question(models.Model):    """    Question include 3 types (and others):    Programming, MCQ, Blanks.    """    PROGRAMMING, MCQ, BLANKS, OTHERS = range(4)    QUESTION_TYPE = (        (PROGRAMMING, "programming"),        (MCQ, "mcq"),        (BLANKS, "blank"),        (OTHERS, "others")    )    assessment = models.ForeignKey(        'Assessment',        null=True,        blank=True)    question_num = models.CharField(        _("question no"),        max_length=10,        null=False,        blank=False,        help_text="a question no unique together with the assessment"    )    question_type = models.CharField(        _("question type"),        max_length=5,        default=PROGRAMMING,        choices=QUESTION_TYPE    )    title = models.CharField(        _("qustion content"),        max_length=50,        null=True,        blank=True    )    question_content = models.TextField(        _("qustion content"),        null=True,        blank=True,    )    solution = models.TextField(        _("solution"),        null=True,        blank=True,    )    class Meta:        verbose_name = _('question')        verbose_name_plural = _('questions')        ordering = ['assessment', 'uqestion_num']        unique_together = ("assessment", "question_num")class MultipleChoices(models.Model):    """    Custom for Multiple Choice Questions.    """    content = models.CharField(        _("content"),        max_length=200,        null=False,        blank=True    )    question = models.ForeignKey(        "Question",        null=False,        blank=False,        related_name="mcq_choices"    )class BlankQuestionContent(models.Model):    """    Custom for Blank type of questions.    A blank is expected between each two parts.    seq is positive integer unique together with question.    """    seq = models.PositiveSmallIntegerField(        _("sequence"),        null=False,        blank=False,        help_text=_("sequence unique together with question")    )    content = models.CharField(        _("content"),        max_length=200,        null=False,        blank=True    )    question = models.ForeignKey(        "Question",        null=False,        blank=False,        related_name="blank_parts"    )    class meta:        verbose_name = _('blank_question_part')        verbose_name_plural = _('blank_question_parts')        ordering = ['question']        unique_together = (            'seq', 'question'        )
