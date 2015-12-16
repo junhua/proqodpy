@@ -1,7 +1,21 @@
-
-from .serializers import CourseSerializer, AssessmentSerializer
-from .models import Course, Assessment
 from rest_framework import viewsets, authentication, permissions, filters
+
+from .serializers import (
+    CourseSerializer,
+    AssessmentSerializer,
+    McqQuestionSerializer,
+    BlankQuestionSerializer,
+    ProgrammingQuestionSerializer,
+    MultipleChoiceSerializer,
+    BlankQuestionContentSerializer,
+)
+from .models import (
+    Course,
+    Assessment,
+    Question,
+    MultipleChoice,
+    BlankQuestionContent,
+)
 
 
 class DefaultsMixin(object):
@@ -35,6 +49,37 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
 class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
-    """ API endpoint for listing and creating courses """
+    """ API endpoint for listing and creating assessment """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
+
+
+class McqQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and Mcq Question """
+    queryset = Question.objects.all().filter(question_type=Question.MCQ)
+    serializer_class = McqQuestionSerializer
+
+class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating Blank Question """
+    queryset = Question.objects.all().filter(question_type=Question.MCQ)
+    serializer_class = BlankQuestionSerializer
+
+class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating Blank Question """
+    queryset = Question.objects.all().filter(question_type=Question.PROGRAMMING)
+    serializer_class = ProgrammingQuestionSerializer
+
+class MultipleChoiceViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating multiple choice """
+    queryset = MultipleChoice.objects.all()
+    serializer_class = MultipleChoiceSerializer
+
+class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating multiple choice """
+    queryset = MultipleChoice.objects.all()
+    serializer_class = BlankQuestionContentSerializer
