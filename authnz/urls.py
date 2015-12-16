@@ -1,12 +1,5 @@
-from django.conf.urls import *
-from rest_framework import routers
-from rest_framework.authtoken.views import obtain_auth_token
-from . import views
-
-router = routers.DefaultRouter(trailing_slash=False)
-# router.register(r'courses',views.CourseViewSet)
+from django.conf.urls import url, include
 
 urlpatterns = [
     url(r'^', include('djoser.urls.authtoken')),
-    # url(r'^custom_register/$', views.RegistrationView.as_view()),
 ]
