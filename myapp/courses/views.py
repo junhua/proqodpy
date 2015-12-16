@@ -1,12 +1,15 @@
 
-from .serializers import CourseSerializer
-from .models import Course
+from .serializers import CourseSerializer, AssessmentSerializer
+from .models import Course, Assessment
 from rest_framework import viewsets, authentication, permissions, filters
 
 
 class DefaultsMixin(object):
 
-    """ Default settings for view auth, permissions, filtering and pagination """
+    """ 
+    Default settings for view auth, permissions, 
+    filtering and pagination 
+    """
     authentication_classes = (
         authentication.BasicAuthentication,
         authentication.TokenAuthentication,
@@ -26,5 +29,12 @@ class DefaultsMixin(object):
 class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating courses """
-    queryset = Course.objects.all().order_by('date_created')
+    queryset = Course.objects.order_by('date_created')
     serializer_class = CourseSerializer
+
+
+class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating courses """
+    queryset = Assessment.objects.all()
+    serializer_class = AssessmentSerializer

@@ -2846,3 +2846,177 @@ Traceback (most recent call last):
   File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 332, in bind
     (field_name, self.__class__.__name__, parent.__class__.__name__)
 AssertionError: It is redundant to specify `source='participants'` on field 'ManyRelatedField' in serializer 'CourseSerializer', because it is the same as the field name. Remove the `source` keyword argument.
+ERROR 2015-12-16 13:40:10,575 django.request base Internal Server Error: /v1/assessment/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 258, in __iter__
+    self._fetch_all()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1074, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 52, in __iter__
+    results = compiler.execute_sql()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 841, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 384, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 49, in pre_sql_setup
+    order_by = self.get_order_by()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 295, in get_order_by
+    field, self.query.get_meta(), default_order=asc))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 570, in find_ordering_name
+    field, targets, alias, joins, path, opts = self._setup_joins(pieces, opts, alias)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 603, in _setup_joins
+    pieces, opts, alias)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/query.py", line 1405, in setup_joins
+    names, opts, allow_many, fail_on_missing=True)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/query.py", line 1330, in names_to_path
+    "Choices are: %s" % (name, ", ".join(available)))
+FieldError: Cannot resolve keyword 'date_created' into field. Choices are: assessment_id, assessment_type, course, course_id, duration, id, question
+ERROR 2015-12-16 13:40:10,575 django.request base Internal Server Error: /v1/assessment/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 258, in __iter__
+    self._fetch_all()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1074, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 52, in __iter__
+    results = compiler.execute_sql()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 841, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 384, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 49, in pre_sql_setup
+    order_by = self.get_order_by()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 295, in get_order_by
+    field, self.query.get_meta(), default_order=asc))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 570, in find_ordering_name
+    field, targets, alias, joins, path, opts = self._setup_joins(pieces, opts, alias)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 603, in _setup_joins
+    pieces, opts, alias)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/query.py", line 1405, in setup_joins
+    names, opts, allow_many, fail_on_missing=True)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/query.py", line 1330, in names_to_path
+    "Choices are: %s" % (name, ", ".join(available)))
+FieldError: Cannot resolve keyword 'date_created' into field. Choices are: assessment_id, assessment_type, course, course_id, duration, id, question
+ERROR 2015-12-16 13:59:30,763 django.request base Internal Server Error: /v1/assessment/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 258, in __iter__
+    self._fetch_all()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1074, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 52, in __iter__
+    results = compiler.execute_sql()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 852, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+ProgrammingError: column courses_assessment.start_date does not exist
+LINE 1: ...ment_type", "courses_assessment"."assessment_id", "courses_a...
+                                                             ^
+
+ERROR 2015-12-16 13:59:30,763 django.request base Internal Server Error: /v1/assessment/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 258, in __iter__
+    self._fetch_all()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1074, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 52, in __iter__
+    results = compiler.execute_sql()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 852, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+ProgrammingError: column courses_assessment.start_date does not exist
+LINE 1: ...ment_type", "courses_assessment"."assessment_id", "courses_a...
+                                                             ^
+
