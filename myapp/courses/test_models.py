@@ -1,7 +1,7 @@
 import json
 from django.core.urlresolvers import reverse
 from django.test import TestCase
-
+from rest_framework.test import APIRequestFactory, APITestCase
 from .models import Course, Assessment
 from authnz.models import ProqodUser
 
@@ -20,8 +20,8 @@ class CourseModelTests (APITestCase):
             title="Intro to CS",
             description="Introduction course to computer science",
             programming_language="Python",
-            start_date="01/12/15",
-            end_date="01/01/16",
+            start_date="2015-12-01",
+            end_date="2016-01-01",
         )
 
         ProqodUser.objects.create_user(

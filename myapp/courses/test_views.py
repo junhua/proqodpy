@@ -2,8 +2,7 @@
 # from django.core.urlresolvers import reverse
 # from django.test import TestCase
 from rest_framework import status
-from rest_framework.test import APIRequestFactory
-from rest_framework.test import APITestCase
+from rest_framework.test import APIRequestFactory, APITestCase
 from .models import Course, Assessment
 from authnz.models import ProqodUser
 
@@ -22,8 +21,8 @@ class CourseViewsTests (APITestCase):
             title="Intro to CS",
             description="Introduction course to computer science",
             programming_language="Python",
-            start_date="01/12/15",
-            end_date="01/01/16",
+            start_date="2015-12-01",
+            end_date="2016-01-01",
         )
 
         ProqodUser.objects.create_user(
@@ -55,25 +54,41 @@ class CourseViewsTests (APITestCase):
             'title': "Intro to CS",
             'description': "Introduction course to computer science",
             'programming_language': "Python",
-            'start_date': "01/12/15",
-            'end_date': "01/01/16",
+            'start_date': "2015-12-01",
+            'end_date': "2016-01-01",
         }
 
-        response = factory.post("/api/v1/course-list", data)
+        # response = factory.post("/api/v1/course-list", data)
+        response = self.client.post("/api/v1/course-list", data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Course.objects.count(), 1)
         self.assertEqual(Course.objects.get().course_batch, data.course_batch)
 
     def test_read_course(self):
         factory = APIRequestFactory()
-        response = factory.get("/api/v1/course/1/")
+        # response = factory.get("/api/v1/course/1/")
+        response = self.client.get("/api/v1/course/1", format="json")
+
         self.assertEqual(
             response.data, {'id': 1, 'course_batch': 'test_batch'})
 
     def test_update_course(self):
 
         factory = APIRequestFactory()
-        response = factory.put('/notes/1/', {'course_code': 'CS102'})
+        # response = factory.put('/notes/1/', {'course_code': 'CS102'})
+        response = self.client.put(
+            "/api/v1/course/1/", {'course_code': 'CS102'}, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Course.objects.get().course_code, 'CS102')
         factory.put('/notes/1/', {'course_code': 'CS101'})
+
+    def test_delete_course(self):
+
+        factory = APIRequestFactory()
+        # response = factory.put('/notes/1/', {'course_code': 'CS102'})
+        response = self.client.delete(
+            "/api/v1/course/1/", format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(Course.objects.get().course_code, 'CS102')
+        factory.put('/notes/1/', {'course_code': 'CS101'})
+
