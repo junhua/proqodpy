@@ -6,6 +6,7 @@ from .models import (
     MultipleChoice,
     BlankQuestionContent
 )
+from authnz.models import ProqodUser
 
 
 class MultipleChoiceSerializer(serializers.ModelSerializer):
@@ -35,7 +36,9 @@ class BlankQuestionContentSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):
 
-    participants = serializers.StringRelatedField(many=True)
+    participants = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=ProqodUser.objects.order_by('id')
+    )
 
     class Meta:
         model = Course
@@ -50,11 +53,10 @@ class CourseSerializer(serializers.ModelSerializer):
             'programming_language',
             'start_date',
             'end_date',
-            'date_created',
             'participants',
         )
         search_fields = ('school', )
-        ordering_fields = ('school', 'department', 'date_created', )
+        ordering_fields = ('school', 'department', 'id', )
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
