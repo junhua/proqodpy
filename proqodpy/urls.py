@@ -13,14 +13,13 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     # Auth
-    url(r'^auth/', include('authnz.urls')),
+    url(r'^v1/auth/', include('authnz.urls')),
 
     # Api
     # url(r'^api/v1/courses/', include('apps.courses.urls'), name='courses'),
-    url(r'^api/v1/', include(routers.router.urls)),
+    url(r'^v1/', include(routers.router.urls)),
 
 ]
 
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
