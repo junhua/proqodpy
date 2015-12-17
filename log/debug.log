@@ -3020,3 +3020,1209 @@ ProgrammingError: column courses_assessment.start_date does not exist
 LINE 1: ...ment_type", "courses_assessment"."assessment_id", "courses_a...
                                                              ^
 
+ERROR 2015-12-17 14:39:14,163 django.request base Internal Server Error: /v1/assessments/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 862, in create
+    raise TypeError(msg)
+TypeError: Got a `TypeError` when calling `Assessment.objects.create()`. This may be because you have a writable field on the serializer class that is not a valid argument to `Assessment.objects.create()`. You may need to make the field read-only, or override the AssessmentSerializer.create() method to handle this correctly.
+Original exception text was: 'programming_questions' is an invalid keyword argument for this function.
+ERROR 2015-12-17 14:39:14,163 django.request base Internal Server Error: /v1/assessments/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 862, in create
+    raise TypeError(msg)
+TypeError: Got a `TypeError` when calling `Assessment.objects.create()`. This may be because you have a writable field on the serializer class that is not a valid argument to `Assessment.objects.create()`. You may need to make the field read-only, or override the AssessmentSerializer.create() method to handle this correctly.
+Original exception text was: 'programming_questions' is an invalid keyword argument for this function.
+ERROR 2015-12-17 14:40:44,237 django.request base Internal Server Error: /v1/assessments/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 846, in create
+    instance = ModelClass.objects.create(**validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 401, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 700, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 728, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 812, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 851, in _do_insert
+    using=using, raw=raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1039, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 1064, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+IntegrityError: null value in column "course_id" violates not-null constraint
+DETAIL:  Failing row contains (1, 0, 1, null, null, null).
+
+ERROR 2015-12-17 14:40:44,237 django.request base Internal Server Error: /v1/assessments/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 846, in create
+    instance = ModelClass.objects.create(**validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 401, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 700, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 728, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 812, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 851, in _do_insert
+    using=using, raw=raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1039, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 1064, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+IntegrityError: null value in column "course_id" violates not-null constraint
+DETAIL:  Failing row contains (1, 0, 1, null, null, null).
+
+ERROR 2015-12-17 15:01:31,058 django.request base Internal Server Error: /v1/mcq/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 649, in get_context
+    'post_form': self.get_rendered_html_form(data, view, 'POST', request),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 499, in get_rendered_html_form
+    {'style': {'template_pack': 'rest_framework/horizontal'}}
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 357, in render
+    return template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 220, in render
+    nodelist.append(node.render_annotated(context))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/library.py", line 201, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/templatetags/rest_framework.py", line 37, in render_field
+    return renderer.render_field(field, style)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 337, in render_field
+    return template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 161, in render
+    values = self.sequence.resolve(context, True)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 705, in resolve
+    obj = self.var.resolve(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 846, in resolve
+    value = self._resolve_lookup(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 909, in _resolve_lookup
+    current = current()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 167, in iter_options
+    self.grouped_choices,
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 163, in grouped_choices
+    return self.choices
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 158, in choices
+    for item in queryset
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 173, in display_value
+    return six.text_type(instance)
+  File "/Users/junhua_liu/Playground/proqodpy/myapp/courses/models.py", line 156, in __str__
+    return "course %s assessment %s"%(course.course_code, self.assessment_id)
+NameError: global name 'course' is not defined
+ERROR 2015-12-17 15:01:31,058 django.request base Internal Server Error: /v1/mcq/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 649, in get_context
+    'post_form': self.get_rendered_html_form(data, view, 'POST', request),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 499, in get_rendered_html_form
+    {'style': {'template_pack': 'rest_framework/horizontal'}}
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 357, in render
+    return template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 220, in render
+    nodelist.append(node.render_annotated(context))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/library.py", line 201, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/templatetags/rest_framework.py", line 37, in render_field
+    return renderer.render_field(field, style)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 337, in render_field
+    return template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 161, in render
+    values = self.sequence.resolve(context, True)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 705, in resolve
+    obj = self.var.resolve(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 846, in resolve
+    value = self._resolve_lookup(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 909, in _resolve_lookup
+    current = current()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 167, in iter_options
+    self.grouped_choices,
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 163, in grouped_choices
+    return self.choices
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 158, in choices
+    for item in queryset
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 173, in display_value
+    return six.text_type(instance)
+  File "/Users/junhua_liu/Playground/proqodpy/myapp/courses/models.py", line 156, in __str__
+    return "course %s assessment %s"%(course.course_code, self.assessment_id)
+NameError: global name 'course' is not defined
+ERROR 2015-12-17 15:01:57,163 django.request base Internal Server Error: /v1/mcq/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 832, in create
+    raise_errors_on_nested_writes('create', self, validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 724, in raise_errors_on_nested_writes
+    class_name=serializer.__class__.__name__
+AssertionError: The `.create()` method does not support writable nestedfields by default.
+Write an explicit `.create()` method for serializer `myapp.courses.serializers.McqQuestionSerializer`, or set `read_only=True` on nested serializer fields.
+ERROR 2015-12-17 15:01:57,163 django.request base Internal Server Error: /v1/mcq/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 832, in create
+    raise_errors_on_nested_writes('create', self, validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 724, in raise_errors_on_nested_writes
+    class_name=serializer.__class__.__name__
+AssertionError: The `.create()` method does not support writable nestedfields by default.
+Write an explicit `.create()` method for serializer `myapp.courses.serializers.McqQuestionSerializer`, or set `read_only=True` on nested serializer fields.
+ERROR 2015-12-17 15:33:28,309 django.request base Internal Server Error: /v1/mcq_choices/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 649, in get_context
+    'post_form': self.get_rendered_html_form(data, view, 'POST', request),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 499, in get_rendered_html_form
+    {'style': {'template_pack': 'rest_framework/horizontal'}}
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 357, in render
+    return template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 220, in render
+    nodelist.append(node.render_annotated(context))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/library.py", line 201, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/templatetags/rest_framework.py", line 37, in render_field
+    return renderer.render_field(field, style)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 337, in render_field
+    return template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 161, in render
+    values = self.sequence.resolve(context, True)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 705, in resolve
+    obj = self.var.resolve(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 846, in resolve
+    value = self._resolve_lookup(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 909, in _resolve_lookup
+    current = current()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 167, in iter_options
+    self.grouped_choices,
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 163, in grouped_choices
+    return self.choices
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 158, in choices
+    for item in queryset
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 173, in display_value
+    return six.text_type(instance)
+  File "/Users/junhua_liu/Playground/proqodpy/myapp/courses/models.py", line 219, in __str__
+    return question_num
+NameError: global name 'question_num' is not defined
+ERROR 2015-12-17 15:33:28,309 django.request base Internal Server Error: /v1/mcq_choices/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 174, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 172, in get_response
+    response = response.render()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/response.py", line 160, in render
+    self.content = self.rendered_content
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/response.py", line 71, in rendered_content
+    ret = renderer.render(self.data, media_type, context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 674, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 649, in get_context
+    'post_form': self.get_rendered_html_form(data, view, 'POST', request),
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 499, in get_rendered_html_form
+    {'style': {'template_pack': 'rest_framework/horizontal'}}
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 357, in render
+    return template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 220, in render
+    nodelist.append(node.render_annotated(context))
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/library.py", line 201, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/templatetags/rest_framework.py", line 37, in render_field
+    return renderer.render_field(field, style)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/renderers.py", line 337, in render_field
+    return template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/backends/django.py", line 95, in render
+    return self.template.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 206, in render
+    return self._render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 197, in _render
+    return self.nodelist.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 988, in render
+    bit = node.render_annotated(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 955, in render_annotated
+    return self.render(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/defaulttags.py", line 161, in render
+    values = self.sequence.resolve(context, True)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 705, in resolve
+    obj = self.var.resolve(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 846, in resolve
+    value = self._resolve_lookup(context)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/template/base.py", line 909, in _resolve_lookup
+    current = current()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 167, in iter_options
+    self.grouped_choices,
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 163, in grouped_choices
+    return self.choices
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 158, in choices
+    for item in queryset
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 173, in display_value
+    return six.text_type(instance)
+  File "/Users/junhua_liu/Playground/proqodpy/myapp/courses/models.py", line 219, in __str__
+    return question_num
+NameError: global name 'question_num' is not defined
+ERROR 2015-12-17 15:39:42,278 django.request base Internal Server Error: /v1/mcq_choices/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 846, in create
+    instance = ModelClass.objects.create(**validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 401, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 700, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 728, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 812, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 851, in _do_insert
+    using=using, raw=raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1039, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 1064, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+IntegrityError: duplicate key value violates unique constraint "courses_multiplechoice_question_id_f55186d1_uniq"
+DETAIL:  Key (question_id)=(2) already exists.
+
+ERROR 2015-12-17 15:39:42,278 django.request base Internal Server Error: /v1/mcq_choices/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 846, in create
+    instance = ModelClass.objects.create(**validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 401, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 700, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 728, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 812, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 851, in _do_insert
+    using=using, raw=raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1039, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 1064, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+IntegrityError: duplicate key value violates unique constraint "courses_multiplechoice_question_id_f55186d1_uniq"
+DETAIL:  Key (question_id)=(2) already exists.
+
+ERROR 2015-12-17 15:39:48,084 django.request base Internal Server Error: /v1/mcq_choices/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 846, in create
+    instance = ModelClass.objects.create(**validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 401, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 700, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 728, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 812, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 851, in _do_insert
+    using=using, raw=raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1039, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 1064, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+IntegrityError: duplicate key value violates unique constraint "courses_multiplechoice_question_id_f55186d1_uniq"
+DETAIL:  Key (question_id)=(2) already exists.
+
+ERROR 2015-12-17 15:39:48,084 django.request base Internal Server Error: /v1/mcq_choices/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 846, in create
+    instance = ModelClass.objects.create(**validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 401, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 700, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 728, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 812, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 851, in _do_insert
+    using=using, raw=raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1039, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 1064, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+IntegrityError: duplicate key value violates unique constraint "courses_multiplechoice_question_id_f55186d1_uniq"
+DETAIL:  Key (question_id)=(2) already exists.
+
+ERROR 2015-12-17 15:40:50,261 django.request base Internal Server Error: /v1/mcq_choices/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 846, in create
+    instance = ModelClass.objects.create(**validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 401, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 700, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 728, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 812, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 851, in _do_insert
+    using=using, raw=raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1039, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 1064, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+IntegrityError: duplicate key value violates unique constraint "courses_multiplechoice_question_id_f55186d1_uniq"
+DETAIL:  Key (question_id)=(2) already exists.
+
+ERROR 2015-12-17 15:40:50,261 django.request base Internal Server Error: /v1/mcq_choices/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 21, in create
+    self.perform_create(serializer)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 26, in perform_create
+    serializer.save()
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 191, in save
+    self.instance = self.create(validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 846, in create
+    instance = ModelClass.objects.create(**validated_data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 401, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 700, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 728, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 812, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/base.py", line 851, in _do_insert
+    using=using, raw=raw)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/manager.py", line 122, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/query.py", line 1039, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 1064, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/utils.py", line 95, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+IntegrityError: duplicate key value violates unique constraint "courses_multiplechoice_question_id_f55186d1_uniq"
+DETAIL:  Key (question_id)=(2) already exists.
+
+ERROR 2015-12-17 16:45:07,343 django.request base Internal Server Error: /v1/blank_qns/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 468, in get_attribute
+    relationship = get_attribute(instance, self.source_attrs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 80, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'Question' object has no attribute 'blank_content'
+ERROR 2015-12-17 16:45:07,343 django.request base Internal Server Error: /v1/blank_qns/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/relations.py", line 468, in get_attribute
+    relationship = get_attribute(instance, self.source_attrs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 80, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'Question' object has no attribute 'blank_content'
+ERROR 2015-12-17 17:04:49,346 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'seq'.
+ERROR 2015-12-17 17:04:49,346 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'seq'.
+ERROR 2015-12-17 17:14:16,633 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'seq'.
+ERROR 2015-12-17 17:14:16,633 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'seq'.
+ERROR 2015-12-17 17:14:27,759 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'seq'.
+ERROR 2015-12-17 17:14:27,759 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'seq'.
+ERROR 2015-12-17 17:15:22,385 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `part_seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'part_seq'.
+ERROR 2015-12-17 17:15:22,385 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `part_seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'part_seq'.
+ERROR 2015-12-17 17:16:08,598 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `part_seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'part_seq'.
+ERROR 2015-12-17 17:16:08,598 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `part_seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'part_seq'.
+ERROR 2015-12-17 17:16:09,811 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `part_seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'part_seq'.
+ERROR 2015-12-17 17:16:09,811 django.request base Internal Server Error: /v1/blank_qn_content/
+Traceback (most recent call last):
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/viewsets.py", line 87, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 466, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/views.py", line 463, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 674, in data
+    ret = super(ListSerializer, self).data
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 239, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 614, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/serializers.py", line 463, in to_representation
+    attribute = field.get_attribute(instance)
+  File "/Users/junhua_liu/Playground/venv/proqodpy/lib/python2.7/site-packages/rest_framework/fields.py", line 422, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `part_seq` on serializer `BlankQuestionContentSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `MultipleChoice` instance.
+Original exception text was: 'MultipleChoice' object has no attribute 'part_seq'.
