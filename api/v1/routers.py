@@ -13,12 +13,13 @@ from myapp.courses.views import (
 
 router = DefaultRouter()
 
-router.register(r'courses', CourseViewSet)
-router.register(r'assessments', AssessmentViewSet)
-router.register(r'mcq', McqQuestionViewSet)
-router.register(r'blank_qn', BlankQuestionViewSet)
-router.register(r'prog_qn', ProgrammingQuestionViewSet)
-router.register(r'multiple_choice', MultipleChoiceViewSet)
-router.register(r'blank_qn_content', BlankQuestionContentViewSet)
-
-
+router.register(r'courses', CourseViewSet, base_name='courses')
+router.register(r'assessments', AssessmentViewSet, base_name='assessments')
+router.register(r'mcq', McqQuestionViewSet, base_name='mcq')
+router.register(r'blank_qn', BlankQuestionViewSet, base_name='blank questions')
+router.register(
+    r'prog_qn', ProgrammingQuestionViewSet, base_name='programming questions')
+router.register(
+    r'mcq/choices', MultipleChoiceViewSet, base_name='multiple_choices')
+router.register(r'blank_qn/content', BlankQuestionContentViewSet,
+                base_name='blank question content')
