@@ -11,7 +11,8 @@ from authnz.models import ProqodUser
 
 class MultipleChoiceSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.all())
+        queryset=Question.objects.all()
+    )
 
     class Meta:
         model = MultipleChoice
@@ -25,7 +26,8 @@ class MultipleChoiceSerializer(serializers.ModelSerializer):
 
 class BlankQuestionContentSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.all())
+        queryset=Question.objects.all()
+    )
 
     class Meta:
         model = BlankQuestionContent
@@ -42,7 +44,8 @@ class BlankQuestionContentSerializer(serializers.ModelSerializer):
 
 class McqQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
-        queryset=Assessment.objects.all())
+        queryset=Assessment.objects.all()
+    )
     question_type = serializers.HiddenField(default=Question.MCQ)
 
     # choices = MultipleChoiceSerializer(many=True)
@@ -63,7 +66,8 @@ class McqQuestionSerializer(serializers.ModelSerializer):
 
 class BlankQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
-        queryset=Assessment.objects.all())
+        queryset=Assessment.objects.all()
+    )
     question_type = serializers.HiddenField(default=Question.BLANKS)
     blank_parts = serializers.StringRelatedField(many=True, read_only=True)
 
@@ -83,7 +87,8 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
 
 class ProgrammingQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
-        queryset=Assessment.objects.all())
+        queryset=Assessment.objects.all()
+    )
     question_type = serializers.HiddenField(default=Question.PROGRAMMING)
 
     class Meta:
@@ -127,10 +132,11 @@ class CourseSerializer(serializers.ModelSerializer):
 class AssessmentSerializer(serializers.ModelSerializer):
     course = serializers.PrimaryKeyRelatedField(
         queryset=Course.objects.all()
-        )
+    )
 
     assessment_type = serializers.ChoiceField(
-        choices=Assessment.ASSESSMENT_TYPE)
+        choices=Assessment.ASSESSMENT_TYPE
+    )
 
     class Meta:
         model = Assessment
@@ -142,4 +148,3 @@ class AssessmentSerializer(serializers.ModelSerializer):
             'end_date',
             'course',
         )
-
