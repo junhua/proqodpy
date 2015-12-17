@@ -19,6 +19,7 @@ class MultipleChoiceSerializer(serializers.ModelSerializer):
             'id',
             'content',
             'question',
+            'is_correct',
         )
 
 
@@ -43,6 +44,7 @@ class McqQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all())
     question_type = serializers.HiddenField(default=Question.MCQ)
+
     # choices = MultipleChoiceSerializer(many=True)
 
     class Meta:
