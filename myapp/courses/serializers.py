@@ -11,8 +11,7 @@ from authnz.models import ProqodUser
 
 class MultipleChoiceSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
-        # queryset=Question.objects.all()
-        read_only=True
+        queryset=Question.objects.all()
     )
 
     class Meta:
