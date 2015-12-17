@@ -60,17 +60,21 @@ class McqQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = Question.objects.all().filter(question_type=Question.MCQ)
     serializer_class = McqQuestionSerializer
 
+
 class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Blank Question """
     queryset = Question.objects.all().filter(question_type=Question.MCQ)
     serializer_class = BlankQuestionSerializer
 
+
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Blank Question """
-    queryset = Question.objects.all().filter(question_type=Question.PROGRAMMING)
+    queryset = Question.objects.all().filter(
+        question_type=Question.PROGRAMMING)
     serializer_class = ProgrammingQuestionSerializer
+
 
 class MultipleChoiceViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
@@ -78,8 +82,9 @@ class MultipleChoiceViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = MultipleChoice.objects.all()
     serializer_class = MultipleChoiceSerializer
 
+
 class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating multiple choice """
-    queryset = MultipleChoice.objects.all()
+    queryset = BlankQuestionContent.objects.all()
     serializer_class = BlankQuestionContentSerializer

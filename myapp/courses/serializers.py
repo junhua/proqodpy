@@ -30,17 +30,20 @@ class BlankQuestionContentSerializer(serializers.ModelSerializer):
         model = BlankQuestionContent
         fields = (
             'id',
-            'seq',
+            'part_seq',
             'content',
             'question',
         )
+
+    def __str__(self):
+        return "Q%s Number %s" % (self.question, self.seq)
 
 
 class McqQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all())
     question_type = serializers.HiddenField(default=Question.MCQ)
-    choices = MultipleChoiceSerializer(many=True)
+    # choices = MultipleChoiceSerializer(many=True)
 
     class Meta:
         model = Question
@@ -52,7 +55,7 @@ class McqQuestionSerializer(serializers.ModelSerializer):
             'title',
             'question_content',
             'solution',
-            'choices',
+            # 'choices',
         )
 
 
@@ -60,7 +63,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all())
     question_type = serializers.HiddenField(default=Question.BLANKS)
-    blank_content = serializers.StringRelatedField(many=True, read_only=True)
+    blank_parts = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Question
@@ -72,7 +75,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'title',
             'question_content',
             'solution',
-            'blank_content',
+            'blank_parts',
         )
 
 
@@ -120,16 +123,12 @@ class CourseSerializer(serializers.ModelSerializer):
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
-    # course = serializers.StringRelatedField(queryset=Course.objects.all())
+    course = serializers.PrimaryKeyRelatedField(
+        queryset=Course.objects.all()
+        )
 
     assessment_type = serializers.ChoiceField(
         choices=Assessment.ASSESSMENT_TYPE)
-
-    mcq_questions = serializers.StringRelatedField(many=True)
-
-    blank_questions = serializers.StringRelatedField(many=True)
-
-    programming_questions = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Assessment
@@ -140,7 +139,5 @@ class AssessmentSerializer(serializers.ModelSerializer):
             'start_date',
             'end_date',
             'course',
-            'mcq_questions',
-            'blank_questions',
-            'programming_questions',
         )
+
