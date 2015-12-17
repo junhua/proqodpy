@@ -120,7 +120,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
-    # course = serializers.StringRelatedField(queryset=Course.objects.all())
+    course = serializers.StringRelatedField(queryset=Course.objects.all())
 
     assessment_type = serializers.ChoiceField(
         choices=Assessment.ASSESSMENT_TYPE)
