@@ -49,9 +49,9 @@ INSTALLED_APPS = (
 
     'authnz',
     'myapp.courses',
+    'myapp.analytics',
 
     'api.v1',
-
 )
 
 MIDDLEWARE_CLASSES = (
@@ -62,10 +62,15 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    
+
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'django.middleware.security.SecurityMiddleware',
 )
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'api.proqod.com',
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -88,14 +93,13 @@ DJOSER = {
 ROOT_URLCONF = 'proqodpy.urls'
 
 
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # LIB_DIR = os.path.join(BASE_DIR, 'libs')
 LOG_DIR = os.path.join(BASE_DIR, 'log')
 
 
-#STATICFILES_DIRS = (
+# STATICFILES_DIRS = (
 #    os.path.join(BASE_DIR, 'static'),
 #)
 

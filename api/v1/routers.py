@@ -11,12 +11,20 @@ from myapp.courses.views import (
 
 )
 
+from myapp.analytics.views import (
+    PerformanceReportViewset,
+    PeerRankReportViewset,
+    PeerRankViewset,
+)
+
 router = DefaultRouter()
 
+# Courses
 router.register(r'courses', CourseViewSet, base_name='courses')
 router.register(r'assessments', AssessmentViewSet, base_name='assessments')
 router.register(r'mcq', McqQuestionViewSet, base_name='mcq')
-router.register(r'blank_qns', BlankQuestionViewSet, base_name='blank questions')
+router.register(
+    r'blank_qns', BlankQuestionViewSet, base_name='blank questions')
 router.register(
     r'prog_qns', ProgrammingQuestionViewSet, base_name='programming questions')
 
@@ -25,3 +33,11 @@ router.register(
 
 router.register(r'blank_qn_content', BlankQuestionContentViewSet,
                 base_name='blank question content')
+
+# Analytics
+router.register(r'performance_reports', PerformanceReportViewset,
+                base_name='perormance report')
+router.register(r'peer_rank_reports', PeerRankReportViewset,
+                base_name='Peer Rank Report Viewset')
+router.register(r'peer_rank', PeerRankViewset,
+                base_name='peer rank')
