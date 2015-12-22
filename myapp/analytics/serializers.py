@@ -36,10 +36,11 @@ class PeerRankSerializer(serializers.ModelSerializer):
 
 
 class PeerRankReportSerializer(serializers.ModelSerializer):
-    peer_ranks = PeerRankSerializer(many=True)
+    peer_ranks = serializers.PrimaryKeyRelatedField(read_only=True, many=True)
 
     class Meta:
         model = PeerRankReport
         fields = (
-            'peer_ranks'
+            'id',
+            'peer_ranks',
         )
