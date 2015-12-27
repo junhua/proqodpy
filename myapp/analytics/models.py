@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
-# from django.utils import timezone
+from django.utils import timezone
 from django.db import models
 
 
@@ -61,6 +61,11 @@ class PerformanceReport(models.Model):
         help_text=_("correctness index")
     )
 
+    date_created = models.DateTimeField(
+        _('date created'),
+        default=timezone.now
+    )
+
     def __str__(self):
         return str(self.id)
 
@@ -68,17 +73,22 @@ class PerformanceReport(models.Model):
         # abstract = True
         verbose_name = _('performance_report')
         verbose_name_plural = _('performance_reports')
-
+        ordering = ['date_created']
 
 class PeerRankReport(models.Model):
-
+    
+    date_created = models.DateTimeField(
+        _('date created'),
+        default=timezone.now
+    )
+    
     def __str__(self):
         return str(self.id)
 
     class Meta:
         verbose_name = _('peer_rank_report')
         verbose_name_plural = _('peer_rank_reports')
-
+        ordering = ['date_created']
 
 class PeerRank(models.Model):
 

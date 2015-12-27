@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import (
     Course,
@@ -6,7 +7,8 @@ from .models import (
     MultipleChoice,
     BlankQuestionContent
 )
-from authnz.models import ProqodUser
+
+User = get_user_model()
 
 
 class MultipleChoiceSerializer(serializers.ModelSerializer):
@@ -56,7 +58,7 @@ class McqQuestionSerializer(serializers.ModelSerializer):
             'question_num',
             'question_type',
             'title',
-            'question_content',
+            'description',
             'solution',
         )
 
@@ -76,7 +78,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'question_num',
             'question_type',
             'title',
-            'question_content',
+            'description',
             'solution',
             'blank_parts',
         )
@@ -96,7 +98,7 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
             'question_num',
             'question_type',
             'title',
-            'question_content',
+            'description',
             'solution',
         )
 
@@ -104,7 +106,7 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
 
     participants = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=ProqodUser.objects.order_by('id')
+        many=True, queryset=User.objects.order_by('id')
     )
 
     class Meta:
@@ -131,17 +133,24 @@ class AssessmentSerializer(serializers.ModelSerializer):
         queryset=Course.objects.all()
     )
 
-    assessment_type = serializers.ChoiceField(
+    type = serializers.ChoiceField(
         choices=Assessment.ASSESSMENT_TYPE
+    )
+
+    questions = serializers.PrimaryKeyRelatedField(
+        read_only=True,
+        many=True,
+        pk_field='id'
     )
 
     class Meta:
         model = Assessment
         fields = (
             'id',
-            'assessment_type',
-            'assessment_id',
+            'type',
+            'label',
             'start_date',
             'end_date',
             'course',
+            'questions',
         )

@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'authnz',
     'myapp.courses',
     'myapp.analytics',
+    'myapp.submissions',
 
     'api.v1',
 )
