@@ -17,6 +17,12 @@ from myapp.analytics.views import (
     PeerRankViewset,
 )
 
+from myapp.submissions.views import (
+    CodeSubmissionViewSet,
+    BlanksSubmissionViewSet,
+    McqSubmissionViewSet,
+)
+
 router = DefaultRouter()
 
 # Courses
@@ -41,3 +47,11 @@ router.register(r'peer_rank_reports', PeerRankReportViewset,
                 base_name='Peer Rank Report Viewset')
 router.register(r'peer_rank', PeerRankViewset,
                 base_name='peer rank')
+
+# Submissions
+router.register(r'code_submissions', CodeSubmissionViewSet,
+                base_name='code submissions')
+router.register(r'blanks_submissions', BlanksSubmissionViewSet,
+                base_name='blanks submissions')
+router.register(r'mcq_submissions', McqSubmissionViewSet,
+                base_name='mcq submissions')

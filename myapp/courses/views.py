@@ -64,7 +64,7 @@ class McqQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Blank Question """
-    queryset = Question.objects.all().filter(question_type=Question.MCQ)
+    queryset = Question.objects.all().filter(question_type=Question.BLANKS)
     serializer_class = BlankQuestionSerializer
 
 
