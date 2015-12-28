@@ -140,7 +140,6 @@ class AssessmentSerializer(serializers.ModelSerializer):
     questions = serializers.PrimaryKeyRelatedField(
         read_only=True,
         many=True,
-        pk_field='id'
     )
 
     class Meta:
