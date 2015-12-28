@@ -120,8 +120,8 @@ class CourseSerializer(serializers.ModelSerializer):
             'title',
             'description',
             'programming_language',
-            'start_date',
-            'end_date',
+            'start_datetime',
+            'end_datetime',
             'participants',
         )
         search_fields = ('school', )
