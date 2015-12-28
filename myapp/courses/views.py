@@ -1,4 +1,4 @@
-from rest_framework import viewsets, authentication, permissions, filters
+from rest_framework import viewsets, authentication, permissions, filters, generics
 
 from .serializers import (
     CourseSerializer,
@@ -45,13 +45,14 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating courses """
     queryset = Course.objects.order_by('date_created')
     serializer_class = CourseSerializer
-
+    filter_fields = ['participants']
 
 class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating assessment """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
+    filter_fields = ['course']
 
 
 class McqQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -88,3 +89,5 @@ class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating multiple choice """
     queryset = BlankQuestionContent.objects.all()
     serializer_class = BlankQuestionContentSerializer
+
+

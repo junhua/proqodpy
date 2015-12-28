@@ -100,6 +100,7 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
             'title',
             'description',
             'solution',
+            'default_code',
         )
 
 

@@ -1,4 +1,5 @@
 from rest_framework import viewsets, authentication, permissions, filters
+from rest_framework.decorators import detail_route, list_route
 from .serializers import (
     CodeSubmissionSerializer,
     BlanksSubmissionSerializer,
@@ -39,6 +40,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Code Submission """
     queryset = CodeSubmission.objects.order_by('date_created')
     serializer_class = CodeSubmissionSerializer
+    filter_fields = ['question']
 
 
 class BlanksSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -46,10 +48,11 @@ class BlanksSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Code Submission """
     queryset = BlanksSubmission.objects.order_by('date_created')
     serializer_class = BlanksSubmissionSerializer
-
+    filter_fields = ['question']
 
 class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Code Submission """
     queryset = McqSubmission.objects.order_by('date_created')
     serializer_class = McqSubmissionSerializer
+    filter_fields = ['question']
