@@ -71,18 +71,23 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             memory = -1
             time = -1
             correctness = -1
-
+            size = -1
             
             report = PerformanceReport(
                 complexity=complexity,
                 memory=memory,
                 time=time,
-                correctness=correctness
+                correctness=correctness,
+                size = size
             )
+
             try:
                 report.save()
             except:
-                return Response({"message": "Failed to create report"}, status=400)
+                return Response(
+                    {"message": "Failed to create report"}, 
+                    status=400
+                )
     
             subm = CodeSubmission(
                 created_by=user,

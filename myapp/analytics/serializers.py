@@ -18,6 +18,7 @@ class PerformanceReportSerializer(serializers.ModelSerializer):
             'time',
             'memory',
             'correctness',
+            'size',
         )
 
 

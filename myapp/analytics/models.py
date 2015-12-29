@@ -107,6 +107,15 @@ class PerformanceReport(models.Model):
         help_text=_("correctness index")
     )
 
+    size = models.DecimalField(
+        _("file_size"),
+        decimal_places=2,
+        max_digits=20,
+        null=True,
+        blank=True,
+        help_text=_("file size")
+    )
+    
     date_created = models.DateTimeField(
         _('date created'),
         default=timezone.now
