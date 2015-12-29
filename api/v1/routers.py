@@ -8,7 +8,7 @@ from myapp.courses.views import (
     ProgrammingQuestionViewSet,
     MultipleChoiceViewSet,
     BlankQuestionContentViewSet,
-
+    QuestionViewSet,
 )
 
 from myapp.analytics.views import (
@@ -33,6 +33,8 @@ router.register(
     r'blank_qns', BlankQuestionViewSet, base_name='blank questions')
 router.register(
     r'prog_qns', ProgrammingQuestionViewSet, base_name='programming questions')
+router.register(
+    r'questions', QuestionViewSet, base_name='questions')
 
 router.register(
     r'mcq_choices', MultipleChoiceViewSet, base_name='multiple_choices')

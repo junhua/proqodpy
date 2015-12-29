@@ -9,7 +9,9 @@ djet==0.1.0
 djoser==0.4.0
 lazy-object-proxy==1.2.1
 Markdown==2.6.4
+memory-profiler==0.40
 migrate==0.3.7
+numpy==1.10.2
 psycopg2==2.6.1
 six==1.10.0
 wheel==0.24.0

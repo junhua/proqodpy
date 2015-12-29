@@ -8,6 +8,7 @@ from .serializers import (
     ProgrammingQuestionSerializer,
     MultipleChoiceSerializer,
     BlankQuestionContentSerializer,
+    QuestionSerializer,
 )
 from .models import (
     Course,
@@ -47,6 +48,7 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     filter_fields = ['participants']
 
+
 class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating assessment """
@@ -76,6 +78,13 @@ class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         question_type=Question.PROGRAMMING)
     serializer_class = ProgrammingQuestionSerializer
 
+class QuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating Question """
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+    filter_fields = ['question_type', 'assessment']
+
 
 class MultipleChoiceViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
@@ -89,5 +98,3 @@ class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating multiple choice """
     queryset = BlankQuestionContent.objects.all()
     serializer_class = BlankQuestionContentSerializer
-
-

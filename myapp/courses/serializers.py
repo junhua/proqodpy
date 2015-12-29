@@ -103,6 +103,25 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
             'default_code',
         )
 
+class QuestionSerializer(serializers.ModelSerializer):
+    """docstring for QuestionSerializer"""
+    assessment = serializers.PrimaryKeyRelatedField(
+        queryset=Assessment.objects.all()
+    )
+
+    class Meta:
+        model = Question
+        fields = (
+            'id',
+            'assessment',
+            'question_num',
+            'question_type',
+            'title',
+            'description',
+            'solution',
+            'default_code',
+        )
+        
 
 class CourseSerializer(serializers.ModelSerializer):
 
