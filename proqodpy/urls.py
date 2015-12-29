@@ -4,7 +4,6 @@ from django.conf import settings
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 
-
 # from apps.courses.urls import router
 from api.v1 import routers
 

@@ -8,6 +8,9 @@ from .models import (
 from myapp.courses.models import (
     Question,
 )
+from myapp.courses.serializers import QuestionSerializer
+from myapp.analytics.serializers import PerformanceReportSerializer
+
 User = get_user_model()
 
 
@@ -18,6 +21,11 @@ class CodeSubmissionSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=Question.objects.all()
     )
+    score = serializers.DecimalField(
+        max_digits=5, decimal_places=2, read_only=True)
+    performance_report = PerformanceReportSerializer(
+        read_only=True
+    )
 
     class Meta:
         model = CodeSubmission
@@ -26,8 +34,6 @@ class CodeSubmissionSerializer(serializers.ModelSerializer):
             'code',
             'created_by',
             'question',
-        )
-        readonly_fields = (
             'date_created',
             'score',
             'performance_report',
@@ -52,7 +58,6 @@ class BlanksSubmissionSerializer(serializers.ModelSerializer):
             'blanks',
             'created_by',
             'question',
-
         )
 
         readonly_fields = (

@@ -66,9 +66,6 @@ class PerormanceReportManger(models.Manager):
 
         return result, False
 
-    
-
-
 
 class PerformanceReport(models.Model):
 
@@ -114,6 +111,8 @@ class PerformanceReport(models.Model):
         _('date created'),
         default=timezone.now
     )
+
+    objects = PerormanceReportManger()
 
     def __str__(self):
         return str(self.id)

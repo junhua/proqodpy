@@ -6,6 +6,8 @@ from django.contrib.postgres.fields import ArrayField
 
 
 class Submission(models.Model):
+    
+    id = models.AutoField(primary_key=True)
 
     question = models.ForeignKey(
         "courses.Question",
@@ -18,10 +20,10 @@ class Submission(models.Model):
         editable=False,
     )
 
-    created_by = models.OneToOneField(
+    created_by = models.ForeignKey(
         "authnz.ProqodUser",
-        null=False,
-        blank=False,
+        related_name="+",
+        unique=False
     )
 
     score = models.DecimalField(

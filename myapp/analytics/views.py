@@ -1,4 +1,6 @@
-from rest_framework import viewsets, authentication, permissions, filters
+from rest_framework import viewsets, authentication, permissions, filters, status
+from rest_framework.response import Response
+
 
 from .serializers import (
     PerformanceReportSerializer,
@@ -39,8 +41,6 @@ class PerformanceReportViewset(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Performance Report """
     queryset = PerformanceReport.objects.all()
     serializer_class = PerformanceReportSerializer
-
-    
 
 
 class PeerRankReportViewset(DefaultsMixin, viewsets.ModelViewSet):
