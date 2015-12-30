@@ -105,7 +105,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 )
 
 
-            return Response({"result": "submission complete"}, status=200)
+            return Response({"message": "submission completed"}, status=200)
 
         return Response({"message": "error"}, status=400)
 
