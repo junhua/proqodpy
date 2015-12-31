@@ -47,6 +47,7 @@ class CodeSubmission(Submission):
         null=True,
     )
 
+
     performance_report = models.OneToOneField(
         'analytics.PerformanceReport',
         null=True,

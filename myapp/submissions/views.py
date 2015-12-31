@@ -60,6 +60,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         if serializer.is_valid():
             try:
                 user = request.user
+                print user
                 code=data.get('code', None)
                 question=Question.objects.get(id=data.get('question',None))
 

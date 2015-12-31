@@ -28,7 +28,7 @@ class MultipleChoiceSerializer(serializers.ModelSerializer):
 
 class BlankQuestionContentSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.all()
+        queryset=Question.objects.order_by('id')
     )
 
     class Meta:

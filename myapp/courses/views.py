@@ -96,5 +96,5 @@ class MultipleChoiceViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating multiple choice """
-    queryset = BlankQuestionContent.objects.all()
+    queryset = BlankQuestionContent.objects.all().order_by('part_seq')
     serializer_class = BlankQuestionContentSerializer
