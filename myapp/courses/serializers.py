@@ -5,7 +5,8 @@ from .models import (
     Assessment,
     Question,
     MultipleChoice,
-    BlankQuestionContent
+    BlankQuestionContent,
+    TestCase,
 )
 
 User = get_user_model()
@@ -180,4 +181,28 @@ class AssessmentSerializer(serializers.ModelSerializer):
             'end_datetime',
             'course',
             'questions',
+        )
+
+
+class TestCaseSerializer(serializers.ModelSerializer):
+    question = serializers.PrimaryKeyRelatedField(
+        queryset=Question.objects.order_by('id')
+    )
+    inputs = serializers.ListField(
+        child=serializers.CharField(max_length=255)
+    )
+    expected_outputs = serializers.ListField(
+        child=serializers.CharField(max_length=255)
+    )
+
+    class Meta:
+        model = TestCase
+        fields = (
+            'id',
+            'visibility',
+            'type',
+            'test_content',
+            'inputs',
+            'expected_outputs',
+            'question',
         )

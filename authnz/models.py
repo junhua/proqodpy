@@ -76,7 +76,9 @@ class ProqodUser(AbstractBaseUser):
     user_type = models.PositiveSmallIntegerField(
         default=STUDENT,
         choices=USER_TYPE,
-        editable=False)
+        editable=False,
+        )
+    
     is_admin = models.BooleanField(
         _('staff status'),
         default=False,

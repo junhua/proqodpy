@@ -9,6 +9,7 @@ from myapp.courses.views import (
     MultipleChoiceViewSet,
     BlankQuestionContentViewSet,
     QuestionViewSet,
+    TestCaseViewSet,
 )
 
 from myapp.analytics.views import (
@@ -57,3 +58,5 @@ router.register(r'blanks_submissions', BlanksSubmissionViewSet,
                 base_name='blanks submissions')
 router.register(r'mcq_submissions', McqSubmissionViewSet,
                 base_name='mcq submissions')
+router.register(r'testcases', TestCaseViewSet,
+                base_name='test cases')

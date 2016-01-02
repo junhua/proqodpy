@@ -9,6 +9,7 @@ from .serializers import (
     MultipleChoiceSerializer,
     BlankQuestionContentSerializer,
     QuestionSerializer,
+    TestCaseSerializer,
 )
 from .models import (
     Course,
@@ -16,6 +17,7 @@ from .models import (
     Question,
     MultipleChoice,
     BlankQuestionContent,
+    TestCase
 )
 
 
@@ -78,6 +80,7 @@ class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         type=Question.PROGRAMMING)
     serializer_class = ProgrammingQuestionSerializer
 
+
 class QuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Question """
@@ -98,3 +101,10 @@ class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating multiple choice """
     queryset = BlankQuestionContent.objects.all().order_by('part_seq')
     serializer_class = BlankQuestionContentSerializer
+
+
+class TestCaseViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating test case """
+    queryset = TestCase.objects.all()
+    serializer_class = TestCaseSerializer
