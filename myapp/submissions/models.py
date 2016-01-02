@@ -6,7 +6,7 @@ from django.contrib.postgres.fields import ArrayField
 
 
 class Submission(models.Model):
-    
+
     id = models.AutoField(primary_key=True)
 
     question = models.ForeignKey(
@@ -46,7 +46,6 @@ class CodeSubmission(Submission):
         blank=True,
         null=True,
     )
-
 
     performance_report = models.OneToOneField(
         'analytics.PerformanceReport',

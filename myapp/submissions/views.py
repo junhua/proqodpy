@@ -53,7 +53,6 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         """
 
-       
         data = request.data
         serializer = CodeSubmissionSerializer(data=data)
 
@@ -61,35 +60,35 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             try:
                 user = request.user
                 print user
-                code=data.get('code', None)
-                question=Question.objects.get(id=data.get('question',None))
+                code = data.get('code', None)
+                question = Question.objects.get(id=data.get('question', None))
 
             except:
                 return Response({"message": "Required user, code and question params"}, status=400)
 
-            # To be edited 
+            # To be edited
             complexity = -1
             memory = -1
-            time = -1
+            time = PerformanceReport.objects.time_exec(code)
             correctness = -1
             size = -1
-            
+
             report = PerformanceReport(
                 complexity=complexity,
                 memory=memory,
                 time=time,
                 correctness=correctness,
-                size = size
+                size=size
             )
 
             try:
                 report.save()
             except:
                 return Response(
-                    {"message": "Failed to create report"}, 
+                    {"message": "Failed to create report"},
                     status=400
                 )
-    
+
             subm = CodeSubmission(
                 created_by=user,
                 code=code,
@@ -97,16 +96,16 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 performance_report=report
             )
 
-            try:    
+            try:
                 subm.save()
             except:
                 return Response(
-                    {"message": "Failed to create submission"}, 
+                    {"message": "Failed to create submission"},
                     status=400
                 )
-
-
-            return Response({"message": "submission completed"}, status=200)
+            data = CodeSubmissionSerializer(subm).data
+            # return Response({"message": "submission completed"}, status=200)
+            return Response(data, status=200)
 
         return Response({"message": "error"}, status=400)
 
