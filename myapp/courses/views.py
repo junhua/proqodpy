@@ -1,4 +1,6 @@
-from rest_framework import viewsets, authentication, permissions, filters, generics
+from rest_framework import viewsets, authentication, permissions, filters
+from rest_framework.response import Response
+from rest_framework.decorators import detail_route  # , list_route
 
 from .serializers import (
     CourseSerializer,
@@ -9,7 +11,7 @@ from .serializers import (
     MultipleChoiceSerializer,
     BlankQuestionContentSerializer,
     QuestionSerializer,
-    TestCaseSerializer,
+    UnitTestSerializer,
 )
 from .models import (
     Course,
@@ -17,7 +19,7 @@ from .models import (
     Question,
     MultipleChoice,
     BlankQuestionContent,
-    TestCase
+    UnitTest
 )
 
 
@@ -103,8 +105,36 @@ class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = BlankQuestionContentSerializer
 
 
-class TestCaseViewSet(DefaultsMixin, viewsets.ModelViewSet):
+class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating test case """
-    queryset = TestCase.objects.all()
-    serializer_class = TestCaseSerializer
+    queryset = UnitTest.objects.all()
+    serializer_class = UnitTestSerializer
+
+    @detail_route(methods=['get'])
+    def raw(self, request, pk=None):
+
+        unittest = self.get_object()
+        test_code = unittest.get_test()
+        return Response(test_code, status=200)
+
+    @detail_route(methods=['get'])
+    def run(self, request, pk=None):
+        code = request.query_params.get('code', None)
+
+        # code = data.get('code', "def test_signature(a1,a2):return '%s %s'%(a1,a2)")
+
+        if not code:
+            return Response(
+                {"pass": False,
+                 "error": "code not found from params"
+                 },
+                status=404
+            )
+        unittest = self.get_object()
+        test_code = unittest.run(code)
+
+        return Response(
+            {"result": test_code},
+            status=(200 if test_code['pass'] else 400)
+        )

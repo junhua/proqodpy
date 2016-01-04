@@ -6,7 +6,7 @@ from .models import (
     Question,
     MultipleChoice,
     BlankQuestionContent,
-    TestCase,
+    UnitTest,
 )
 
 User = get_user_model()
@@ -104,6 +104,7 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
             'description',
             'solution',
             'default_code',
+            'code_signature',
         )
 
 
@@ -129,6 +130,7 @@ class QuestionSerializer(serializers.ModelSerializer):
             'default_code',
             'blank_parts',
             'mcq_choices',
+            'code_signature',
         )
 
 
@@ -184,25 +186,23 @@ class AssessmentSerializer(serializers.ModelSerializer):
         )
 
 
-class TestCaseSerializer(serializers.ModelSerializer):
+class UnitTestSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=Question.objects.order_by('id')
     )
     inputs = serializers.ListField(
         child=serializers.CharField(max_length=255)
     )
-    expected_outputs = serializers.ListField(
-        child=serializers.CharField(max_length=255)
-    )
+    
 
     class Meta:
-        model = TestCase
+        model = UnitTest
         fields = (
             'id',
             'visibility',
             'type',
             'test_content',
             'inputs',
-            'expected_outputs',
+            'expected_output',
             'question',
         )

@@ -40,31 +40,31 @@ class PerormanceReportManger(models.Manager):
             # Return -1 if there's an error
             return -1
 
-    def run(self, code, lang="Python"):
-        """
-        Execute code input.
-        Return (
-            str: output, 
-            bool: successful
-            )
-        """
+    # def run(self, code, lang="Python"):
+    #     """
+    #     Execute code input.
+    #     Return (
+    #         str: output, 
+    #         bool: successful
+    #         )
+    #     """
 
-        codeOut = StringIO.StringIO()
-        codeErr = StringIO.StringIO()
-        sys.stdout = codeOut
-        sys.stderr = codeErr
+    #     codeOut = StringIO.StringIO()
+    #     codeErr = StringIO.StringIO()
+    #     sys.stdout = codeOut
+    #     sys.stderr = codeErr
 
-        exec code
+    #     exec code
 
-        sys.stdout = sys.__stdout__
-        sys.stderr = sys.__stderr__
+    #     sys.stdout = sys.__stdout__
+    #     sys.stderr = sys.__stderr__
 
-        result = codeOut.getvalue() or codeErr.getvalue()
+    #     result = codeOut.getvalue() or codeErr.getvalue()
 
-        if codeOut.getvalue():
-            return result, True
+    #     if codeOut.getvalue():
+    #         return result, True
 
-        return result, False
+    #     return result, False
 
 
 class PerformanceReport(models.Model):
@@ -115,7 +115,7 @@ class PerformanceReport(models.Model):
         blank=True,
         help_text=_("file size")
     )
-    
+
     date_created = models.DateTimeField(
         _('date created'),
         default=timezone.now

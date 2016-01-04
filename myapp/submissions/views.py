@@ -1,4 +1,6 @@
 from rest_framework import viewsets, authentication, permissions, filters, status
+from rest_framework.decorators import detail_route, list_route
+
 from rest_framework.response import Response
 from .serializers import (
     CodeSubmissionSerializer,
@@ -59,10 +61,8 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         if serializer.is_valid():
             try:
                 user = request.user
-                print user
                 code = data.get('code', None)
                 question = Question.objects.get(id=data.get('question', None))
-
             except:
                 return Response({"message": "Required user, code and question params"}, status=400)
 
@@ -71,7 +71,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             memory = -1
             time = PerformanceReport.objects.time_exec(code)
             correctness = -1
-            size = -1
+            size = len(code)
 
             report = PerformanceReport(
                 complexity=complexity,
@@ -108,6 +108,24 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             return Response(data, status=200)
 
         return Response({"message": "error"}, status=400)
+
+    @detail_route(methods=['get'])
+    def run(self, request, pk=None):
+        data = request.data
+        # print data
+        code = data.get(
+            'code', "def test_signature(a1,a2):return '%s %s'%(a1,a2)")
+
+        if not code:
+            return Response(
+                {"error": "code not found from params"},
+                status=404
+            )
+        unittests = self.get_object().question.unittests
+        result = {}
+        for i in range(len(unittests)):
+            result['%s' % i] = unittests[i].run(code)
+        return Response(result, status=200)
 
 
 class BlanksSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
