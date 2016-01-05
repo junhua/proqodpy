@@ -109,23 +109,10 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         return Response({"message": "error"}, status=400)
 
-    @detail_route(methods=['get'])
-    def run(self, request, pk=None):
+    @list_route(methods=['post'])
+    def run(self, request):
         data = request.data
-        # print data
-        code = data.get(
-            'code', "def test_signature(a1,a2):return '%s %s'%(a1,a2)")
-
-        if not code:
-            return Response(
-                {"error": "code not found from params"},
-                status=404
-            )
-        unittests = self.get_object().question.unittests
-        result = {}
-        for i in range(len(unittests)):
-            result['%s' % i] = unittests[i].run(code)
-        return Response(result, status=200)
+        code = data.get('code', None)
 
 
 class BlanksSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):

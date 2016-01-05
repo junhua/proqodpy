@@ -107,22 +107,49 @@ class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
 class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
-    """ API endpoint for listing and creating test case """
+    """
+    API endpoint for listing and creating test case 
+    """
     queryset = UnitTest.objects.all()
     serializer_class = UnitTestSerializer
 
     @detail_route(methods=['get'])
     def raw(self, request, pk=None):
-
+        """
+        Endpoint to get raw unittest code
+        """
+        
         unittest = self.get_object()
         test_code = unittest.get_test()
         return Response(test_code, status=200)
 
     @detail_route(methods=['get'])
     def run(self, request, pk=None):
-        code = request.query_params.get('code', None)
+        """
+        Endpoint to allow execute unittests. 
+        No record stored in the database.
+        Expected input param: code
 
-        # code = data.get('code', "def test_signature(a1,a2):return '%s %s'%(a1,a2)")
+
+        Sample output for successful run:
+        {
+            pass: True,
+            output: actual_output
+        }
+
+        Sample output for unsuccessful run:
+        {
+            pass: False,
+            output: actual_output
+        }
+
+        Sample output for error:
+        {
+            pass: False,
+            error: error_message
+        }
+        """
+        code = request.query_params.get('code', None)
 
         if not code:
             return Response(
