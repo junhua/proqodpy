@@ -1,28 +1,10 @@
 from rest_framework.routers import DefaultRouter
 
-from myapp.courses.views import (
-    CourseViewSet,
-    AssessmentViewSet,
-    McqQuestionViewSet,
-    BlankQuestionViewSet,
-    ProgrammingQuestionViewSet,
-    MultipleChoiceViewSet,
-    BlankQuestionContentViewSet,
-    QuestionViewSet,
-    UnitTestViewSet,
-)
+from myapp.courses.views import *
 
-from myapp.analytics.views import (
-    PerformanceReportViewset,
-    PeerRankReportViewset,
-    PeerRankViewset,
-)
+from myapp.analytics.views import *
 
-from myapp.submissions.views import (
-    CodeSubmissionViewSet,
-    BlanksSubmissionViewSet,
-    McqSubmissionViewSet,
-)
+from myapp.submissions.views import *
 
 router = DefaultRouter()
 
@@ -60,3 +42,10 @@ router.register(r'mcq_submissions', McqSubmissionViewSet,
                 base_name='mcq submissions')
 router.register(r'unittests', UnitTestViewSet,
                 base_name='unit tests')
+router.register(r'prog_qn_progress', ProgrammingQuestionProgressViewSet,
+                base_name='programming question progress')
+router.register(r'mcq_progress', McqProgressViewSet,
+                base_name='MCQ progress')
+router.register(r'blank_qn_progress', BlankQuestionProgressViewSet,
+                base_name='blank qustion progress')
+

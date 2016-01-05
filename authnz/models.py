@@ -77,8 +77,9 @@ class ProqodUser(AbstractBaseUser):
         default=STUDENT,
         choices=USER_TYPE,
         editable=False,
-        )
-    
+        help_text=_("0:student; 1:teacher")
+    )
+
     is_admin = models.BooleanField(
         _('staff status'),
         default=False,
@@ -120,7 +121,7 @@ class ProqodUser(AbstractBaseUser):
         return self.first_name
 
     def __str__(self):              # __unicode__ on Python 2
-        return "%s"%self.id
+        return "%s" % self.id
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"

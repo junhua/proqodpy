@@ -9,23 +9,6 @@ import sys
 import StringIO
 
 
-PEER_READABLE_RANK = (
-    (0, _("Unreadable")),
-    (1, _("Fairly readable")),
-    (2, _("Mostly readable")),
-    (3, _("Highly readable")),
-    (4, _("Perfactly readable")),
-)
-
-PEER_SMART_RANK = (
-    (0, _("Poor")),
-    (1, _("Normal")),
-    (2, _("Cool")),
-    (3, _("Brilliant")),
-    (4, _("Genius"))
-)
-
-
 class PerormanceReportManger(models.Manager):
 
     def time_exec(self, code, times=10, lang="Python"):
@@ -40,36 +23,14 @@ class PerormanceReportManger(models.Manager):
             # Return -1 if there's an error
             return -1
 
-    # def run(self, code, lang="Python"):
-    #     """
-    #     Execute code input.
-    #     Return (
-    #         str: output, 
-    #         bool: successful
-    #         )
-    #     """
-
-    #     codeOut = StringIO.StringIO()
-    #     codeErr = StringIO.StringIO()
-    #     sys.stdout = codeOut
-    #     sys.stderr = codeErr
-
-    #     exec code
-
-    #     sys.stdout = sys.__stdout__
-    #     sys.stderr = sys.__stderr__
-
-    #     result = codeOut.getvalue() or codeErr.getvalue()
-
-    #     if codeOut.getvalue():
-    #         return result, True
-
-    #     return result, False
-
 
 class PerformanceReport(models.Model):
 
-    """ Report Model """
+    """ 
+    Performance report Model for programming specific measurement.
+    Fields: complexity, memory, time(Micro-second), size(byte), correctness
+    Fields that are under development will return -1 value
+    """
 
     complexity = models.DecimalField(
         _("complexity_index"),
@@ -150,7 +111,21 @@ class PeerRankReport(models.Model):
 
 
 class PeerRank(models.Model):
+    PEER_READABLE_RANK = (
+        (0, _("Unreadable")),
+        (1, _("Fairly readable")),
+        (2, _("Mostly readable")),
+        (3, _("Highly readable")),
+        (4, _("Perfactly readable")),
+    )
 
+    PEER_SMART_RANK = (
+        (0, _("Poor")),
+        (1, _("Normal")),
+        (2, _("Cool")),
+        (3, _("Brilliant")),
+        (4, _("Genius"))
+    )
     readability_rank = models.CharField(
         _("readability_rank"),
         max_length=1,
@@ -182,3 +157,6 @@ class PeerRank(models.Model):
     class Meta:
         verbose_name = _('peer_rank')
         verbose_name_plural = _('peer_ranks')
+
+class AcademicReport(models.Model):
+    pass

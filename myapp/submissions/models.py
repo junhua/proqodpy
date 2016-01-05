@@ -72,3 +72,70 @@ class McqSubmission(Submission):
         null=True,
         blank=True,
     )
+
+
+class Progress(models.Model):
+
+    NO_RECORD, WRONG, COMPLETE = range(3)
+    STATUS = (
+        (NO_RECORD, 'no record'),
+        (WRONG, 'wrong'),
+        (COMPLETE, 'complete'),
+    )
+    """
+    Models to store student's progress for each question.
+    Student and Question is unique_together
+    """
+    student = models.OneToOneField(
+        "authnz.ProqodUser",
+        related_name="+"
+    )
+    question = models.OneToOneField(
+        "courses.Question",
+        related_name="+"
+    )
+
+    status = models.PositiveSmallIntegerField(
+        _("status"),
+        default=NO_RECORD,
+        choices=STATUS,
+        help_text=_(
+            "Status of the question - 0: NO_RECORD; 1: WRONG; 2: COMPLETE;"
+        )
+    )
+
+    date_last_updated = models.DateTimeField(
+        _("last_update"),
+        auto_now=True,
+    )
+
+    class Meta:
+        unique_together = ('student', 'question')
+        abstract = True
+
+
+class ProgrammingQuestionProgress(Progress):
+    answer_last_saved = models.TextField(
+        _("answer_last_saved"),
+        null=True,
+        blank=True,
+    )
+
+
+class BlankQuestionProgress(Progress):
+    answer_last_saved = ArrayField(
+        models.CharField(
+            max_length=255,
+            blank=True,
+            null=True,
+        )
+    )
+
+
+class McqProgress(Progress):
+    answer_last_saved = models.CharField(
+        _("choice"),
+        max_length=50,
+        null=True,
+        blank=True,
+    )

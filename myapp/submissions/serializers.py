@@ -1,14 +1,10 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from .models import (
-    CodeSubmission,
-    BlanksSubmission,
-    McqSubmission,
-)
+from .models import *
 from myapp.courses.models import (
     Question,
 )
-from myapp.courses.serializers import QuestionSerializer
+# from myapp.courses.serializers import QuestionSerializer
 from myapp.analytics.serializers import PerformanceReportSerializer
 
 User = get_user_model()
@@ -58,9 +54,6 @@ class BlanksSubmissionSerializer(serializers.ModelSerializer):
             'blanks',
             'created_by',
             'question',
-        )
-
-        readonly_fields = (
             'date_created',
             'score',
         )
@@ -81,8 +74,72 @@ class McqSubmissionSerializer(serializers.ModelSerializer):
             'answer',
             'created_by',
             'question',
-        )
-        readonly_fields = (
             'date_created',
             'score',
         )
+
+
+class ProgrammingQuestionProgressSerializer(serializers.ModelSerializer):
+    student = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.filter(user_type=0)
+    )
+    question = serializers.PrimaryKeyRelatedField(
+        queryset=Question.objects.all()
+    )
+
+    class Meta:
+        model = ProgrammingQuestionProgress
+        fields = (
+            'id',
+            'student',
+            'question',
+
+            'answer_last_saved',
+            'date_last_updated',
+        )
+        read_only_fields = ('status',)
+
+
+class BlankQuestionProgressSerializer(serializers.ModelSerializer):
+    last_saved = serializers.ListField(
+        child=serializers.CharField(max_length=255)
+    )
+    student = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.filter(user_type=0)
+    )
+    question = serializers.PrimaryKeyRelatedField(
+        queryset=Question.objects.all()
+    )
+
+    class Meta:
+        model = BlankQuestionProgress
+        fields = (
+            'id',
+            'student',
+            'question',
+            'answer_last_saved',
+            'date_last_updated',
+        )
+        read_only_fields = ('status',)
+
+
+class McqProgressSerializer(serializers.ModelSerializer):
+
+    student = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.filter(user_type=0)
+    )
+    question = serializers.PrimaryKeyRelatedField(
+        queryset=Question.objects.all()
+    )
+
+    class Meta:
+        model = McqProgress
+        fields = (
+            'id',
+            'student',
+            'question',
+
+            'answer_last_saved',
+            'date_last_updated',
+        )
+        read_only_fields = ('status',)

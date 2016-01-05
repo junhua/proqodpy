@@ -2,20 +2,12 @@ from rest_framework import viewsets, authentication, permissions, filters, statu
 from rest_framework.decorators import detail_route, list_route
 
 from rest_framework.response import Response
-from .serializers import (
-    CodeSubmissionSerializer,
-    BlanksSubmissionSerializer,
-    McqSubmissionSerializer,
-)
-from .models import (
-    CodeSubmission,
-    BlanksSubmission,
-    McqSubmission
-)
+from .serializers import *
+from .models import *
 from authnz.models import ProqodUser
 from myapp.courses.models import Question
 from myapp.analytics.models import PerformanceReport
-# Create your views here.
+import sys
 
 
 class DefaultsMixin(object):
@@ -129,3 +121,48 @@ class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = McqSubmission.objects.order_by('date_created')
     serializer_class = McqSubmissionSerializer
     filter_fields = ['question']
+
+
+class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating Mcq Progress """
+    queryset = McqProgress.objects.all()
+    serializer_class = McqProgressSerializer
+    filter_fields = ['question', 'student']
+
+
+class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating Blank question progress """
+    queryset = BlankQuestionProgress.objects.all()
+    serializer_class = BlankQuestionProgressSerializer
+    filter_fields = ['question', 'student']
+
+
+class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating Mcq Progress """
+    queryset = ProgrammingQuestionProgress.objects.all()
+    serializer_class = ProgrammingQuestionProgressSerializer
+    filter_fields = ['question', 'student']
+
+    def create(self, request):
+        data = request.data
+        student = request.user
+        question = data.get('question', None)
+        code = data.get('answer_last_saved', None)
+        if not student or not question:
+            return Response({"message": "student or question empty"}, status=404)
+
+        try:
+
+            progress, created = ProgrammingQuestionProgress.objects.update_or_create(
+                student=student,
+                question=question,
+                defaults={'answer_last_saved': code}
+            )
+            print created
+            return Response(ProgrammingQuestionProgressSerializer(progress).data, status=200)
+        except:
+            return Response({"error": sys.exc_info()[0]}, status=400)
+        return Response({"error": "oops..."}, status=400)
