@@ -83,7 +83,7 @@ class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = ProgrammingQuestionSerializer
 
 
-class QuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
+class QuestionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
 
     """ API endpoint for listing and creating Question """
     queryset = Question.objects.all()
@@ -108,7 +108,12 @@ class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """
-    API endpoint for listing and creating test case 
+    API endpoint for listing and creating test case
+
+    ## Endpoints
+    raw() - return the raw code of the test case
+    run(code) - run test case against input code
+
     """
     queryset = UnitTest.objects.all()
     serializer_class = UnitTestSerializer
@@ -118,7 +123,7 @@ class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
         """
         Endpoint to get raw unittest code
         """
-        
+
         unittest = self.get_object()
         test_code = unittest.get_test()
         return Response(test_code, status=200)
