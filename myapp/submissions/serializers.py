@@ -1,10 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import *
-from myapp.courses.models import (
-    Question,
-)
-# from myapp.courses.serializers import QuestionSerializer
+from myapp.courses.models import *
 from myapp.analytics.serializers import PerformanceReportSerializer
 
 User = get_user_model()
@@ -15,7 +12,7 @@ class CodeSubmissionSerializer(serializers.ModelSerializer):
         queryset=User.objects.all()
     )
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.all()
+        queryset=ProgrammingQuestion.objects.all()
     )
     score = serializers.DecimalField(
         max_digits=5, decimal_places=2, read_only=True)
@@ -41,7 +38,7 @@ class BlanksSubmissionSerializer(serializers.ModelSerializer):
         queryset=User.objects.all()
     )
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.all()
+        queryset=BlankQuestion.objects.all()
     )
     blanks = serializers.ListField(
         child=serializers.CharField(max_length=255)
@@ -64,7 +61,7 @@ class McqSubmissionSerializer(serializers.ModelSerializer):
         queryset=User.objects.all()
     )
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.all()
+        queryset=Mcq.objects.all()
     )
 
     class Meta:
@@ -84,7 +81,7 @@ class ProgrammingQuestionProgressSerializer(serializers.ModelSerializer):
         queryset=User.objects.filter(user_type=0)
     )
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.all()
+        queryset=ProgrammingQuestion.objects.all()
     )
 
     class Meta:
@@ -108,7 +105,7 @@ class BlankQuestionProgressSerializer(serializers.ModelSerializer):
         queryset=User.objects.filter(user_type=0)
     )
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.all()
+        queryset=BlankQuestion.objects.all()
     )
 
     class Meta:
@@ -129,7 +126,7 @@ class McqProgressSerializer(serializers.ModelSerializer):
         queryset=User.objects.filter(user_type=0)
     )
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.all()
+        queryset=Mcq.objects.all()
     )
 
     class Meta:

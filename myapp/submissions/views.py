@@ -141,7 +141,7 @@ class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
 class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
-    """ API endpoint for listing and creating Mcq Progress """
+    """ API endpoint for listing and creating Programming Question Progress """
     queryset = ProgrammingQuestionProgress.objects.all()
     serializer_class = ProgrammingQuestionProgressSerializer
     filter_fields = ['question', 'student']
@@ -150,18 +150,18 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
         data = request.data
         student = request.user
         question = data.get('question', None)
-        code = data.get('answer_last_saved', None)
+
         if not student or not question:
             return Response({"message": "student or question empty"}, status=404)
 
         try:
-
-            progress, created = ProgrammingQuestionProgress.objects.update_or_create(
+            progress, _ = ProgrammingQuestionProgress.objects.update_or_create(
                 student=student,
                 question=question,
-                defaults={'answer_last_saved': code}
+                defaults={
+                    'answer_last_saved': data.get('answer_last_saved', None)
+                }
             )
-            print created
             return Response(ProgrammingQuestionProgressSerializer(progress).data, status=200)
         except:
             return Response({"error": sys.exc_info()[0]}, status=400)

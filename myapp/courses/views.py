@@ -2,26 +2,10 @@ from rest_framework import viewsets, authentication, permissions, filters
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route  # , list_route
 
-from .serializers import (
-    CourseSerializer,
-    AssessmentSerializer,
-    McqQuestionSerializer,
-    BlankQuestionSerializer,
-    ProgrammingQuestionSerializer,
-    MultipleChoiceSerializer,
-    BlankQuestionContentSerializer,
-    QuestionSerializer,
-    UnitTestSerializer,
-)
-from .models import (
-    Course,
-    Assessment,
-    Question,
-    MultipleChoice,
-    BlankQuestionContent,
-    UnitTest
-)
+from .serializers import *
+from .models import *
 
+import itertools
 
 class DefaultsMixin(object):
 
@@ -61,34 +45,38 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     filter_fields = ['course']
 
 
-class McqQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
+class McqViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and Mcq Question """
-    queryset = Question.objects.all().filter(type=Question.MCQ)
-    serializer_class = McqQuestionSerializer
+    queryset = Mcq.objects.all()
+    serializer_class = McqSerializer
 
 
 class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Blank Question """
-    queryset = Question.objects.all().filter(type=Question.BLANKS)
+    queryset = BlankQuestion.objects.all()
     serializer_class = BlankQuestionSerializer
 
 
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Blank Question """
-    queryset = Question.objects.all().filter(
-        type=Question.PROGRAMMING)
+    queryset = ProgrammingQuestion.objects.all()
     serializer_class = ProgrammingQuestionSerializer
 
 
-class QuestionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
+# class QuestionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
 
-    """ API endpoint for listing and creating Question """
-    queryset = Question.objects.all()
-    serializer_class = QuestionSerializer
-    filter_fields = ['type', 'assessment']
+#     """ API endpoint for listing and creating Question """
+#     queryset = list(itertools.chain(
+#         ProgrammingQuestion.objects.all(),
+#         BlankQuestion.objects.all(),
+#         Mcq.objects.all()
+#     )
+#     )
+#     serializer_class = QuestionSerializer
+#     filter_fields = ['assessment']
 
 
 class MultipleChoiceViewSet(DefaultsMixin, viewsets.ModelViewSet):

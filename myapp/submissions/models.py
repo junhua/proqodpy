@@ -9,11 +9,6 @@ class Submission(models.Model):
 
     id = models.AutoField(primary_key=True)
 
-    question = models.ForeignKey(
-        "courses.Question",
-        related_name="+"
-    )
-
     date_created = models.DateTimeField(
         _('date created'),
         default=timezone.now,
@@ -41,6 +36,10 @@ class Submission(models.Model):
 
 
 class CodeSubmission(Submission):
+    question = models.ForeignKey(
+        "courses.ProgrammingQuestion",
+        related_name="+"
+    )
     code = models.TextField(
         _("code"),
         blank=True,
@@ -56,6 +55,10 @@ class CodeSubmission(Submission):
 
 
 class BlanksSubmission(Submission):
+    question = models.ForeignKey(
+        "courses.BlankQuestion",
+        related_name="+"
+    )
     blanks = ArrayField(
         models.CharField(
             max_length=255,
@@ -66,6 +69,10 @@ class BlanksSubmission(Submission):
 
 
 class McqSubmission(Submission):
+    question = models.ForeignKey(
+        "courses.Mcq",
+        related_name="+"
+    )
     answer = models.CharField(
         _("choice"),
         max_length=50,
@@ -90,10 +97,7 @@ class Progress(models.Model):
         "authnz.ProqodUser",
         related_name="+"
     )
-    question = models.OneToOneField(
-        "courses.Question",
-        related_name="+"
-    )
+    
 
     status = models.PositiveSmallIntegerField(
         _("status"),
@@ -120,7 +124,10 @@ class ProgrammingQuestionProgress(Progress):
         null=True,
         blank=True,
     )
-
+    question = models.OneToOneField(
+        "courses.ProgrammingQuestion",
+        related_name="+"
+    )
 
 class BlankQuestionProgress(Progress):
     answer_last_saved = ArrayField(
@@ -130,7 +137,10 @@ class BlankQuestionProgress(Progress):
             null=True,
         )
     )
-
+    question = models.OneToOneField(
+        "courses.BlankQuestion",
+        related_name="+"
+    )
 
 class McqProgress(Progress):
     answer_last_saved = models.CharField(
@@ -138,4 +148,8 @@ class McqProgress(Progress):
         max_length=50,
         null=True,
         blank=True,
+    )
+    question = models.OneToOneField(
+        "courses.Mcq",
+        related_name="+"
     )

@@ -11,13 +11,13 @@ router = DefaultRouter()
 # Courses
 router.register(r'courses', CourseViewSet, base_name='courses')
 router.register(r'assessments', AssessmentViewSet, base_name='assessments')
-router.register(r'mcq', McqQuestionViewSet, base_name='mcq')
+router.register(r'mcq', McqViewSet, base_name='mcq')
 router.register(
     r'blank_qns', BlankQuestionViewSet, base_name='blank questions')
 router.register(
     r'prog_qns', ProgrammingQuestionViewSet, base_name='programming questions')
-router.register(
-    r'questions', QuestionViewSet, base_name='questions')
+# router.register(
+#     r'questions', QuestionViewSet, base_name='questions')
 
 router.register(
     r'mcq_choices', MultipleChoiceViewSet, base_name='multiple_choices')

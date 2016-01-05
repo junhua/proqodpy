@@ -158,5 +158,6 @@ class PeerRank(models.Model):
         verbose_name = _('peer_rank')
         verbose_name_plural = _('peer_ranks')
 
+
 class AcademicReport(models.Model):
     pass

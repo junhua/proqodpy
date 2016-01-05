@@ -1,20 +1,13 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from .models import (
-    Course,
-    Assessment,
-    Question,
-    MultipleChoice,
-    BlankQuestionContent,
-    UnitTest,
-)
+from .models import *
 
 User = get_user_model()
 
 
 class MultipleChoiceSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.all()
+        queryset=Mcq.objects.all()
     )
 
     class Meta:
@@ -29,7 +22,7 @@ class MultipleChoiceSerializer(serializers.ModelSerializer):
 
 class BlankQuestionContentSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.order_by('id')
+        queryset=BlankQuestion.objects.order_by('id')
     )
 
     class Meta:
@@ -45,7 +38,7 @@ class BlankQuestionContentSerializer(serializers.ModelSerializer):
         return "Q%s Number %s" % (self.question, self.seq)
 
 
-class McqQuestionSerializer(serializers.ModelSerializer):
+class McqSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()
     )
@@ -53,7 +46,7 @@ class McqQuestionSerializer(serializers.ModelSerializer):
     choices = MultipleChoiceSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Question
+        model = Mcq
         fields = (
             'id',
             'assessment',
@@ -74,7 +67,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
     blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Question
+        model = BlankQuestion
         fields = (
             'id',
             'assessment',
@@ -108,30 +101,30 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
         )
 
 
-class QuestionSerializer(serializers.ModelSerializer):
+# class QuestionSerializer(serializers.ModelSerializer):
 
-    """docstring for QuestionSerializer"""
-    assessment = serializers.PrimaryKeyRelatedField(
-        queryset=Assessment.objects.all()
-    )
-    blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
-    mcq_choices = MultipleChoiceSerializer(many=True, read_only=True)
+#     """docstring for QuestionSerializer"""
+#     assessment = serializers.PrimaryKeyRelatedField(
+#         queryset=Assessment.objects.all()
+#     )
+#     blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
+#     mcq_choices = MultipleChoiceSerializer(many=True, read_only=True)
 
-    class Meta:
-        model = Question
-        fields = (
-            'id',
-            'assessment',
-            'question_num',
-            'type',
-            'title',
-            'description',
-            'solution',
-            'default_code',
-            'blank_parts',
-            'mcq_choices',
-            'code_signature',
-        )
+#     class Meta:
+#         model = Question
+#         fields = (
+#             'id',
+#             'assessment',
+#             'question_num',
+#             'type',
+#             'title',
+#             'description',
+#             'solution',
+#             'default_code',
+#             'blank_parts',
+#             'mcq_choices',
+#             'code_signature',
+#         )
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -188,12 +181,11 @@ class AssessmentSerializer(serializers.ModelSerializer):
 
 class UnitTestSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
-        queryset=Question.objects.order_by('id')
+        queryset=ProgrammingQuestion.objects.order_by('id')
     )
     inputs = serializers.ListField(
         child=serializers.CharField(max_length=255)
     )
-    
 
     class Meta:
         model = UnitTest
