@@ -50,7 +50,9 @@ class BlankSolutionSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlankSolution
         fields = (
-            'solution_set'
+            'solution_set',
+            'question'
+
         )
 
     def __str__(self):

@@ -48,4 +48,5 @@ router.register(r'mcq_progress', McqProgressViewSet,
                 base_name='MCQ progress')
 router.register(r'blank_qn_progress', BlankQuestionProgressViewSet,
                 base_name='blank qustion progress')
-
+router.register(r'blank_solution', BlankSolutionViewSet,
+                base_name='blank solution')
