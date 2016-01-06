@@ -54,7 +54,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             try:
                 user = request.user
                 code = data.get('code', None)
-                question = data.get('question', None)
+                question = ProgrammingQuestion.objects.get(id=data.get('question', None))
             except:
                 return Response({"message": "Required user, code and question params"}, status=400)
 
