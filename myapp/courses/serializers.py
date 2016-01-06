@@ -63,7 +63,7 @@ class McqSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()
     )
-    type = serializers.CharField(default=Question.MCQ)
+    type = serializers.CharField(default=Question.MCQ, read_only=True)
     choices = MultipleChoiceSerializer(many=True, read_only=True)
 
     class Meta:
@@ -85,7 +85,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()
     )
-    type = serializers.CharField(default=Question.BLANKS)
+    type = serializers.CharField(default=Question.BLANKS, read_only=True)
     blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
 
     class Meta:
@@ -106,7 +106,7 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()
     )
-    type = serializers.CharField(default=Question.PROGRAMMING)
+    type = serializers.CharField(default=Question.PROGRAMMING, read_only=True)
 
     class Meta:
         model = ProgrammingQuestion
