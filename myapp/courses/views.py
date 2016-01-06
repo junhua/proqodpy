@@ -66,9 +66,9 @@ class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = ProgrammingQuestionSerializer
 
 
-# class QuestionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
+class QuestionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
 
-#     """ API endpoint for listing and creating Question """
+    """ API endpoint for listing all Questions """
 #     queryset = list(itertools.chain(
 #         ProgrammingQuestion.objects.all(),
 #         BlankQuestion.objects.all(),
