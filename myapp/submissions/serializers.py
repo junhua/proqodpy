@@ -15,7 +15,9 @@ class CodeSubmissionSerializer(serializers.ModelSerializer):
         queryset=ProgrammingQuestion.objects.all()
     )
     score = serializers.DecimalField(
-        max_digits=5, decimal_places=2, read_only=True)
+        max_digits=5, decimal_places=2, read_only=True
+    )
+
     performance_report = PerformanceReportSerializer(
         read_only=True
     )
@@ -75,6 +77,24 @@ class McqSubmissionSerializer(serializers.ModelSerializer):
             'score',
         )
 
+class CheckoffSubmissionSerializer(serializers.ModelSerializer):
+    created_by = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all()
+    )
+    question = serializers.PrimaryKeyRelatedField(
+        queryset=CheckoffQuestion.objects.all()
+    )
+
+    class Meta:
+        model = CheckoffSubmission
+        fields = (
+            'id',
+            'created_by',
+            'question',
+            'date_created',
+            'score',
+            'checked',
+        )
 
 class ProgrammingQuestionProgressSerializer(serializers.ModelSerializer):
     student = serializers.PrimaryKeyRelatedField(

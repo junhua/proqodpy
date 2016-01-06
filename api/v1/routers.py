@@ -12,6 +12,7 @@ router = DefaultRouter()
 router.register(r'courses', CourseViewSet, base_name='courses')
 router.register(r'assessments', AssessmentViewSet, base_name='assessments')
 router.register(r'mcq', McqViewSet, base_name='mcq')
+router.register(r'checkoff_qns', CheckoffQuestionViewSet, base_name='checkoff questions')
 router.register(
     r'blank_qns', BlankQuestionViewSet, base_name='blank questions')
 router.register(
@@ -40,13 +41,17 @@ router.register(r'blanks_submissions', BlanksSubmissionViewSet,
                 base_name='blanks submissions')
 router.register(r'mcq_submissions', McqSubmissionViewSet,
                 base_name='mcq submissions')
+router.register(r'checkoff_submissions', CheckoffSubmissionViewSet,
+                base_name='checkoff submissions')
+
 router.register(r'unittests', UnitTestViewSet,
                 base_name='unit tests')
+router.register(r'blank_solution', BlankSolutionViewSet,
+                base_name='blank solution')
+
 router.register(r'prog_qn_progress', ProgrammingQuestionProgressViewSet,
                 base_name='programming question progress')
 router.register(r'mcq_progress', McqProgressViewSet,
                 base_name='MCQ progress')
 router.register(r'blank_qn_progress', BlankQuestionProgressViewSet,
                 base_name='blank qustion progress')
-router.register(r'blank_solution', BlankSolutionViewSet,
-                base_name='blank solution')

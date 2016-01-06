@@ -66,6 +66,11 @@ class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = ProgrammingQuestion.objects.all()
     serializer_class = ProgrammingQuestionSerializer
 
+class CheckoffQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating Checkoff Question """
+    queryset = CheckoffQuestion.objects.all()
+    serializer_class = CheckoffQuestionSerializer
 
 # class QuestionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
 

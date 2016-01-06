@@ -78,8 +78,6 @@ class McqSerializer(serializers.ModelSerializer):
             'choices',
         )
 
-        read_only_fields = ('type',)
-
 
 class BlankQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
@@ -99,7 +97,6 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'solution',
             'blank_parts',
         )
-        read_only_fields = ('type',)
 
 
 class ProgrammingQuestionSerializer(serializers.ModelSerializer):
@@ -119,6 +116,25 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
             'solution',
             'default_code',
             'code_signature',
+        )
+
+class CheckoffQuestionSerializer(serializers.ModelSerializer):
+    assessment = serializers.PrimaryKeyRelatedField(
+        queryset=Assessment.objects.all()
+    )
+    type = serializers.CharField(default=Question.CHECKOFF, read_only=True)
+
+    class Meta:
+        model = CheckoffQuestion
+        fields = (
+            'id',
+            'assessment',
+            'question_num',
+            'type',
+            'description',
+            # 'solution',
+            # 'default_code',
+            # 'code_signature',
         )
 
 

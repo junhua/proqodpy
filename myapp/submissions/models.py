@@ -25,6 +25,7 @@ class Submission(models.Model):
         _("oversall_score"),
         decimal_places=2,
         max_digits=5,
+        default=-1.0,
         null=True,
         blank=True,
         help_text=_("100-based overall score")
@@ -81,6 +82,17 @@ class McqSubmission(Submission):
     )
 
 
+class CheckoffSubmission(Submission):
+    question = models.ForeignKey(
+        "courses.CheckoffQuestion",
+        related_name="+"
+    )
+    checked = models.BooleanField(
+        _("checked"),
+        default=False,
+    )
+
+
 class Progress(models.Model):
 
     NO_RECORD, WRONG, COMPLETE = range(3)
@@ -97,7 +109,6 @@ class Progress(models.Model):
         "authnz.ProqodUser",
         related_name="+"
     )
-    
 
     status = models.PositiveSmallIntegerField(
         _("status"),
@@ -129,6 +140,7 @@ class ProgrammingQuestionProgress(Progress):
         related_name="+"
     )
 
+
 class BlankQuestionProgress(Progress):
     answer_last_saved = ArrayField(
         models.CharField(
@@ -141,6 +153,7 @@ class BlankQuestionProgress(Progress):
         "courses.BlankQuestion",
         related_name="+"
     )
+
 
 class McqProgress(Progress):
     answer_last_saved = models.CharField(

@@ -101,10 +101,10 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         return Response({"message": "error"}, status=400)
 
-    @list_route(methods=['post'])
-    def run(self, request):
-        data = request.data
-        code = data.get('code', None)
+    # @list_route(methods=['post'])
+    # def run(self, request):
+    #     data = request.data
+    #     code = data.get('code', None)
 
 
 class BlanksSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -122,6 +122,12 @@ class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = McqSubmissionSerializer
     filter_fields = ['question']
 
+class CheckoffSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating Code Submission """
+    queryset = CheckoffSubmission.objects.order_by('date_created')
+    serializer_class = CheckoffSubmissionSerializer
+    filter_fields = ['question']
 
 class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
