@@ -67,9 +67,9 @@ class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = ProgrammingQuestionSerializer
 
 
-class QuestionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
+# class QuestionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
 
-    """ API endpoint for listing all Questions """
+#     """ API endpoint for listing all Questions """
 #     queryset = list(itertools.chain(
 #         ProgrammingQuestion.objects.all(),
 #         BlankQuestion.objects.all(),
@@ -93,6 +93,10 @@ class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = BlankQuestionContent.objects.all().order_by('part_seq')
     serializer_class = BlankQuestionContentSerializer
 
+class BlankSolutionViewSet(DefaultsMixin, viewsets.ModelViewSet):
+    """ API endpoint for listing and creating multiple choice """
+    queryset = BlankSolution.objects.all()
+    serializer_class = BlankSolutionSerializer    
 
 class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
 

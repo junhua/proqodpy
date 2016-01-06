@@ -33,9 +33,28 @@ class BlankQuestionContentSerializer(serializers.ModelSerializer):
             'content',
             'question',
         )
+        read_only_fields = ('type',)
 
     def __str__(self):
         return "Q%s Number %s" % (self.question, self.seq)
+
+
+class BlankSolutionSerializer(serializers.ModelSerializer):
+    question = serializers.PrimaryKeyRelatedField(
+        queryset=BlankQuestion.objects.order_by('id')
+    )
+    solution_set = serializers.ListField(
+        child=serializers.CharField(max_length=255)
+    )
+
+    class Meta:
+        model = BlankSolution
+        fields = (
+            'solution_set'
+        )
+
+    def __str__(self):
+        return "%s" % self.id
 
 
 class McqSerializer(serializers.ModelSerializer):
@@ -57,6 +76,8 @@ class McqSerializer(serializers.ModelSerializer):
             'choices',
         )
 
+        read_only_fields = ('type',)
+
 
 class BlankQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
@@ -76,6 +97,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'solution',
             'blank_parts',
         )
+        read_only_fields = ('type',)
 
 
 class ProgrammingQuestionSerializer(serializers.ModelSerializer):
@@ -158,16 +180,16 @@ class AssessmentSerializer(serializers.ModelSerializer):
         choices=Assessment.ASSESSMENT_TYPE
     )
 
-    programmingquestion_set = serializers.PrimaryKeyRelatedField(
+    programmingquestion_set = ProgrammingQuestionSerializer(
         read_only=True,
         many=True,
     )
 
-    blankquestion_set = serializers.PrimaryKeyRelatedField(
+    blankquestion_set = BlankQuestionSerializer(
         read_only=True,
         many=True,
     )
-    mcq_set = serializers.PrimaryKeyRelatedField(
+    mcq_set = McqSerializer(
         read_only=True,
         many=True,
     )
@@ -183,7 +205,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
             'course',
             'programmingquestion_set',
             'blankquestion_set',
-            'mcq_set'
+            'mcq_set',
         )
 
 
