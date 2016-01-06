@@ -5,7 +5,8 @@ from rest_framework.decorators import detail_route  # , list_route
 from .serializers import *
 from .models import *
 
-import itertools
+# import itertools
+
 
 class DefaultsMixin(object):
 
