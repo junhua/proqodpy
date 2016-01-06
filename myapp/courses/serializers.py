@@ -52,7 +52,6 @@ class McqSerializer(serializers.ModelSerializer):
             'assessment',
             'question_num',
             'type',
-            'title',
             'description',
             'solution',
             'choices',
@@ -73,7 +72,6 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'assessment',
             'question_num',
             'type',
-            'title',
             'description',
             'solution',
             'blank_parts',
@@ -87,13 +85,12 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
     type = serializers.HiddenField(default=Question.PROGRAMMING)
 
     class Meta:
-        model = Question
+        model = ProgrammingQuestion
         fields = (
             'id',
             'assessment',
             'question_num',
             'type',
-            'title',
             'description',
             'solution',
             'default_code',
