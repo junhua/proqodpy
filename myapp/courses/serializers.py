@@ -158,12 +158,12 @@ class AssessmentSerializer(serializers.ModelSerializer):
         choices=Assessment.ASSESSMENT_TYPE
     )
 
-    programmingquestions = serializers.PrimaryKeyRelatedField(
+    programming_questions = serializers.PrimaryKeyRelatedField(
         read_only=True,
         many=True,
     )
 
-    blankquestions = serializers.PrimaryKeyRelatedField(
+    blank_questions = serializers.PrimaryKeyRelatedField(
         read_only=True,
         many=True,
     )
@@ -181,8 +181,8 @@ class AssessmentSerializer(serializers.ModelSerializer):
             'start_datetime',
             'end_datetime',
             'course',
-            'programmingquestions',
-            'blankquestions',
+            'programming_questions',
+            'blank_questions',
             'mcqs'
         )
 
