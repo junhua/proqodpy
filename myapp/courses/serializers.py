@@ -19,6 +19,9 @@ class MultipleChoiceSerializer(serializers.ModelSerializer):
             'is_correct',
         )
 
+    def __str__(self):
+        return "%s" % (self.id)
+
 
 class BlankQuestionContentSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
@@ -33,7 +36,7 @@ class BlankQuestionContentSerializer(serializers.ModelSerializer):
             'content',
             'question',
         )
-        read_only_fields = ('type',)
+        # read_only_fields = ('type',)
 
     def __str__(self):
         return "Q%s Number %s" % (self.question, self.seq)
@@ -64,7 +67,11 @@ class McqSerializer(serializers.ModelSerializer):
         queryset=Assessment.objects.all()
     )
     type = serializers.IntegerField(default=Question.MCQ, read_only=True)
-    choices = MultipleChoiceSerializer(many=True, read_only=True)
+
+    choices = MultipleChoiceSerializer(
+        many=True,
+        read_only=True
+    )
 
     class Meta:
         model = Mcq
@@ -75,7 +82,7 @@ class McqSerializer(serializers.ModelSerializer):
             'type',
             'description',
             'solution',
-            'choices',
+            'choices'
         )
 
 
@@ -103,7 +110,8 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()
     )
-    type = serializers.IntegerField(default=Question.PROGRAMMING, read_only=True)
+    type = serializers.IntegerField(
+        default=Question.PROGRAMMING, read_only=True)
 
     class Meta:
         model = ProgrammingQuestion
@@ -117,6 +125,7 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
             'default_code',
             'code_signature',
         )
+
 
 class CheckoffQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
