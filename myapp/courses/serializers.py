@@ -46,16 +46,14 @@ class BlankSolutionSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=BlankQuestion.objects.order_by('id')
     )
-    solution_set = serializers.ListField(
-        child=serializers.CharField(max_length=255)
-    )
 
     class Meta:
         model = BlankSolution
         fields = (
-            'solution_set',
-            'question'
-
+            'id',
+            'seq',
+            'content',
+            'question',
         )
 
     def __str__(self):
