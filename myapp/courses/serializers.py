@@ -95,7 +95,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
 
     blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
 
-    blank_solutions = BlankSolutionSerializer(many=True, read_only=True)
+    solution_set = BlankSolutionSerializer(read_only=True)
 
     class Meta:
         model = BlankQuestion
@@ -107,7 +107,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'description',
             'solution',
             'blank_parts',
-            'blank_solutions'
+            'solution_set'
         )
 
 
@@ -251,6 +251,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
         read_only=True,
         many=True,
     )
+
     checkoffquestion_set = CheckoffQuestionSerializer(
         read_only=True,
         many=True,
