@@ -6,6 +6,8 @@ from django.contrib.postgres.fields import ArrayField
 
 
 class Submission(models.Model):
+    from myapp.courses.models import Question
+    TYPE = Question.TYPE
 
     id = models.AutoField(primary_key=True)
 
@@ -31,6 +33,11 @@ class Submission(models.Model):
         help_text=_("100-based overall score")
     )
 
+    type = models.PositiveSmallIntegerField(
+        _("type"),
+        choices=TYPE,
+    )
+
     class Meta:
         abstract = True
         ordering = ['created_by', 'date_created']
@@ -46,13 +53,22 @@ class CodeSubmission(Submission):
         blank=True,
         null=True,
     )
-
     performance_report = models.OneToOneField(
         'analytics.PerformanceReport',
         null=True,
         blank=True,
         on_delete=models.CASCADE,
     )
+
+    # def get_score(self):
+    #     score = None
+    #     code = self.code
+    #     unittest_set = self.question.unittests
+    #     correct, total = 0.0, len(unittest_set)
+
+    #     for unittest in unittest_set:
+    #         correct+=unittest.run.get('pass')
+    #     return score
 
 
 class BlanksSubmission(Submission):

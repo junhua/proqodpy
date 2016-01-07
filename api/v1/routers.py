@@ -55,3 +55,6 @@ router.register(r'mcq_progress', McqProgressViewSet,
                 base_name='MCQ progress')
 router.register(r'blank_qn_progress', BlankQuestionProgressViewSet,
                 base_name='blank qustion progress')
+
+router.register(r'acad_report', AcademicReportViewset,
+                base_name='academic report')

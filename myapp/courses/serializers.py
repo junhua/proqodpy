@@ -90,8 +90,12 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()
     )
+
     type = serializers.IntegerField(default=Question.BLANKS, read_only=True)
+
     blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
+
+    blank_solutions = BlankSolutionSerializer(many=True, read_only=True)
 
     class Meta:
         model = BlankQuestion
@@ -103,6 +107,28 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'description',
             'solution',
             'blank_parts',
+            'blank_solutions'
+        )
+
+
+class UnitTestSerializer(serializers.ModelSerializer):
+    question = serializers.PrimaryKeyRelatedField(
+        queryset=ProgrammingQuestion.objects.order_by('id')
+    )
+    inputs = serializers.ListField(
+        child=serializers.CharField(max_length=255)
+    )
+
+    class Meta:
+        model = UnitTest
+        fields = (
+            'id',
+            'visibility',
+            'type',
+            'test_content',
+            'inputs',
+            'expected_output',
+            'question',
         )
 
 
@@ -112,6 +138,10 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
     )
     type = serializers.IntegerField(
         default=Question.PROGRAMMING, read_only=True)
+
+    unittests = UnitTestSerializer(
+        many=True, read_only=True
+    )
 
     class Meta:
         model = ProgrammingQuestion
@@ -124,6 +154,7 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
             'solution',
             'default_code',
             'code_signature',
+            'unittests'
         )
 
 
@@ -220,6 +251,10 @@ class AssessmentSerializer(serializers.ModelSerializer):
         read_only=True,
         many=True,
     )
+    checkoffquestion_set = CheckoffQuestionSerializer(
+        read_only=True,
+        many=True,
+    )
 
     class Meta:
         model = Assessment
@@ -232,26 +267,6 @@ class AssessmentSerializer(serializers.ModelSerializer):
             'course',
             'programmingquestion_set',
             'blankquestion_set',
+            'checkoffquestion_set',
             'mcq_set',
-        )
-
-
-class UnitTestSerializer(serializers.ModelSerializer):
-    question = serializers.PrimaryKeyRelatedField(
-        queryset=ProgrammingQuestion.objects.order_by('id')
-    )
-    inputs = serializers.ListField(
-        child=serializers.CharField(max_length=255)
-    )
-
-    class Meta:
-        model = UnitTest
-        fields = (
-            'id',
-            'visibility',
-            'type',
-            'test_content',
-            'inputs',
-            'expected_output',
-            'question',
         )

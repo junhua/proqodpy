@@ -1,11 +1,9 @@
-from rest_framework import viewsets, authentication, permissions, filters, status
+from rest_framework import viewsets, authentication, permissions, filters
 from rest_framework.decorators import detail_route, list_route
 
 from rest_framework.response import Response
 from .serializers import *
 from .models import *
-from authnz.models import ProqodUser
-from myapp.courses.models import Question
 from myapp.analytics.models import PerformanceReport
 import sys
 
@@ -54,11 +52,15 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             try:
                 user = request.user
                 code = data.get('code', None)
-                question = ProgrammingQuestion.objects.get(id=data.get('question', None))
+                question = ProgrammingQuestion.objects.get(
+                    id=data.get('question', None))
             except:
-                return Response({"message": "Required user, code and question params"}, status=400)
+                return Response(
+                    {"message": "Required user, code and question params"},
+                    status=400
+                )
 
-            # To be edited
+            # PERFORMANCE REPORT (To be edited)
             complexity = -1
             memory = -1
             time = PerformanceReport.objects.time_exec(code)
@@ -77,9 +79,13 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 report.save()
             except:
                 return Response(
-                    {"message": "Failed to create report"},
-                    status=400
+                    {"message": "Failed to create performance report"},
+                    status=404
                 )
+
+            # SCORE
+            # testcases = question.
+
 
             subm = CodeSubmission(
                 created_by=user,
@@ -122,12 +128,14 @@ class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = McqSubmissionSerializer
     filter_fields = ['question']
 
+
 class CheckoffSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Code Submission """
     queryset = CheckoffSubmission.objects.order_by('date_created')
     serializer_class = CheckoffSubmissionSerializer
     filter_fields = ['question']
+
 
 class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 

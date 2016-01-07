@@ -17,15 +17,17 @@ class CodeSubmissionSerializer(serializers.ModelSerializer):
     score = serializers.DecimalField(
         max_digits=5, decimal_places=2, read_only=True
     )
-
     performance_report = PerformanceReportSerializer(
         read_only=True
     )
+    type = serializers.IntegerField(
+        default=Question.PROGRAMMING, read_only=True)
 
     class Meta:
         model = CodeSubmission
         fields = (
             'id',
+            'type',
             'code',
             'created_by',
             'question',
@@ -45,11 +47,14 @@ class BlanksSubmissionSerializer(serializers.ModelSerializer):
     blanks = serializers.ListField(
         child=serializers.CharField(max_length=255)
     )
+    type = serializers.IntegerField(
+        default=Question.BLANKS, read_only=True)
 
     class Meta:
         model = BlanksSubmission
         fields = (
             'id',
+            'type',
             'blanks',
             'created_by',
             'question',
@@ -65,17 +70,21 @@ class McqSubmissionSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=Mcq.objects.all()
     )
+    type = serializers.IntegerField(
+        default=Question.MCQ, read_only=True)
 
     class Meta:
         model = McqSubmission
         fields = (
             'id',
+            'type',
             'answer',
             'created_by',
             'question',
             'date_created',
             'score',
         )
+
 
 class CheckoffSubmissionSerializer(serializers.ModelSerializer):
     created_by = serializers.PrimaryKeyRelatedField(
@@ -84,17 +93,20 @@ class CheckoffSubmissionSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=CheckoffQuestion.objects.all()
     )
-
+    type = serializers.IntegerField(
+        default=Question.CHECKOFF, read_only=True)
     class Meta:
         model = CheckoffSubmission
         fields = (
             'id',
+            'type',
             'created_by',
             'question',
             'date_created',
             'score',
             'checked',
         )
+
 
 class ProgrammingQuestionProgressSerializer(serializers.ModelSerializer):
     student = serializers.PrimaryKeyRelatedField(

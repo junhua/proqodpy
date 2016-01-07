@@ -1,17 +1,9 @@
-from rest_framework import viewsets, authentication, permissions, filters, status
+from rest_framework import viewsets, authentication, permissions, filters
 from rest_framework.response import Response
 
 
-from .serializers import (
-    PerformanceReportSerializer,
-    PeerRankSerializer,
-    PeerRankReportSerializer
-)
-from .models import (
-    PerformanceReport,
-    PeerRankReport,
-    PeerRank,
-)
+from .serializers import *
+from .models import *
 
 
 class DefaultsMixin(object):
@@ -55,3 +47,10 @@ class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Peer Rank """
     queryset = PeerRank.objects.all()
     serializer_class = PeerRankSerializer
+
+
+class AcademicReportViewset(DefaultsMixin, viewsets.ModelViewSet):
+
+    """API endpoint for listing and creating Peer Rank"""
+    queryset = AcademicReport.objects.all()
+    serializer_class = AcademicReportSerializer
