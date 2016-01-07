@@ -54,3 +54,9 @@ class AcademicReportViewset(DefaultsMixin, viewsets.ModelViewSet):
     """API endpoint for listing and creating Peer Rank"""
     queryset = AcademicReport.objects.all()
     serializer_class = AcademicReportSerializer
+
+class AcademicReportViewset2(DefaultsMixin, viewsets.ModelViewSet):
+
+    """API endpoint for listing and creating Peer Rank"""
+    queryset = AcademicReport.objects.all()
+    serializer_class = AcademicReportSerializer
