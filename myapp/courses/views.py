@@ -47,8 +47,8 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
         """
 
         queryset = get_user_model().objects.all()
-        ar = get_list_or_404(queryset, courses=pk)
-        serializer = UserSerializer(ar)
+        participants = get_list_or_404(queryset, courses=pk)
+        serializer = UserSerializer(participants, many=True)
 
         return Response(serializer.data)
 
