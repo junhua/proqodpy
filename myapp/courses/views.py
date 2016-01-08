@@ -2,9 +2,12 @@ from rest_framework import viewsets, authentication, permissions, filters
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route  # , list_route
 
+from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
+
 from .serializers import *
 from .models import *
-
+from djoser.serializers import UserSerializer
 # import itertools
 
 
@@ -37,6 +40,18 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     filter_fields = ['participants']
 
+    @detail_route(methods=['get'])
+    def participants(self, request, pk=None):
+        """
+        Endpoint to get participants by course
+        """
+
+        queryset = get_user_model().objects.all()
+        ar = get_object_or_404(queryset, courses=pk)
+        serializer = UserSerializer(ar)
+
+        return Response(serializer.data)
+
 
 class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
@@ -65,6 +80,7 @@ class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Blank Question """
     queryset = ProgrammingQuestion.objects.all()
     serializer_class = ProgrammingQuestionSerializer
+
 
 class CheckoffQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
@@ -98,10 +114,13 @@ class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = BlankQuestionContent.objects.all().order_by('part_seq')
     serializer_class = BlankQuestionContentSerializer
 
+
 class BlankSolutionViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
     """ API endpoint for listing and creating multiple choice """
     queryset = BlankSolution.objects.all()
-    serializer_class = BlankSolutionSerializer    
+    serializer_class = BlankSolutionSerializer
+
 
 class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
 

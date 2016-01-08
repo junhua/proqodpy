@@ -1,6 +1,6 @@
 from rest_framework import viewsets, authentication, permissions, filters
 from rest_framework.response import Response
-
+from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
 
 from .serializers import *
 from .models import *
@@ -49,11 +49,52 @@ class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = PeerRankSerializer
 
 
-class AcademicReportViewset(DefaultsMixin, viewsets.ModelViewSet):
+class AcademicReportViewset(DefaultsMixin, viewsets.ViewSet):
 
-    """API endpoint for listing and creating Peer Rank"""
-    queryset = AcademicReport.objects.all()
-    serializer_class = AcademicReportSerializer
+    """
+    API endpoint for getting academic Report
+    required input: student id, course id
+
+    Structure: 
+
+    - AcademicReport:
+
+        - student (unique_together with course)  
+        - course  (unique_together with student)  
+        - grade (bool)  
+        - assessment_grade_report_set  
+            - assessment  
+            - grade  
+            - override  
+            - question_grade_report_set  
+                - question_id (unique_together with question_type)  
+                - question_type (unique_together with question_id)  
+                - grade  
+                - override  
+                - submission_grade_report_set  
+                    - submission_id (unique_together with submission_type)  
+                    - submission_type (unique_together with submission_id)  
+                    - grade  
+                    - override  
+
+    """
+    # queryset = AcademicReport.objects.all()
+    # serializer_class = AcademicReportSerializer
+    filter_fields = ['student_id', 'course_id']
+
+    def list(self, request):
+        print request.data
+        student_id = request.data.get('student_id', None)
+        course_id = request.data.get('course_id', None)
+
+        # queryset = AcademicReport.objects.all()
+        # ar = get_object_or_404(queryset, pk=pk)
+        # serializer = AcademicReportSerializer(ar)
+        return Response({
+            'student_id': student_id,
+            'course_id': course_id
+        })
+
 
 class AcademicReportViewset2(DefaultsMixin, viewsets.ModelViewSet):
 
