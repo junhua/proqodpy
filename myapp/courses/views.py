@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import detail_route  # , list_route
 
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_list_or_404
 
 from .serializers import *
 from .models import *
@@ -47,7 +47,7 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
         """
 
         queryset = get_user_model().objects.all()
-        ar = get_object_or_404(queryset, courses=pk)
+        ar = get_list_or_404(queryset, courses=pk)
         serializer = UserSerializer(ar)
 
         return Response(serializer.data)
