@@ -172,8 +172,8 @@ class BlankQuestionProgress(Progress):
 
 
 class McqProgress(Progress):
-    answer_last_saved = models.CharField(
-        _("choice"),
+    choice = models.OneToOneField(
+        "courses.MultipleChoice",
         max_length=50,
         null=True,
         blank=True,

@@ -80,20 +80,28 @@ class AcademicReportViewset(DefaultsMixin, viewsets.ViewSet):
     """
     # queryset = AcademicReport.objects.all()
     # serializer_class = AcademicReportSerializer
-    filter_fields = ['student_id', 'course_id']
+    filter_fields = ('student_id', 'course_id')
 
     def list(self, request):
         print request.data
-        student_id = request.data.get('student_id', None)
-        course_id = request.data.get('course_id', None)
+        student_id = request.query_params.get('student_id', None)
+        course_id = request.query_params.get('course_id', None)
 
         # queryset = AcademicReport.objects.all()
         # ar = get_object_or_404(queryset, pk=pk)
         # serializer = AcademicReportSerializer(ar)
-        return Response({
-            'student_id': student_id,
-            'course_id': course_id
-        })
+        return Response(
+            {
+                'type1':{
+                    'student_id': student_id,
+                    'course_id': course_id
+                },
+                'type2':{
+                    'student_id': student_id,
+                    'course_id': course_id
+                }
+            }
+        )
 
 
 class AcademicReportViewset2(DefaultsMixin, viewsets.ModelViewSet):

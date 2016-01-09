@@ -83,20 +83,30 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                     status=404
                 )
 
-            # SCORE
-            # testcases = question.
-
+            # # SCORE
+            
+            # unittests = UnitTest.objects.filter(question=question)
+            # for unittest in unittests:
+            #     test_code = unittest.run(code)
+            #     print test_code
+            # unittest_results = []
+            
+            # print "***"
+            # print type(unittests[0].expected_output)
+                
 
             subm = CodeSubmission(
                 created_by=user,
                 code=code,
                 question=question,
-                performance_report=report
+                performance_report=report,
+                type=0
             )
-
+            subm.save()
             try:
                 subm.save()
             except:
+                print sys.exc_info()[0]
                 return Response(
                     {"message": "Failed to create submission"},
                     status=400

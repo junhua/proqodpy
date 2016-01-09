@@ -95,6 +95,7 @@ class CheckoffSubmissionSerializer(serializers.ModelSerializer):
     )
     type = serializers.IntegerField(
         default=Question.CHECKOFF, read_only=True)
+
     class Meta:
         model = CheckoffSubmission
         fields = (
@@ -122,7 +123,6 @@ class ProgrammingQuestionProgressSerializer(serializers.ModelSerializer):
             'id',
             'student',
             'question',
-
             'answer_last_saved',
             'date_last_updated',
         )
@@ -130,7 +130,7 @@ class ProgrammingQuestionProgressSerializer(serializers.ModelSerializer):
 
 
 class BlankQuestionProgressSerializer(serializers.ModelSerializer):
-    last_saved = serializers.ListField(
+    answer_last_saved = serializers.ListField(
         child=serializers.CharField(max_length=255)
     )
     student = serializers.PrimaryKeyRelatedField(
@@ -160,6 +160,9 @@ class McqProgressSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=Mcq.objects.all()
     )
+    choice = serializers.PrimaryKeyRelatedField(
+        queryset=MultipleChoice.objects.all()
+    )
 
     class Meta:
         model = McqProgress
@@ -167,8 +170,7 @@ class McqProgressSerializer(serializers.ModelSerializer):
             'id',
             'student',
             'question',
-
-            'answer_last_saved',
+            'choice',
             'date_last_updated',
         )
         read_only_fields = ('status',)
