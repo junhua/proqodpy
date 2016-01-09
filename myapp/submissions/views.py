@@ -35,7 +35,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Code Submission """
     queryset = CodeSubmission.objects.order_by('date_created')
     serializer_class = CodeSubmissionSerializer
-    filter_fields = ['question']
+    filter_fields = ['question', 'created_by']
 
     def create(self, request):
         """
@@ -127,7 +127,7 @@ class BlanksSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Code Submission """
     queryset = BlanksSubmission.objects.order_by('date_created')
     serializer_class = BlanksSubmissionSerializer
-    filter_fields = ['question']
+    filter_fields = ['question', 'created_by']
 
 
 class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -135,7 +135,7 @@ class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Code Submission """
     queryset = McqSubmission.objects.order_by('date_created')
     serializer_class = McqSubmissionSerializer
-    filter_fields = ['question']
+    filter_fields = ['question','created_by']
 
 
 class CheckoffSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -143,7 +143,7 @@ class CheckoffSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Code Submission """
     queryset = CheckoffSubmission.objects.order_by('date_created')
     serializer_class = CheckoffSubmissionSerializer
-    filter_fields = ['question']
+    filter_fields = ['question', 'created_by']
 
 
 class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
