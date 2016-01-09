@@ -73,6 +73,10 @@ class McqSubmissionSerializer(serializers.ModelSerializer):
     type = serializers.IntegerField(
         default=Question.MCQ, read_only=True)
 
+    answer = serializers.PrimaryKeyRelatedField(
+        queryset=MultipleChoice.objects.all()
+    )
+
     class Meta:
         model = McqSubmission
         fields = (

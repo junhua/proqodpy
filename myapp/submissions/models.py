@@ -90,13 +90,16 @@ class McqSubmission(Submission):
         "courses.Mcq",
         related_name="+"
     )
-    answer = models.CharField(
-        _("choice"),
-        max_length=50,
-        null=True,
-        blank=True,
-    )
-
+    # answer = models.CharField(
+    #     _("choice"),
+    #     max_length=50,
+    #     null=True,
+    #     blank=True,
+    # )
+    answer = models.OneToOneField(
+        "courses.MultipleChoice",
+        related_name="+"
+        )
 
 class CheckoffSubmission(Submission):
     question = models.ForeignKey(
