@@ -171,14 +171,19 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     filter_fields = ['question', 'student']
 
     def create(self, request):
+        """
+        Parameters: question(id), code
+        """
         data = request.data
         student = request.user
-        question = data.get('question', None)
+        question_id = data.get('question', None)
 
-        if not student or not question:
+        if not student or not question_id:
             return Response({"message": "student or question empty"}, status=404)
 
         try:
+            
+            question = ProgrammingQuestion.objects.get(id=question_id)
             progress, _ = ProgrammingQuestionProgress.objects.update_or_create(
                 student=student,
                 question=question,
@@ -186,7 +191,10 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
                     'answer_last_saved': data.get('answer_last_saved', None)
                 }
             )
+            
             return Response(ProgrammingQuestionProgressSerializer(progress).data, status=200)
-        except:
-            return Response({"error": sys.exc_info()[0]}, status=400)
+        except ValueError as ve:
+            return Response({"error": str(ve)}, status=400)
+            # return Response({"error": str(sys.exc_info()[0])}, status=400)
+            
         return Response({"error": "oops..."}, status=400)

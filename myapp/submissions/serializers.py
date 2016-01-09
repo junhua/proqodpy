@@ -32,7 +32,7 @@ class CodeSubmissionSerializer(serializers.ModelSerializer):
             'created_by',
             'question',
             'date_created',
-            'score',
+            # 'score',
             'performance_report',
         )
 
@@ -59,7 +59,7 @@ class BlanksSubmissionSerializer(serializers.ModelSerializer):
             'created_by',
             'question',
             'date_created',
-            'score',
+            # 'score',
         )
 
 
@@ -82,7 +82,7 @@ class McqSubmissionSerializer(serializers.ModelSerializer):
             'created_by',
             'question',
             'date_created',
-            'score',
+            # 'score',
         )
 
 
