@@ -14,9 +14,9 @@ class CodeSubmissionSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=ProgrammingQuestion.objects.all()
     )
-    score = serializers.DecimalField(
-        max_digits=5, decimal_places=2, read_only=True
-    )
+    # score = serializers.DecimalField(
+    #     max_digits=5, decimal_places=2, read_only=True
+    # )
     performance_report = PerformanceReportSerializer(
         read_only=True
     )

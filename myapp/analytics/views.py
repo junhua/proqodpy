@@ -49,7 +49,7 @@ class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = PeerRankSerializer
 
 
-class AcademicReportViewset(DefaultsMixin, viewsets.ViewSet):
+class AcademicReportViewset2(DefaultsMixin, viewsets.ViewSet):
 
     """
     API endpoint for getting academic Report
@@ -104,8 +104,9 @@ class AcademicReportViewset(DefaultsMixin, viewsets.ViewSet):
         )
 
 
-class AcademicReportViewset2(DefaultsMixin, viewsets.ModelViewSet):
+class AcademicReportViewset(DefaultsMixin, viewsets.ModelViewSet):
 
     """API endpoint for listing and creating Peer Rank"""
     queryset = AcademicReport.objects.all()
     serializer_class = AcademicReportSerializer
+

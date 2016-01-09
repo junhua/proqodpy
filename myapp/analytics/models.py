@@ -253,6 +253,7 @@ class QuestionGradeReport(GradeReport):
         verbose_name = _('question_grade_report')
         unique_together = ('question_id', 'question_type')
 
+
 class SubmissionGradeReport(GradeReport):
     from myapp.submissions.models import Submission
     TYPE = Submission.TYPE
@@ -264,13 +265,13 @@ class SubmissionGradeReport(GradeReport):
         _("submission_id"),
         null=False,
         blank=False
-        )
+    )
     submission_type = models.PositiveSmallIntegerField(
         _("submission_type"),
         choices=TYPE,
         null=False,
         blank=False
-        )
+    )
 
     class Meta:
         verbose_name = _('submission_grade_report')
