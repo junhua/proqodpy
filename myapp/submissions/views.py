@@ -212,7 +212,7 @@ class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 }
             )
 
-            return Response(BlankProgressSerializer(progress).data, status=200)
+            return Response(BlankQuestionProgressSerializer(progress).data, status=200)
         except ValueError as ve:
             return Response({"error": str(ve)}, status=400)
             # return Response({"error": str(sys.exc_info()[0])}, status=400)
