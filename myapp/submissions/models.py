@@ -83,6 +83,13 @@ class BlanksSubmission(Submission):
             null=True
         )
     )
+    evaluation = models.OneToOneField(
+        'analytics.BlankEvaluation',
+        null=True,
+        blank=True,
+        related_name='submission',
+        on_delete=models.CASCADE
+    )
 
 
 class McqSubmission(Submission):

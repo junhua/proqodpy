@@ -2,7 +2,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import *
 from myapp.courses.models import *
-from myapp.analytics.serializers import PerformanceReportSerializer
+from myapp.analytics.models import BlankEvaluation
+from myapp.analytics.serializers import PerformanceReportSerializer, BlankEvaluationSerializer
 
 User = get_user_model()
 
@@ -50,6 +51,8 @@ class BlanksSubmissionSerializer(serializers.ModelSerializer):
     type = serializers.IntegerField(
         default=Question.BLANKS, read_only=True)
 
+    evaluation = BlankEvaluationSerializer(read_only=True)
+
     class Meta:
         model = BlanksSubmission
         fields = (
@@ -59,9 +62,15 @@ class BlanksSubmissionSerializer(serializers.ModelSerializer):
             'created_by',
             'question',
             'date_created',
-            # 'score',
+            'evaluation',
         )
 
+# class BlanksSubmissionEvaluationUpdateSerializer(serializers.ModelSerializer):
+#     evaluation = BlankEvaluationSerializer()
+
+#     class Meta:
+#         model = BlanksSubmission
+#         fields = ('evaluation',)
 
 class McqSubmissionSerializer(serializers.ModelSerializer):
     created_by = serializers.PrimaryKeyRelatedField(

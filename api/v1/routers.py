@@ -58,3 +58,5 @@ router.register(r'blank_qn_progress', BlankQuestionProgressViewSet,
 
 router.register(r'acad_report', AcademicReportViewset,
                 base_name='academic report')
+router.register(r'blank_evaluation', BlankEvaluationViewset,
+                base_name='blank evaluation')

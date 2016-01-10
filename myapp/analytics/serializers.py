@@ -45,16 +45,14 @@ class PeerRankReportSerializer(serializers.ModelSerializer):
 
 
 class BlankEvaluationSerializer(serializers.ModelSerializer):
-    submission = serializers.PrimaryKeyRelatedField(read_only=True)
     evaluation = serializers.ListField(
         child=serializers.BooleanField()
     )
-
+    
     class Meta:
         model = BlankEvaluation
         fields = (
             'id',
-            'submission',
             'evaluation'
         )
 

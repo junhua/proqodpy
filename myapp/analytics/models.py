@@ -96,10 +96,7 @@ class PerformanceReport(models.Model):
 
 
 class BlankEvaluation(models.Model):
-    submission = models.OneToOneField(
-        "submissions.BlanksSubmission",
-        related_name="evaluation"
-    )
+
     evaluation = ArrayField(
         models.BooleanField(),
         blank=True,
@@ -109,7 +106,7 @@ class BlankEvaluation(models.Model):
 
     class Meta:
         verbose_name = _('blank_evaluation')
-        
+
 
 class PeerRankReport(models.Model):
 

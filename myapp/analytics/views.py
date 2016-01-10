@@ -50,7 +50,6 @@ class BlankEvaluationViewset(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
     serializer_class = BlankEvaluationSerializer
 
 
-
 class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Peer Rank """
@@ -101,11 +100,11 @@ class AcademicReportViewset2(DefaultsMixin, viewsets.ViewSet):
         # serializer = AcademicReportSerializer(ar)
         return Response(
             {
-                'type1':{
+                'type1': {
                     'student_id': student_id,
                     'course_id': course_id
                 },
-                'type2':{
+                'type2': {
                     'student_id': student_id,
                     'course_id': course_id
                 }
@@ -118,4 +117,3 @@ class AcademicReportViewset(DefaultsMixin, viewsets.ModelViewSet):
     """API endpoint for listing and creating Peer Rank"""
     queryset = AcademicReport.objects.all()
     serializer_class = AcademicReportSerializer
-

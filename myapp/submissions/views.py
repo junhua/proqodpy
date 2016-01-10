@@ -1,6 +1,6 @@
 from rest_framework import viewsets, authentication, permissions, filters
 from rest_framework.decorators import detail_route, list_route
-
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from .serializers import *
 from .models import *
@@ -11,8 +11,8 @@ import sys
 class DefaultsMixin(object):
 
     """ 
-    Default settings for view auth, permissions, 
-    filtering and pagination 
+    Default settings for view auth, permissions,
+    filtering and pagination
     """
     authentication_classes = (
         authentication.BasicAuthentication,
@@ -101,18 +101,18 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 performance_report=report,
                 type=0
             )
-            subm.save()
+
             try:
                 subm.save()
             except:
-                print sys.exc_info()[0]
+
                 return Response(
                     {"message": "Failed to create submission"},
                     status=400
                 )
             data = CodeSubmissionSerializer(subm).data
             # return Response({"message": "submission completed"}, status=200)
-            return Response(data, status=200)
+            return Response(data, status=201)
 
         return Response({"message": "error"}, status=400)
 
@@ -125,9 +125,60 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class BlanksSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Code Submission """
+
     queryset = BlanksSubmission.objects.order_by('date_created')
     serializer_class = BlanksSubmissionSerializer
     filter_fields = ['question', 'created_by']
+
+    def create(self, request):
+        from myapp.analytics.serializers import BlankEvaluationSerializer
+        from myapp.analytics.models import BlankEvaluation
+
+        """
+        Override default POST method:
+        1. create BlankSubmission
+        2. create blankeval
+
+        """
+        data = request.data
+
+        question = get_object_or_404(BlankQuestion, pk=data.get('question'))
+        solutions = BlankSolution.objects.filter(
+            question=question).order_by('seq')
+        blanks = data.get('blanks', None)
+
+        # Check submitted blanks
+        if len(blanks) > len(solutions):
+            return Response({"Detail": "too many blanks"}, status=404)
+
+        checks = [str(blanks[i]) == solutions[i].content
+                  for i in xrange(len(blanks))]
+        checks += [False for _ in xrange(len(solutions) - len(blanks))]
+
+        evaluation_data = {"evaluation": checks}
+
+        blankeval_serializer = BlankEvaluationSerializer(data=evaluation_data)
+
+        if blankeval_serializer.is_valid():
+            blankeval_serializer.save()
+            data['evaluation'] = blankeval_serializer.data
+
+        else:
+            return Response(blankeval_serializer.error, status=404)
+
+        subm = BlanksSubmission(
+            created_by=request.user,
+            question=question,
+            evaluation=BlankEvaluation(id=blankeval_serializer.data['id']),
+            blanks=blanks,
+            type=2
+        )
+        try:
+            subm.save()
+            return Response(data, status=201)
+
+        except:
+            return Response({'error': str(sys.exc_info()[0])}, status=400)
 
 
 class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -162,7 +213,10 @@ class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
         question_id = data.get('question', None)
 
         if not student or not question_id:
-            return Response({"message": "student or question empty"}, status=404)
+            return Response(
+                {"message": "student or question empty"},
+                status=404
+            )
 
         try:
 
