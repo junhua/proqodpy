@@ -135,7 +135,7 @@ class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Code Submission """
     queryset = McqSubmission.objects.order_by('date_created')
     serializer_class = McqSubmissionSerializer
-    filter_fields = ['question','created_by']
+    filter_fields = ['question', 'created_by']
 
 
 class CheckoffSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -153,7 +153,7 @@ class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = McqProgressSerializer
     filter_fields = ['question', 'student']
 
-    def create(self,request):
+    def create(self, request):
         """
         Parameters: question(id), answer
         """
@@ -182,6 +182,7 @@ class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         return Response({"error": "oops..."}, status=400)
 
+
 class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Blank question progress """
@@ -189,7 +190,7 @@ class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = BlankQuestionProgressSerializer
     filter_fields = ['question', 'student']
 
-    def create(self,request):
+    def create(self, request):
         """
         Parameters: question(id), answer_last_saved
         """
@@ -211,7 +212,7 @@ class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 }
             )
 
-            return Response(McqProgressSerializer(progress).data, status=200)
+            return Response(BlankProgressSerializer(progress).data, status=200)
         except ValueError as ve:
             return Response({"error": str(ve)}, status=400)
             # return Response({"error": str(sys.exc_info()[0])}, status=400)

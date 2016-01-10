@@ -19,7 +19,6 @@ class PerformanceReportSerializer(serializers.ModelSerializer):
         )
 
 
-
 class PeerRankSerializer(serializers.ModelSerializer):
     report = serializers.PrimaryKeyRelatedField(
         queryset=PeerRankReport.objects.all()
@@ -44,6 +43,12 @@ class PeerRankReportSerializer(serializers.ModelSerializer):
             'peer_ranks',
         )
 
+
+class BlankEvaluationSerializer(serializers.ModelSerializer):
+    question = serializers.PrimaryKeyRelatedField(read_only=True)
+    evaluation = serializers.ListField(
+        child=serializers.BooleanField()
+    )
 
 class SubmissionGradeReportSerializer(serializers.ModelSerializer):
 

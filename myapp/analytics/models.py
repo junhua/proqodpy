@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 import timeit
 import numpy as np
@@ -93,6 +94,22 @@ class PerformanceReport(models.Model):
         verbose_name_plural = _('performance_reports')
         ordering = ['date_created']
 
+
+class BlankEvaluation(models.Model):
+    question = models.OneToOneField(
+        "courses.BlankQuestion",
+        related_name="evaluation"
+    )
+    evaluation = ArrayField(
+        models.BooleanField(_("evaluation")),
+        blank=True,
+        null=True,
+        help_text=_("list of blank evaluation")
+    )
+
+    class Meta:
+        verbose_name = _('blankevaluation')
+        ordering = ['question']
 
 class PeerRankReport(models.Model):
 
