@@ -122,22 +122,17 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     #     code = data.get('code', None)
 
 
-class BlanksSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
+class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Code Submission """
 
-    queryset = BlanksSubmission.objects.order_by('date_created')
-    serializer_class = BlanksSubmissionSerializer
+    queryset = BlankSubmission.objects.order_by('date_created')
+    serializer_class = BlankSubmissionSerializer
     filter_fields = ['question', 'created_by']
 
     def create(self, request):
-        from myapp.analytics.serializers import BlankEvaluationSerializer
-        from myapp.analytics.models import BlankEvaluation
-
         """
-        Override default POST method:
-        1. create BlankSubmission
-        2. create blankeval
+        Override default POST method to create BlankSubmission        
 
         """
         data = request.data
@@ -148,6 +143,9 @@ class BlanksSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         blanks = data.get('blanks', None)
 
         # Check submitted blanks
+        # blanks should not be more than #solutions
+        # if $blanks less than #solutions, fill list with False
+
         if len(blanks) > len(solutions):
             return Response({"Detail": "too many blanks"}, status=404)
 
@@ -155,30 +153,27 @@ class BlanksSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                   for i in xrange(len(blanks))]
         checks += [False for _ in xrange(len(solutions) - len(blanks))]
 
-        evaluation_data = {"evaluation": checks}
-
-        blankeval_serializer = BlankEvaluationSerializer(data=evaluation_data)
-
-        if blankeval_serializer.is_valid():
-            blankeval_serializer.save()
-            data['evaluation'] = blankeval_serializer.data
-
+        data['evaluation'] = checks
+        data['type'] = 2
+        # subm = BlankSubmission(
+        #     created_by=request.user,
+        #     question=question,
+        #     evaluation=BlankEvaluation(id=blankeval_serializer.data['id']),
+        #     blanks=blanks,
+        #     type=2
+        # )
+        subm_serializer = BlankSubmissionSerializer(data=data)
+        if subm_serializer.is_valid():
+            subm_serializer.save()
+            return Response(subm_serializer.data, status=201)
         else:
-            return Response(blankeval_serializer.error, status=404)
+            return Response(subm_serializer.errors, status=400)
+        # try:
+        #     subm.save()
+        #     return Response(data, status=201)
 
-        subm = BlanksSubmission(
-            created_by=request.user,
-            question=question,
-            evaluation=BlankEvaluation(id=blankeval_serializer.data['id']),
-            blanks=blanks,
-            type=2
-        )
-        try:
-            subm.save()
-            return Response(data, status=201)
-
-        except:
-            return Response({'error': str(sys.exc_info()[0])}, status=400)
+        # except:
+        #     return Response({'error': str(sys.exc_info()[0])}, status=400)
 
 
 class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):

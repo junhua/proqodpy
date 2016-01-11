@@ -71,7 +71,7 @@ class CodeSubmission(Submission):
     #     return score
 
 
-class BlanksSubmission(Submission):
+class BlankSubmission(Submission):
     question = models.ForeignKey(
         "courses.BlankQuestion",
         related_name="+"
@@ -83,14 +83,20 @@ class BlanksSubmission(Submission):
             null=True
         )
     )
-    evaluation = models.OneToOneField(
-        'analytics.BlankEvaluation',
-        null=True,
-        blank=True,
-        related_name='submission',
-        on_delete=models.CASCADE
-    )
+    # evaluation = models.OneToOneField(
+    #     'analytics.BlankEvaluation',
+    #     null=True,
+    #     blank=True,
+    #     related_name='submission',
+    #     on_delete=models.CASCADE
+    # )
 
+    evaluation = ArrayField(
+        models.BooleanField(),
+        blank=True,
+        null=True,
+        help_text=_("list of blank evaluation")
+    )
 
 class McqSubmission(Submission):
     question = models.ForeignKey(

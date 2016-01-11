@@ -43,11 +43,11 @@ class PeerRankReportViewset(DefaultsMixin, viewsets.ModelViewSet):
     filter = ('submission')
 
 
-class BlankEvaluationViewset(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
+# class BlankEvaluationViewset(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
 
-    """ API endpoint for listing and creating Peer Rank Report """
-    queryset = BlankEvaluation.objects.all()
-    serializer_class = BlankEvaluationSerializer
+#     """ API endpoint for listing and creating Peer Rank Report """
+#     queryset = BlankEvaluation.objects.all()
+#     serializer_class = BlankEvaluationSerializer
 
 
 class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):

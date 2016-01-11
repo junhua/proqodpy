@@ -44,17 +44,17 @@ class PeerRankReportSerializer(serializers.ModelSerializer):
         )
 
 
-class BlankEvaluationSerializer(serializers.ModelSerializer):
-    evaluation = serializers.ListField(
-        child=serializers.BooleanField()
-    )
+# class BlankEvaluationSerializer(serializers.ModelSerializer):
+#     evaluation = serializers.ListField(
+#         child=serializers.BooleanField()
+#     )
     
-    class Meta:
-        model = BlankEvaluation
-        fields = (
-            'id',
-            'evaluation'
-        )
+#     class Meta:
+#         model = BlankEvaluation
+#         fields = (
+#             'id',
+#             'evaluation'
+#         )
 
 
 class SubmissionGradeReportSerializer(serializers.ModelSerializer):

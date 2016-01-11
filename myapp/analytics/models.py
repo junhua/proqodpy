@@ -95,17 +95,17 @@ class PerformanceReport(models.Model):
         ordering = ['date_created']
 
 
-class BlankEvaluation(models.Model):
+# class BlankEvaluation(models.Model):
 
-    evaluation = ArrayField(
-        models.BooleanField(),
-        blank=True,
-        null=True,
-        help_text=_("list of blank evaluation")
-    )
+#     evaluation = ArrayField(
+#         models.BooleanField(),
+#         blank=True,
+#         null=True,
+#         help_text=_("list of blank evaluation")
+#     )
 
-    class Meta:
-        verbose_name = _('blank_evaluation')
+#     class Meta:
+#         verbose_name = _('blank_evaluation')
 
 
 class PeerRankReport(models.Model):

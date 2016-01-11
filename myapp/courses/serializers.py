@@ -103,7 +103,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'number',
             'type',
             'description',
-            'solution',
+            # 'solution',
             'blank_parts',
             'solution_set'
         )
