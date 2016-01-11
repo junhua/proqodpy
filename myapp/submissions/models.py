@@ -43,6 +43,40 @@ class Submission(models.Model):
         ordering = ['created_by', 'date_created']
 
 
+class UnittestEntry(models.Model):
+
+    actual_output = models.CharField(
+        _("actual_output"),
+        null=True,
+        blank=True,
+        max_length=1024
+    )
+    is_correct = models.BooleanField(
+        _("is_correct"),
+    )
+
+    inputs = models.CharField(max_length=255)
+
+    expected_output = models.CharField(
+        _("expected_output"),
+        null=True,
+        blank=True,
+        max_length=1024
+    )
+
+    subm = models.ForeignKey(
+        "CodeSubmission",
+        null=True,
+        related_name="unittest_entries"
+    )
+
+    def __str__(self):
+        return "%s" % self.id
+
+    class Meta:
+        verbose_name_plural = _('unittest_entries')
+
+
 class CodeSubmission(Submission):
     question = models.ForeignKey(
         "courses.ProgrammingQuestion",
@@ -76,6 +110,7 @@ class BlankSubmission(Submission):
         "courses.BlankQuestion",
         related_name="+"
     )
+
     blanks = ArrayField(
         models.CharField(
             max_length=255,
@@ -83,13 +118,6 @@ class BlankSubmission(Submission):
             null=True
         )
     )
-    # evaluation = models.OneToOneField(
-    #     'analytics.BlankEvaluation',
-    #     null=True,
-    #     blank=True,
-    #     related_name='submission',
-    #     on_delete=models.CASCADE
-    # )
 
     evaluation = ArrayField(
         models.BooleanField(),
@@ -97,6 +125,7 @@ class BlankSubmission(Submission):
         null=True,
         help_text=_("list of blank evaluation")
     )
+
 
 class McqSubmission(Submission):
     question = models.ForeignKey(

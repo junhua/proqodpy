@@ -30,6 +30,11 @@ class DefaultsMixin(object):
     )
 
 
+class UnittestEntryViewSet(DefaultsMixin, viewsets.ModelViewSet):
+    queryset = UnittestEntry.objects.all()
+    serializer_class = UnittestEntrySerializer
+
+
 class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Code Submission """
@@ -46,80 +51,94 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         """
 
         data = request.data
-        serializer = CodeSubmissionSerializer(data=data)
 
-        if serializer.is_valid():
-            try:
-                user = request.user
-                code = data.get('code', None)
-                question = ProgrammingQuestion.objects.get(
-                    id=data.get('question', None))
-            except:
-                return Response(
-                    {"message": "Required user, code and question params"},
-                    status=400
-                )
-
-            # PERFORMANCE REPORT (To be edited)
-            complexity = -1
-            memory = -1
-            time = PerformanceReport.objects.time_exec(code)
-            correctness = -1
-            size = len(code)
-
-            report = PerformanceReport(
-                complexity=complexity,
-                memory=memory,
-                time=time,
-                correctness=correctness,
-                size=size
+        try:
+            user = request.user
+            code = data.get('code', None)
+            question = ProgrammingQuestion.objects.get(
+                id=data.get('question', None))
+        except:
+            return Response(
+                {"message": "Required user, code and question params"},
+                status=400
             )
 
-            try:
-                report.save()
-            except:
-                return Response(
-                    {"message": "Failed to create performance report"},
-                    status=404
-                )
+        # PERFORMANCE REPORT (To be edited)
+        complexity = -1
+        memory = -1
+        time = PerformanceReport.objects.time_exec(code)
+        correctness = -1
+        size = len(code)
 
-            # SCORE
+        report = PerformanceReport(
+            complexity=complexity,
+            memory=memory,
+            time=time,
+            correctness=correctness,
+            size=size
+        )
 
-            # unittests = UnitTest.objects.filter(question=question)
-            # for unittest in unittests:
-            #     test_code = unittest.run(code)
-            #     print test_code
-            # unittest_results = []
-
-            # print "***"
-            # print type(unittests[0].expected_output)
-
-            subm = CodeSubmission(
-                created_by=user,
-                code=code,
-                question=question,
-                performance_report=report,
-                type=0
+        try:
+            report.save()
+            print report.id
+        except:
+            return Response(
+                {"message": "Failed to create performance report"},
+                status=404
             )
 
-            try:
-                subm.save()
-            except:
+        # SCORE
 
-                return Response(
-                    {"message": "Failed to create submission"},
-                    status=400
-                )
-            data = CodeSubmissionSerializer(subm).data
-            # return Response({"message": "submission completed"}, status=200)
+        unittests = UnitTest.objects.filter(question=question)
+        ut_entries = []
+        for unittest in unittests:
+            test = unittest.run(code)
+            print unittest.inputs
+            print unittest.expected_output
+            data = {
+                'inputs': ", ".join(unittest.inputs),
+                'expected_output': unittest.expected_output,
+                'actual_output': test['output'],
+                'is_correct': test['pass']
+            }
+
+            ut_entry = UnittestEntrySerializer(data=data)
+            if ut_entry.is_valid():
+                ut_entry.save()
+                ute = UnittestEntry.objects.get(id=ut_entry.data['id'])
+                ut_entries += [ute]
+            else:
+                return Response(ut_entry.errors, 400)
+
+        data = {
+            'created_by': user.id,
+            'code': code,
+            'question': question.id,
+            'type': 0,
+            'unittest_entries': [entry.id for entry in ut_entries],
+            'performance_report': report.id
+        }
+
+        # subm = CodeSubmission(
+        #     created_by=user,
+        #     code=code,
+        #     question=question,
+        #     performance_report=report,
+        #     type=0,
+        #     unittest_entries=ut_entries
+        # )
+        # print subm.id
+        subm = CodeSubmissionCreateSerializer(data=data)
+
+        if subm.is_valid():
+            subm.save()
+
+            cs = CodeSubmission.objects.get(id=subm.data["id"])
+            data = CodeSubmissionSerializer(cs).data
+
             return Response(data, status=201)
-
-        return Response({"message": "error"}, status=400)
-
-    # @list_route(methods=['post'])
-    # def run(self, request):
-    #     data = request.data
-    #     code = data.get('code', None)
+        else:
+            return Response(subm.errors, status=400)
 
 
 class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -155,25 +174,13 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         data['evaluation'] = checks
         data['type'] = 2
-        # subm = BlankSubmission(
-        #     created_by=request.user,
-        #     question=question,
-        #     evaluation=BlankEvaluation(id=blankeval_serializer.data['id']),
-        #     blanks=blanks,
-        #     type=2
-        # )
+
         subm_serializer = BlankSubmissionSerializer(data=data)
         if subm_serializer.is_valid():
             subm_serializer.save()
             return Response(subm_serializer.data, status=201)
         else:
             return Response(subm_serializer.errors, status=400)
-        # try:
-        #     subm.save()
-        #     return Response(data, status=201)
-
-        # except:
-        #     return Response({'error': str(sys.exc_info()[0])}, status=400)
 
 
 class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):

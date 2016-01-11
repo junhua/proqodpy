@@ -2,10 +2,23 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import *
 from myapp.courses.models import *
-
 from myapp.analytics.serializers import PerformanceReportSerializer
+from myapp.analytics.models import PerformanceReport
 
 User = get_user_model()
+
+
+class UnittestEntrySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UnittestEntry
+        fields = (
+            'id',
+            'inputs',
+            'expected_output',
+            'actual_output',
+            'is_correct'
+            )
 
 
 class CodeSubmissionSerializer(serializers.ModelSerializer):
@@ -21,8 +34,15 @@ class CodeSubmissionSerializer(serializers.ModelSerializer):
     performance_report = PerformanceReportSerializer(
         read_only=True
     )
+
     type = serializers.IntegerField(
         default=Question.PROGRAMMING, read_only=True)
+
+    unittest_entries = UnittestEntrySerializer(
+        # queryset=UnittestEntry.objects.all(),
+        many=True,
+        read_only=True
+    )
 
     class Meta:
         model = CodeSubmission
@@ -34,8 +54,47 @@ class CodeSubmissionSerializer(serializers.ModelSerializer):
             'question',
             'date_created',
             # 'score',
+            'unittest_entries',
             'performance_report',
         )
+        depth = 1
+
+
+class CodeSubmissionCreateSerializer(serializers.ModelSerializer):
+    created_by = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all()
+    )
+    question = serializers.PrimaryKeyRelatedField(
+        queryset=ProgrammingQuestion.objects.all()
+    )
+
+    performance_report = serializers.PrimaryKeyRelatedField(
+        queryset=PerformanceReport.objects.all(),
+    )
+
+    type = serializers.IntegerField(
+        default=Question.PROGRAMMING, read_only=True)
+
+    unittest_entries = serializers.PrimaryKeyRelatedField(
+        queryset=UnittestEntry.objects.all(),
+        many=True,
+        # read_only=True
+    )
+
+    class Meta:
+        model = CodeSubmission
+        fields = (
+            'id',
+            'type',
+            'code',
+            'created_by',
+            'question',
+            'date_created',
+            # 'score',
+            'unittest_entries',
+            'performance_report',
+        )
+        depth = 2
 
 
 class BlankSubmissionSerializer(serializers.ModelSerializer):
@@ -66,13 +125,6 @@ class BlankSubmissionSerializer(serializers.ModelSerializer):
             'date_created',
             'evaluation',
         )
-
-# class BlanksSubmissionEvaluationUpdateSerializer(serializers.ModelSerializer):
-#     evaluation = BlankEvaluationSerializer()
-
-#     class Meta:
-#         model = BlanksSubmission
-#         fields = ('evaluation',)
 
 
 class McqSubmissionSerializer(serializers.ModelSerializer):

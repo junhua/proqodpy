@@ -125,10 +125,11 @@ class BlankSolutionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """
-    API endpoint for listing and creating test case
+    API endpoint for listing and creating test case  
 
     ## Endpoints
-    raw() - return the raw code of the test case
+
+    raw() - return the raw code of the test case  
     run(code) - run test case against input code
 
     """
