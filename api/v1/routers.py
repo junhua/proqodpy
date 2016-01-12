@@ -51,8 +51,9 @@ router.register(r'prog_qn_progress', ProgrammingQuestionProgressViewSet,
 
 router.register(r'acad_report', AcademicReportViewset,
                 base_name='academic report')
-router.register(r'unittest_entry', UnittestEntryViewSet,
-                base_name='unittest entry')
+
+# router.register(r'unittest_entry', UnittestEntryViewSet,
+#                 base_name='unittest entry')
 
 # Analytics
 

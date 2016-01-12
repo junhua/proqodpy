@@ -97,8 +97,8 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             data = {
                 'inputs': ", ".join(unittest.inputs),
                 'expected_output': unittest.expected_output,
-                'actual_output': test.get('output', 'error'),
-                'is_correct': test['pass']
+                'actual_output': test.get('output', test.get('error', None)),
+                'is_correct': test.get('pass', False)
             }
 
             ut_entry = UnittestEntrySerializer(data=data)
