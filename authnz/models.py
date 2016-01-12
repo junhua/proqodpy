@@ -85,6 +85,7 @@ class ProqodUser(AbstractBaseUser):
         default=False,
         help_text=_('Designates whether the user is admin.')
     )
+
     is_active = models.BooleanField(
         _('active'),
         default=False,

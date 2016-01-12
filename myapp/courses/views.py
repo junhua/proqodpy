@@ -1,6 +1,6 @@
 from rest_framework import viewsets, authentication, permissions, filters
 from rest_framework.response import Response
-from rest_framework.decorators import detail_route  # , list_route
+from rest_framework.decorators import detail_route, permission_classes
 
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_list_or_404
@@ -8,6 +8,7 @@ from django.shortcuts import get_list_or_404
 from .serializers import *
 from .models import *
 from djoser.serializers import UserSerializer
+
 # import itertools
 
 
@@ -17,12 +18,14 @@ class DefaultsMixin(object):
     Default settings for view auth, permissions, 
     filtering and pagination 
     """
+
     authentication_classes = (
         authentication.BasicAuthentication,
         authentication.TokenAuthentication,
     )
     permission_classes = (
         permissions.IsAuthenticated,
+        # permissions.IsAdminUser,
     )
     paginate_by = 25
     paginate_by_param = "school"
@@ -39,6 +42,7 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = Course.objects.order_by('date_created')
     serializer_class = CourseSerializer
     filter_fields = ['participants']
+    # permission_classes = (permissions.IsAdminUser,)
 
     @detail_route(methods=['get'])
     def participants(self, request, pk=None):

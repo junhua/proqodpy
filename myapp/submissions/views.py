@@ -93,12 +93,11 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         ut_entries = []
         for unittest in unittests:
             test = unittest.run(code)
-            print unittest.inputs
-            print unittest.expected_output
+            
             data = {
                 'inputs': ", ".join(unittest.inputs),
                 'expected_output': unittest.expected_output,
-                'actual_output': test['output'],
+                'actual_output': test.get('output', 'error'),
                 'is_correct': test['pass']
             }
 
@@ -151,7 +150,7 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     def create(self, request):
         """
-        Override default POST method to create BlankSubmission        
+        Override default POST method to create BlankSubmission
 
         """
         data = request.data
