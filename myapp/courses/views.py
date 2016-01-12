@@ -54,7 +54,8 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
             self.permission_classes = [permissions.IsAdminUser, ]
         return super(self.__class__, self).get_permissions()
 
-    @detail_route(methods=['get'],)
+    @detail_route(methods=['get'],
+                  permission_classes=[permissions.IsAuthenticated, ])
     def participants(self, request, pk=None):
         """
         Endpoint to get participants by course
@@ -62,6 +63,7 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         queryset = get_user_model().objects.all()
         participants = get_list_or_404(queryset, courses=pk)
+
         serializer = UserSerializer(participants, many=True)
 
         return Response(serializer.data)
