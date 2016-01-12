@@ -47,14 +47,14 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = Course.objects.order_by('date_created')
     serializer_class = CourseSerializer
     filter_fields = ['participants']
+    permission_classes = [permissions.IsAuthenticated, ]
 
     def get_permissions(self):
         if self.action in ('create', 'update', 'destroy', 'partial_update'):
             self.permission_classes = [permissions.IsAdminUser, ]
         return super(self.__class__, self).get_permissions()
 
-    @detail_route(methods=['get'],
-                  permission_classes=(permissions.IsAdminUser,))
+    @detail_route(methods=['get'],)
     def participants(self, request, pk=None):
         """
         Endpoint to get participants by course
@@ -239,7 +239,7 @@ class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
         unittest = self.get_object()
 
         test_code = unittest.run(code)
-        
+
         print test_code
 
         return Response(
