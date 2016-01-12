@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from .serializers import *
 from .models import *
+from myapp.courses.models import UnitTest
 from myapp.analytics.models import PerformanceReport
 import sys
 
@@ -292,10 +293,10 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
         question_id = data.get('question', None)
 
         if not student or not question_id:
-            return Response({"message": "student or question empty"}, status=404)
+            return Response(
+                {"message": "student or question empty"}, status=404)
 
         try:
-
             question = ProgrammingQuestion.objects.get(id=question_id)
             progress, _ = ProgrammingQuestionProgress.objects.update_or_create(
                 student=student,
@@ -305,9 +306,52 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 }
             )
 
-            return Response(ProgrammingQuestionProgressSerializer(progress).data, status=200)
-        except ValueError as ve:
-            return Response({"error": str(ve)}, status=400)
-            # return Response({"error": str(sys.exc_info()[0])}, status=400)
+            return Response(
+                ProgrammingQuestionProgressSerializer(progress).data,
+                status=200)
+        except ValueError as e:
+            return Response({"error": "%s: %s" % (sys.exc_info()[0], e)},
+                            status=400)
 
         return Response({"error": "oops..."}, status=400)
+
+    @list_route(methods=['post'])
+    def run(self, request):
+        """
+        Parameters: question(id), code
+        """
+        data = request.data
+        student = request.user
+        question_id = data.get('question', None)
+
+        if not student or not question_id:
+            return Response(
+                {"message": "student or question empty"}, status=404)
+
+        question = ProgrammingQuestion.objects.get(id=question_id)
+        progress, _ = ProgrammingQuestionProgress.objects.update_or_create(
+            student=student,
+            question=question,
+            defaults={
+                'answer_last_saved': data.get('answer_last_saved', None)
+            }
+        )
+
+        unittests = UnitTest.objects.filter(
+            question=question, visibility=0)
+
+        if not unittests:
+            return Respons({"error": "no unittest found"}, status=400)
+
+        output = []
+        for unittest in unittests:
+            result = {}
+            data = unittest.run(progress.answer_last_saved)
+            result['is_correct'] = data.get('pass', False)
+            result['inputs'] = ", ".join(unittest.inputs)
+            result['actual_output'] = data.get(
+                'output', data.get('error', None))
+            result['expected_output'] = unittest.expected_output
+
+            output += [result]
+        return Response(output)

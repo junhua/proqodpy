@@ -200,7 +200,7 @@ class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
         test_code = unittest.get_test()
         return Response(test_code, status=200)
 
-    @detail_route(methods=['get','post'])
+    @detail_route(methods=['get', 'post'])
     def run(self, request, pk=None):
         """
         Endpoint to allow execute unittests. 
@@ -235,8 +235,12 @@ class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
                  },
                 status=404
             )
+
         unittest = self.get_object()
+
         test_code = unittest.run(code)
+        
+        print test_code
 
         return Response(
             {"result": test_code},
