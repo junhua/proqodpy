@@ -1,6 +1,7 @@
 from rest_framework import viewsets, authentication, permissions, filters
 from rest_framework.response import Response
-from rest_framework.decorators import detail_route, permission_classes
+
+from rest_framework.decorators import detail_route, list_route
 
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_list_or_404
@@ -36,15 +37,29 @@ class DefaultsMixin(object):
     )
 
 
+class AdminEditOnlyModelViewSet(viewsets.ModelViewSet):
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
+
+
 class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating courses """
     queryset = Course.objects.order_by('date_created')
     serializer_class = CourseSerializer
     filter_fields = ['participants']
-    # permission_classes = (permissions.IsAdminUser,)
 
-    @detail_route(methods=['get'])
+    permission_classes = [permissions.IsAuthenticated, ]
+
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
+
+    @detail_route(methods=['get'],
+                  permission_classes=[permissions.IsAuthenticated, ])
     def participants(self, request, pk=None):
         """
         Endpoint to get participants by course
@@ -52,9 +67,16 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         queryset = get_user_model().objects.all()
         participants = get_list_or_404(queryset, courses=pk)
+
         serializer = UserSerializer(participants, many=True)
 
         return Response(serializer.data)
+
+    def list(self, request, *args, **kwargs):
+        return super(CourseViewSet, self).list(request, *args, **kwargs)
+
+    def retrieve(self, request, *args, **kwargs):
+        return super(CourseViewSet, self).retrieve(request, *args, **kwargs)
 
 
 class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -64,12 +86,22 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = AssessmentSerializer
     filter_fields = ['course']
 
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
+
 
 class McqViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and Mcq Question """
     queryset = Mcq.objects.all()
     serializer_class = McqSerializer
+
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
 
 
 class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -78,12 +110,22 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = BlankQuestion.objects.all()
     serializer_class = BlankQuestionSerializer
 
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
+
 
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Blank Question """
     queryset = ProgrammingQuestion.objects.all()
     serializer_class = ProgrammingQuestionSerializer
+
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
 
 
 class CheckoffQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -92,17 +134,10 @@ class CheckoffQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = CheckoffQuestion.objects.all()
     serializer_class = CheckoffQuestionSerializer
 
-# class QuestionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
-
-#     """ API endpoint for listing all Questions """
-#     queryset = list(itertools.chain(
-#         ProgrammingQuestion.objects.all(),
-#         BlankQuestion.objects.all(),
-#         Mcq.objects.all()
-#     )
-#     )
-#     serializer_class = QuestionSerializer
-#     filter_fields = ['assessment']
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
 
 
 class MultipleChoiceViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -111,6 +146,11 @@ class MultipleChoiceViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = MultipleChoice.objects.all()
     serializer_class = MultipleChoiceSerializer
 
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
+
 
 class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
@@ -118,12 +158,22 @@ class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = BlankQuestionContent.objects.all().order_by('part_seq')
     serializer_class = BlankQuestionContentSerializer
 
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
+
 
 class BlankSolutionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating multiple choice """
     queryset = BlankSolution.objects.all()
     serializer_class = BlankSolutionSerializer
+
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
 
 
 class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -137,8 +187,14 @@ class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
     run(code) - run test case against input code
 
     """
+
     queryset = UnitTest.objects.all()
     serializer_class = UnitTestSerializer
+
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
 
     @detail_route(methods=['get'])
     def raw(self, request, pk=None):
@@ -150,7 +206,7 @@ class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
         test_code = unittest.get_test()
         return Response(test_code, status=200)
 
-    @detail_route(methods=['get'])
+    @detail_route(methods=['get', 'post'])
     def run(self, request, pk=None):
         """
         Endpoint to allow execute unittests. 
@@ -185,8 +241,12 @@ class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
                  },
                 status=404
             )
+
         unittest = self.get_object()
+
         test_code = unittest.run(code)
+
+        print test_code
 
         return Response(
             {"result": test_code},
