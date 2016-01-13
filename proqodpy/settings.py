@@ -74,7 +74,10 @@ CORS_ORIGIN_WHITELIST = [
     'google.com',
     'api.proqod.com',
     'cloud.proqod.com',
-    'localhost'
+    'localhost',
+    '10.15.0.6',
+    '188.166.252.41',
+    '127.0.0.1',
 ]
 
 REST_FRAMEWORK = {
