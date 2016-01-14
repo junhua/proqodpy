@@ -24,7 +24,7 @@ SECRET_KEY = '+^ya-4eus4sv&idx!-*1lol+5!^eker-&i@75yc%h$l(8)h5u4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*.proqod.com','localhost']
 
 AUTH_USER_MODEL = 'authnz.ProqodUser'
 
@@ -228,15 +228,6 @@ DATABASES = {
     }
 }
 
-
-# Handle CORS: https://github.com/ottoyiu/django-cors-headers/
-
-# CORS_ORIGIN_REGEX_WHITELIST = ('^(https?://)?(.*\.)?proqod\.com$', )
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-
-# Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
