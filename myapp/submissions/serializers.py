@@ -17,7 +17,8 @@ class UnittestEntrySerializer(serializers.ModelSerializer):
             'inputs',
             'expected_output',
             'actual_output',
-            'is_correct'
+            'is_correct',
+            'visibility',
             )
 
 
@@ -109,7 +110,6 @@ class BlankSubmissionSerializer(serializers.ModelSerializer):
     )
     type = serializers.IntegerField(
         default=Question.BLANKS, read_only=True)
-
     evaluation = serializers.ListField(
         child=serializers.BooleanField(),
     )
@@ -182,7 +182,7 @@ class ProgrammingQuestionProgressSerializer(serializers.ModelSerializer):
         queryset=User.objects.filter(user_type=0)
     )
     question = serializers.PrimaryKeyRelatedField(
-        queryset=ProgrammingQuestion.objects.all()
+        queryset=ProgrammingQuestion.objects.all() 
     )
 
     class Meta:

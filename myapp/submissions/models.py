@@ -45,6 +45,11 @@ class Submission(models.Model):
 
 class UnittestEntry(models.Model):
 
+    visibility = models.BooleanField(
+        _('visibility'),
+        default=True
+    )
+
     actual_output = models.CharField(
         _("actual_output"),
         null=True,
@@ -162,7 +167,8 @@ class Progress(models.Model):
     Models to store student's progress for each question.
     Student and Question is unique_together
     """
-    student = models.OneToOneField(
+
+    student = models.ForeignKey(
         "authnz.ProqodUser",
         related_name="+"
     )
@@ -182,7 +188,7 @@ class Progress(models.Model):
     )
 
     class Meta:
-        unique_together = ('student', 'question')
+        # unique_together = ('student', 'question')
         abstract = True
 
 
@@ -192,9 +198,8 @@ class ProgrammingQuestionProgress(Progress):
         null=True,
         blank=True,
     )
-    question = models.OneToOneField(
+    question = models.ForeignKey(
         "courses.ProgrammingQuestion",
-        related_name="+"
     )
 
 
@@ -206,20 +211,18 @@ class BlankQuestionProgress(Progress):
             null=True,
         )
     )
-    question = models.OneToOneField(
+    question = models.ForeignKey(
         "courses.BlankQuestion",
-        related_name="+"
     )
 
 
 class McqProgress(Progress):
-    choice = models.OneToOneField(
+    choice = models.ForeignKey(
         "courses.MultipleChoice",
         max_length=50,
         null=True,
         blank=True,
     )
-    question = models.OneToOneField(
+    question = models.ForeignKey(
         "courses.Mcq",
-        related_name="+"
     )

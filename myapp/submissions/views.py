@@ -94,12 +94,14 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         ut_entries = []
         for unittest in unittests:
             test = unittest.run(code)
-            
+
             data = {
-                'inputs': ", ".join(unittest.inputs),
-                'expected_output': unittest.expected_output,
-                'actual_output': test.get('output', test.get('error', None)),
-                'is_correct': test.get('pass', False)
+                'visibility': unittest.visibility,
+                'inputs': ", ".join(unittest.inputs) if unittest.visibility else "-",
+                'expected_output': unittest.expected_output if unittest.visibility else "-",
+                'actual_output': test.get('output', test.get('error', None)) if unittest.visibility else "-",
+                'is_correct': test.get('pass', False),
+
             }
 
             ut_entry = UnittestEntrySerializer(data=data)
@@ -206,37 +208,37 @@ class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = McqProgressSerializer
     filter_fields = ['question', 'student']
 
-    def create(self, request):
-        """
-        Parameters: question(id), answer
-        """
-        data = request.data
-        student = request.user
-        question_id = data.get('question', None)
+    # def create(self, request):
+    #     """
+    #     Parameters: question(id), answer
+    #     """
+    #     data = request.data
+    #     student = request.user
+    #     question_id = data.get('question', None)
 
-        if not student or not question_id:
-            return Response(
-                {"message": "student or question empty"},
-                status=404
-            )
+    #     if not student or not question_id:
+    #         return Response(
+    #             {"message": "student or question empty"},
+    #             status=404
+    #         )
 
-        try:
+    #     try:
 
-            question = Mcq.objects.get(id=question_id)
-            progress, _ = McqProgress.objects.update_or_create(
-                student=student,
-                question=question,
-                defaults={
-                    'choice': MultipleChoice.objects.get(id=data.get('choice', None))
-                }
-            )
+    #         question = Mcq.objects.get(id=question_id)
+    #         progress, _ = McqProgress.objects.update_or_create(
+    #             student=student,
+    #             question=question,
+    #             defaults={
+    #                 'choice': MultipleChoice.objects.get(id=data.get('choice', None))
+    #             }
+    #         )
 
-            return Response(McqProgressSerializer(progress).data, status=200)
-        except ValueError as ve:
-            return Response({"error": str(ve)}, status=400)
-            # return Response({"error": str(sys.exc_info()[0])}, status=400)
+    #         return Response(McqProgressSerializer(progress).data, status=200)
+    #     except ValueError as ve:
+    #         return Response({"error": str(ve)}, status=400)
+    # return Response({"error": str(sys.exc_info()[0])}, status=400)
 
-        return Response({"error": "oops..."}, status=400)
+    #     return Response({"error": "oops..."}, status=400)
 
 
 class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -246,34 +248,34 @@ class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = BlankQuestionProgressSerializer
     filter_fields = ['question', 'student']
 
-    def create(self, request):
-        """
-        Parameters: question(id), answer_last_saved
-        """
-        data = request.data
-        student = request.user
-        question_id = data.get('question', None)
+    # def create(self, request):
+    #     """
+    #     Parameters: question(id), answer_last_saved
+    #     """
+    #     data = request.data
+    #     student = request.user
+    #     question_id = data.get('question', None)
 
-        if not student or not question_id:
-            return Response({"message": "student or question empty"}, status=404)
+    #     if not student or not question_id:
+    # return Response({"message": "student or question empty"}, status=404)
 
-        try:
+    #     try:
 
-            question = BlankQuestion.objects.get(id=question_id)
-            progress, _ = BlankQuestionProgress.objects.update_or_create(
-                student=student,
-                question=question,
-                defaults={
-                    'answer_last_saved': data.get('answer_last_saved', None)
-                }
-            )
+    #         question = BlankQuestion.objects.get(id=question_id)
+    #         progress, _ = BlankQuestionProgress.objects.update_or_create(
+    #             student=student,
+    #             question=question,
+    #             defaults={
+    #                 'answer_last_saved': data.get('answer_last_saved', None)
+    #             }
+    #         )
 
-            return Response(BlankQuestionProgressSerializer(progress).data, status=200)
-        except ValueError as ve:
-            return Response({"error": str(ve)}, status=400)
-            # return Response({"error": str(sys.exc_info()[0])}, status=400)
+    #         return Response(BlankQuestionProgressSerializer(progress).data, status=200)
+    #     except ValueError as ve:
+    #         return Response({"error": str(ve)}, status=400)
+    # return Response({"error": str(sys.exc_info()[0])}, status=400)
 
-        return Response({"error": "oops..."}, status=400)
+    #     return Response({"error": "oops..."}, status=400)
 
 
 class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -283,42 +285,43 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = ProgrammingQuestionProgressSerializer
     filter_fields = ['question', 'student']
 
-    def create(self, request):
-        """
-        Parameters: question(id), code
-        """
-        data = request.data
-        student = request.user
-        question_id = data.get('question', None)
+    # def create(self, request):
+    #     """
+    #     Parameters: question(id), code
+    #     """
+    #     data = request.data
+    #     student = request.user
+    #     question_id = data.get('question', None)
 
-        if not student or not question_id:
-            return Response(
-                {"message": "student or question empty"}, status=404)
+    #     if not student or not question_id:
+    #         return Response(
+    #             {"message": "student or question empty"}, status=404)
 
-        try:
-            question = ProgrammingQuestion.objects.get(id=question_id)
-            progress, _ = ProgrammingQuestionProgress.objects.update_or_create(
-                student=student,
-                question=question,
-                defaults={
-                    'answer_last_saved': data.get('answer_last_saved', None)
-                }
-            )
+    #     try:
+    #         question = ProgrammingQuestion.objects.get(id=question_id)
+    #         progress, _ = ProgrammingQuestionProgress.objects.update_or_create(
+    #             student=student,
+    #             question=question,
+    #             defaults={
+    #                 'answer_last_saved': data.get('answer_last_saved', None)
+    #             }
+    #         )
 
-            return Response(
-                ProgrammingQuestionProgressSerializer(progress).data,
-                status=200)
-        except ValueError as e:
-            return Response({"error": "%s: %s" % (sys.exc_info()[0], e)},
-                            status=400)
+    #         return Response(
+    #             ProgrammingQuestionProgressSerializer(progress).data,
+    #             status=200)
+    #     except ValueError as e:
+    #         return Response({"error": "%s: %s" % (sys.exc_info()[0], e)},
+    #                         status=400)
 
-        return Response({"error": "oops..."}, status=400)
+    #     return Response({"error": "oops..."}, status=400)
 
     @list_route(methods=['post'])
     def run(self, request):
         """
         Parameters: question(id), code
         """
+
         data = request.data
         student = request.user
         question_id = data.get('question', None)
@@ -328,16 +331,14 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 {"message": "student or question empty"}, status=404)
 
         question = ProgrammingQuestion.objects.get(id=question_id)
-        progress, _ = ProgrammingQuestionProgress.objects.update_or_create(
+        progress = ProgrammingQuestionProgress.objects.create(
             student=student,
             question=question,
-            defaults={
-                'answer_last_saved': data.get('answer_last_saved', None)
-            }
+            answer_last_saved=data.get('answer_last_saved', None)
         )
 
         unittests = UnitTest.objects.filter(
-            question=question, visibility=0)
+            question=question)
 
         if not unittests:
             return Respons({"error": "no unittest found"}, status=400)
@@ -347,10 +348,14 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
             result = {}
             data = unittest.run(progress.answer_last_saved)
             result['is_correct'] = data.get('pass', False)
-            result['inputs'] = ", ".join(unittest.inputs)
+            result['visibility'] = unittest.visibility
+            print data.get('visibility', 'nth')
+            result['inputs'] = ", ".join(
+                unittest.inputs) if result['visibility'] else "-"
             result['actual_output'] = data.get(
-                'output', data.get('error', None))
-            result['expected_output'] = unittest.expected_output
+                'output', data.get('error', None)) if result['visibility'] else "-"
+            result['expected_output'] = unittest.expected_output if result[
+                'visibility'] else "-"
 
             output += [result]
         return Response(output)
