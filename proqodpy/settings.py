@@ -98,8 +98,8 @@ REST_FRAMEWORK = {
 DJOSER = {
     # 'DOMAIN': 'cloud.proqod.com',
     'SITE_NAME': 'ProQod',
-    'PASSWORD_RESET_CONFIRM_URL': 'auth/password/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': 'auth/activate/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': 'v1/auth/password/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'v1/auth/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
 }
 
@@ -154,8 +154,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proqodpy.wsgi.application'
 
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'log/email')
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'log/email')
+
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_HOST_USER = "founders@proqod.com"
+EMAIL_HOST_PASSWORD = "xyz31354"
+DEFAULT_FROM_EMAIL = "founders@proqod.com"
+SERVER_EMAIL = 'founders@proqod.com'
+EMAIL_PORT = 587
+
+# EMAIL_USE_SSL = True
+# EMAIL_TIMEOUT = 5
+# EMAIL_SSL_KEYFILE
+# EMAIL_SSL_CERTFILE
 
 import sys
 LOGGING = {
