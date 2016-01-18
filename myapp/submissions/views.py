@@ -64,11 +64,41 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 status=400
             )
 
+        # SCORE
+
+        unittests = UnitTest.objects.filter(question=question)
+        ut_entries = []
+        ut_passed = 0
+        total_time = 0.0
+
+        for unittest in unittests:
+            test = unittest.run(code)
+
+            data = {
+                'visibility': unittest.visibility,
+                'inputs': ", ".join(unittest.inputs) if unittest.visibility else "-",
+                'expected_output': unittest.expected_output if unittest.visibility else "-",
+                'actual_output': test.get('output', test.get('error', None)) if unittest.visibility else "-",
+                'is_correct': test.get('pass', False),
+            }
+            if data['is_correct']:
+                ut_passed += 1
+                total_time += test['time']
+
+            ut_entry = UnittestEntrySerializer(data=data)
+            if ut_entry.is_valid():
+                ut_entry.save()
+                ute = UnittestEntry.objects.get(id=ut_entry.data['id'])
+                ut_entries += [ute]
+            else:
+                return Response(ut_entry.errors, 400)
+
         # PERFORMANCE REPORT (To be edited)
         complexity = -1
         memory = -1
-        time = PerformanceReport.objects.time_exec(code)
-        correctness = -1
+        # time = PerformanceReport.objects.time_exec(code)
+        time = total_time / ut_passed
+        correctness = round((ut_passed + 0.0) / len(ut_entries), 2)
         size = len(code)
 
         report = PerformanceReport(
@@ -87,30 +117,6 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 {"message": "Failed to create performance report"},
                 status=404
             )
-
-        # SCORE
-
-        unittests = UnitTest.objects.filter(question=question)
-        ut_entries = []
-        for unittest in unittests:
-            test = unittest.run(code)
-
-            data = {
-                'visibility': unittest.visibility,
-                'inputs': ", ".join(unittest.inputs) if unittest.visibility else "-",
-                'expected_output': unittest.expected_output if unittest.visibility else "-",
-                'actual_output': test.get('output', test.get('error', None)) if unittest.visibility else "-",
-                'is_correct': test.get('pass', False),
-
-            }
-
-            ut_entry = UnittestEntrySerializer(data=data)
-            if ut_entry.is_valid():
-                ut_entry.save()
-                ute = UnittestEntry.objects.get(id=ut_entry.data['id'])
-                ut_entries += [ute]
-            else:
-                return Response(ut_entry.errors, 400)
 
         data = {
             'created_by': user.id,

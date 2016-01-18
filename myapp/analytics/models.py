@@ -10,19 +10,19 @@ import sys
 import StringIO
 
 
-class PerormanceReportManger(models.Manager):
+# class PerormanceReportManger(models.Manager):
 
-    def time_exec(self, code, times=10, lang="Python"):
-        """
-        Measure the execution time for a snippet in microsecond. 
-        Taking average of 10 execution times by default.
-        """
-        try:
-            record = np.mean(timeit.repeat(code, repeat=times))
-            return record
-        except:
-            # Return -1 if there's an error
-            return -1
+#     def time_exec(self, code, times=10, lang="Python"):
+#         """
+#         Measure the execution time for a snippet in microsecond. 
+#         Taking average of 10 execution times by default.
+#         """
+#         try:
+#             record = np.mean(timeit.repeat(code, repeat=times))
+#             return record
+#         except:
+#             # Return -1 if there's an error
+#             return -1
 
 
 class PerformanceReport(models.Model):
@@ -83,7 +83,7 @@ class PerformanceReport(models.Model):
         default=timezone.now
     )
 
-    objects = PerormanceReportManger()
+    # objects = PerormanceReportManger()
 
     def __str__(self):
         return str(self.id)

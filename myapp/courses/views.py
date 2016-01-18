@@ -37,13 +37,6 @@ class DefaultsMixin(object):
     )
 
 
-class AdminEditOnlyModelViewSet(viewsets.ModelViewSet):
-    def get_permissions(self):
-        if self.action in ('create', 'update', 'destroy'):
-            self.permission_classes = [permissions.IsAdminUser, ]
-        return super(self.__class__, self).get_permissions()
-
-
 class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating courses """
