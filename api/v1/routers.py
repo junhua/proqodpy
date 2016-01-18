@@ -12,7 +12,6 @@ router = DefaultRouter()
 router.register(r'courses', CourseViewSet, base_name='courses')
 router.register(r'assessments', AssessmentViewSet, base_name='assessments')
 
-
 router.register(r'blank_qns',
                 BlankQuestionViewSet, base_name='blank questions')
 router.register(r'blank_qn_content', BlankQuestionContentViewSet,

@@ -13,6 +13,7 @@ memory-profiler==0.40
 migrate==0.3.7
 numpy==1.10.2
 psycopg2==2.6.1
+RestrictedPython==3.6.0
 six==1.10.0
 wheel==0.24.0
 wrapt==1.10.5
