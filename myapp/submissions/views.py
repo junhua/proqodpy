@@ -97,7 +97,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         complexity = -1
         memory = -1
         # time = PerformanceReport.objects.time_exec(code)
-        time = total_time / ut_passed if ut_passed>0 else -1
+        time = total_time / ut_passed if ut_passed>0 else -2
         correctness = round((ut_passed + 0.0) / len(ut_entries), 2)
         size = len(code)
 
