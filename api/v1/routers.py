@@ -23,12 +23,10 @@ router.register(r'blank_solution', BlankSolutionViewSet,
                 base_name='blank solution')
 router.register(r'blank_qn_progress', BlankQuestionProgressViewSet,
                 base_name='blank qustion progress')
-
 router.register(r'checkoff_qns', CheckoffQuestionViewSet,
                 base_name='checkoff questions')
 router.register(r'checkoff_submissions', CheckoffSubmissionViewSet,
                 base_name='checkoff submissions')
-
 router.register(r'mcq', McqViewSet,
                 base_name='mcq')
 router.register(r'mcq_choices', MultipleChoiceViewSet,
@@ -37,7 +35,6 @@ router.register(r'mcq_submissions', McqSubmissionViewSet,
                 base_name='mcq submissions')
 router.register(r'mcq_progress', McqProgressViewSet,
                 base_name='MCQ progress')
-
 router.register(r'prog_qns', ProgrammingQuestionViewSet,
                 base_name='programming questions')
 router.register(r'code_submissions', CodeSubmissionViewSet,
