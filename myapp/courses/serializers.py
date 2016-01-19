@@ -277,7 +277,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'type',
-            # 'label',
+            'label',
             'start_datetime',
             'end_datetime',
             'week',
