@@ -43,13 +43,6 @@ class PeerRankReportViewset(DefaultsMixin, viewsets.ModelViewSet):
     filter = ('submission')
 
 
-# class BlankEvaluationViewset(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
-
-#     """ API endpoint for listing and creating Peer Rank Report """
-#     queryset = BlankEvaluation.objects.all()
-#     serializer_class = BlankEvaluationSerializer
-
-
 class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Peer Rank """
@@ -57,63 +50,64 @@ class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = PeerRankSerializer
 
 
-class AcademicReportViewset2(DefaultsMixin, viewsets.ViewSet):
+# class AcademicReportViewset(DefaultsMixin, viewsets.ViewSet):
 
-    """
-    API endpoint for getting academic Report
-    required input: student id, course id
+#     """
+#     API endpoint for getting academic Report
+#     required input: student id, course id
 
-    Structure: 
+#     Structure:
 
-    - AcademicReport:
+#     - AcademicReport:
 
-        - student (unique_together with course)  
-        - course  (unique_together with student)  
-        - grade (bool)  
-        - assessment_grade_report_set  
-            - assessment  
-            - grade  
-            - override  
-            - question_grade_report_set  
-                - question_id (unique_together with question_type)  
-                - question_type (unique_together with question_id)  
-                - grade  
-                - override  
-                - submission_grade_report_set  
-                    - submission_id (unique_together with submission_type)  
-                    - submission_type (unique_together with submission_id)  
-                    - grade  
-                    - override  
+#         - student (unique_together with course)
+#         - course  (unique_together with student)
+#         - grade (bool)
+#         - assessment_grade_report_set
+#             - assessment
+#             - grade
+#             - question_grade_report_set
+#                 - question_id (unique_together with question_type)
+#                 - question_type (unique_together with question_id)
+#                 - grade
+#                 - submission_grade_report_set
+#                     - submission_id (unique_together with submission_type)
+#                     - submission_type (unique_together with submission_id)
+#                     - grade
 
-    """
-    # queryset = AcademicReport.objects.all()
-    # serializer_class = AcademicReportSerializer
-    filter_fields = ('student_id', 'course_id')
+#     """
+#     queryset = AcademicReport.objects.all()
+#     serializer_class = AcademicReportSerializer
+#     filter_fields = ('student_id', 'course_id')
 
-    def list(self, request):
-        print request.data
-        student_id = request.query_params.get('student_id', None)
-        course_id = request.query_params.get('course_id', None)
+#     def get_permissions(self):
+#         if self.action in ('create', 'update', 'destroy', 'partial_update'):
+#             self.permission_classes = [permissions.IsAdminUser, ]
+#         return super(self.__class__, self).get_permissions()
 
-        # queryset = AcademicReport.objects.all()
-        # ar = get_object_or_404(queryset, pk=pk)
-        # serializer = AcademicReportSerializer(ar)
-        return Response(
-            {
-                'type1': {
-                    'student_id': student_id,
-                    'course_id': course_id
-                },
-                'type2': {
-                    'student_id': student_id,
-                    'course_id': course_id
-                }
-            }
-        )
+#     def list(self, request):
+# data = request.data
+
+#         student_id = request.query_params.get('student_id', None)
+#         course_id = request.query_params.get('course_id', None)
 
 
-class AcademicReportViewset(DefaultsMixin, viewsets.ModelViewSet):
+#         return Response(
+#             {
+#                 'type1': {
+#                     'student_id': student_id,
+#                     'course_id': course_id
+#                 },
+#                 'type2': {
+#                     'student_id': student_id,
+#                     'course_id': course_id
+#                 }
+#             }
+#         )
 
-    """API endpoint for listing and creating Peer Rank"""
-    queryset = AcademicReport.objects.all()
-    serializer_class = AcademicReportSerializer
+
+# class AcademicReportViewset(DefaultsMixin, viewsets.ModelViewSet):
+
+#     """API endpoint for listing and creating Peer Rank"""
+#     queryset = AcademicReport.objects.all()
+#     serializer_class = AcademicReportSerializer

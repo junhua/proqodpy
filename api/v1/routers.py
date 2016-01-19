@@ -10,6 +10,7 @@ router = DefaultRouter()
 
 # Courses
 router.register(r'courses', CourseViewSet, base_name='courses')
+router.register(r'weeks', WeekViewSet, base_name='weeks')
 router.register(r'assessments', AssessmentViewSet, base_name='assessments')
 
 router.register(r'blank_qns',
@@ -45,8 +46,8 @@ router.register(r'unittests', UnitTestViewSet,
 router.register(r'prog_qn_progress', ProgrammingQuestionProgressViewSet,
                 base_name='programming question progress')
 
-router.register(r'acad_report', AcademicReportViewset,
-                base_name='academic report')
+# router.register(r'acad_report', AcademicReportViewset,
+#                 base_name='academic report')
 
 # router.register(r'unittest_entry', UnittestEntryViewSet,
 #                 base_name='unittest entry')

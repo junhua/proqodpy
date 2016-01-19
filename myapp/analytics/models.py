@@ -4,30 +4,10 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
-import timeit
-import numpy as np
-import sys
-import StringIO
-
-
-# class PerormanceReportManger(models.Manager):
-
-#     def time_exec(self, code, times=10, lang="Python"):
-#         """
-#         Measure the execution time for a snippet in microsecond. 
-#         Taking average of 10 execution times by default.
-#         """
-#         try:
-#             record = np.mean(timeit.repeat(code, repeat=times))
-#             return record
-#         except:
-#             # Return -1 if there's an error
-#             return -1
-
 
 class PerformanceReport(models.Model):
 
-    """ 
+    """
     Performance report Model for programming specific measurement.
     Fields: complexity, memory, time(Micro-second), size(byte), correctness
     Fields that are under development will return -1 value
@@ -173,120 +153,133 @@ class PeerRank(models.Model):
         verbose_name_plural = _('peer_ranks')
 
 
-class GradeReport(models.Model):
-    grade = models.DecimalField(
-        _("grade"),
-        max_digits=5,
-        decimal_places=2,
-        null=True,
-        blank=True
-    )
-    override = models.BooleanField(
-        _("override"),
-        default=False,
-        blank=True
-    )
+# class SubmissionGradeReport(models.Model):
 
-    class Meta:
-        abstract = True
+#     grade = models.DecimalField(
+#         _("grade"),
+#         max_digits=5,
+#         decimal_places=2,
+#         null=True,
+#         blank=True
+#     )
+
+#     class Meta:
+#         abstract = True
 
 
-class AcademicReport(GradeReport):
+# class GradeReport(models.Model):
+#     grade = models.DecimalField(
+#         _("grade"),
+#         max_digits=5,
+#         decimal_places=2,
+#         null=True,
+#         blank=True
+#     )
+#     dt_created = models.DateTimeField(
+#         _("datetime_created"),
+#         auto_now=True,
+#     )
 
-    """
-    Structure: 
-
-    AcademicReport
-        - student (unique_together with course)
-        - course  (unique_together with student)
-        - grade (bool)
-        - override (decimal - 5 max digits:, 2 decimal places)
-        - assessment_grade_report_set
-            - assessment
-            - grade
-            - override
-            - question_grade_report_set
-                - question_id (unique_together with question_type)
-                - question_type (unique_together with question_id)
-                - grade
-                - override
-                - submission_grade_report_set
-                    - submission_id (unique_together with submission_type)
-                    - submission_type (unique_together with submission_id)
-                    - grade
-                    - override
-    """
-
-    student = models.OneToOneField(
-        "authnz.ProqodUser",
-        related_name='academic_report',
-    )
-    course = models.OneToOneField(
-        "courses.course",
-        related_name="+"
-    )
-
-    class Meta:
-        verbose_name = _('academic_report')
-        unique_together = ('student', 'course',)
+#     class Meta:
+#         abstract = True
 
 
-class AssessmentGradeReport(GradeReport):
-    academic_report = models.ForeignKey(
-        "AcademicReport",
-        related_name="assessment_grade_set"
-    )
-    assessment = models.OneToOneField(
-        "courses.Assessment",
-        related_name="+"
-    )
+# class AcademicReport(GradeReport):
 
-    class Meta:
-        verbose_name = _('assessment_grade_report')
+#     """
+#     Structure:
+
+#     AcademicReport
+#         - student (unique_together with course)
+#         - course  (unique_together with student)
+#         - grade (decimal)
+
+#         - assessment_grade_report_set
+#             - assessment
+#             - grade
+
+#             - question_grade_report_set
+#                 - question_id (unique_together with question_type)
+#                 - question_type (unique_together with question_id)
+#                 - grade
+
+#                 - submission_grade_report_set
+#                     - submission_id (unique_together with submission_type)
+#                     - submission_type (unique_together with submission_id)
+#                     - grade
+
+#     """
+
+#     student = models.OneToOneField(
+#         "authnz.ProqodUser",
+#         related_name='academic_report',
+#     )
+#     course = models.OneToOneField(
+#         "courses.course",
+#         related_name="+"
+#     )
+
+#     class Meta:
+#         verbose_name = _('academic_report')
+#         unique_together = ('student', 'course',)
 
 
-class QuestionGradeReport(GradeReport):
-    from myapp.courses.models import Question
-    assessment_grade_report = models.ForeignKey(
-        "AssessmentGradeReport",
-        related_name="question_grade_set"
-    )
-    question_id = models.PositiveIntegerField(
-        _("question_id"),
-        null=False,
-        blank=False,
-    )
-    question_type = models.PositiveSmallIntegerField(
-        _("question_type"),
-        choices=Question.TYPE,
-        null=False,
-        blank=False
-    )
+# class AssessmentGradeReport(GradeReport):
+#     academic_report = models.ForeignKey(
+#         "AcademicReport",
+#         related_name="assessment_grade_set"
+#     )
+#     assessment = models.OneToOneField(
+#         "courses.Assessment",
+#         related_name="+"
+#     )
 
-    class Meta:
-        verbose_name = _('question_grade_report')
-        unique_together = ('question_id', 'question_type')
+#     class Meta:
+#         verbose_name = _('assessment_grade_report')
 
 
-class SubmissionGradeReport(GradeReport):
-    from myapp.submissions.models import Submission
-    TYPE = Submission.TYPE
-    question_grade_report = models.ForeignKey(
-        "QuestionGradeReport",
-        related_name="submission_grade_set"
-    )
-    submission_id = models.PositiveIntegerField(
-        _("submission_id"),
-        null=False,
-        blank=False
-    )
-    submission_type = models.PositiveSmallIntegerField(
-        _("submission_type"),
-        choices=TYPE,
-        null=False,
-        blank=False
-    )
+# class QuestionGradeReport(GradeReport):
+#     from myapp.courses.models import Question
+#     assessment_grade_report = models.ForeignKey(
+#         "AssessmentGradeReport",
+#         related_name="question_grade_set"
+#     )
+#     question_id = models.PositiveIntegerField(
+#         _("question_id"),
+#         null=False,
+#         blank=False,
+#     )
+#     question_type = models.PositiveSmallIntegerField(
+#         _("question_type"),
+#         choices=Question.TYPE,
+#         null=False,
+#         blank=False
+#     )
 
-    class Meta:
-        verbose_name = _('submission_grade_report')
-        unique_together = ('submission_id', 'submission_type')
+#     class Meta:
+#         verbose_name = _('question_grade_report')
+#         unique_together = ('question_id', 'question_type')
+
+
+# class SubmissionGradeReport(GradeReport):
+#     from myapp.submissions.models import Submission
+#     TYPE = Submission.TYPE
+#     question_grade_report = models.ForeignKey(
+#         "QuestionGradeReport",
+#         related_name="submission_grade_set"
+#     )
+#     submission_id = models.PositiveIntegerField(
+#         _("submission_id"),
+#         null=False,
+#         blank=False
+#     )
+#     submission_type = models.PositiveSmallIntegerField(
+#         _("submission_type"),
+#         choices=TYPE,
+#         null=False,
+#         blank=False
+#     )
+
+#     class Meta:
+#         verbose_name = _('submission_grade_report')
+#         unique_together = ('submission_id', 'submission_type')

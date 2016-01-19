@@ -81,6 +81,10 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 'actual_output': test.get('output', test.get('error', None)) if unittest.visibility else "-",
                 'is_correct': test.get('pass', False),
             }
+
+            if data['inputs'] == "[u'[]']":
+                data['inputs'] = ""
+
             if data['is_correct']:
                 ut_passed += 1
                 total_time += test['time']
@@ -96,8 +100,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         # PERFORMANCE REPORT (To be edited)
         complexity = -1
         memory = -1
-        # time = PerformanceReport.objects.time_exec(code)
-        time = total_time / ut_passed if ut_passed>0 else -2
+        time = total_time / ut_passed if ut_passed > 0 else -2
         correctness = round((ut_passed + 0.0) / len(ut_entries), 2)
         size = len(code)
 
@@ -127,15 +130,6 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             'performance_report': report.id
         }
 
-        # subm = CodeSubmission(
-        #     created_by=user,
-        #     code=code,
-        #     question=question,
-        #     performance_report=report,
-        #     type=0,
-        #     unittest_entries=ut_entries
-        # )
-        # print subm.id
         subm = CodeSubmissionCreateSerializer(data=data)
 
         if subm.is_valid():
@@ -147,6 +141,13 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             return Response(data, status=201)
         else:
             return Response(subm.errors, status=400)
+
+    @detail_route(methods=['get'],)
+    def grade(self, request, pk=None):
+        subm = CodeSubmission.objects.get(id=pk)
+        assert subm is not None, "Cannot find submission"
+
+        return Response(subm.get_grade(), status=200)
 
 
 class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -190,6 +191,12 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         else:
             return Response(subm_serializer.errors, status=400)
 
+    @detail_route(methods=['get'],)
+    def grade(self, request, pk=None):
+        subm = BlankSubmission.objects.get(id=pk)
+        assert subm is not None, "Cannot find submission"
+
+        return Response(subm.get_grade(), status=200)
 
 class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
@@ -197,6 +204,13 @@ class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = McqSubmission.objects.order_by('date_created')
     serializer_class = McqSubmissionSerializer
     filter_fields = ['question', 'created_by']
+
+    @detail_route(methods=['get'],)
+    def grade(self, request, pk=None):
+        subm = McqSubmission.objects.get(id=pk)
+        assert subm is not None, "Cannot find submission"
+
+        return Response(subm.get_grade(), status=200)
 
 
 class CheckoffSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -355,7 +369,6 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
             data = unittest.run(progress.answer_last_saved)
             result['is_correct'] = data.get('pass', False)
             result['visibility'] = unittest.visibility
-            print data.get('visibility', 'nth')
             result['inputs'] = ", ".join(
                 unittest.inputs) if result['visibility'] else "-"
             result['actual_output'] = data.get(

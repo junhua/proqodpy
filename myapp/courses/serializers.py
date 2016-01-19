@@ -79,7 +79,7 @@ class McqSerializer(serializers.ModelSerializer):
             'number',
             'type',
             'description',
-            'solution',
+            # 'solution',
             'choices'
         )
 
@@ -227,9 +227,26 @@ class CourseSerializer(serializers.ModelSerializer):
         ordering_fields = ('school', 'department', 'id', )
 
 
-class AssessmentSerializer(serializers.ModelSerializer):
+class WeekSerializer(serializers.ModelSerializer):
     course = serializers.PrimaryKeyRelatedField(
         queryset=Course.objects.all()
+    )
+
+    class Meta:
+        model = Week
+        fields = (
+            'id',
+            'course',
+            'number',
+            'instruction'
+        )
+        search_fields = ('number', 'course')
+        ordering_fields = ('number', )
+
+
+class AssessmentSerializer(serializers.ModelSerializer):
+    week = serializers.PrimaryKeyRelatedField(
+        queryset=Week.objects.all()
     )
 
     type = serializers.ChoiceField(
@@ -260,10 +277,10 @@ class AssessmentSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'type',
-            'label',
+            # 'label',
             'start_datetime',
             'end_datetime',
-            'course',
+            'week',
             'programmingquestion_set',
             'blankquestion_set',
             'checkoffquestion_set',

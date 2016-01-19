@@ -72,12 +72,25 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
         return super(CourseViewSet, self).retrieve(request, *args, **kwargs)
 
 
+class WeekViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating week """
+    queryset = Week.objects.all()
+    serializer_class = WeekSerializer
+    filter_fields = ['course', 'number']
+
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
+
+
 class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating assessment """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
-    filter_fields = ['course']
+    filter_fields = ['week']
 
     def get_permissions(self):
         if self.action in ('create', 'update', 'destroy', 'partial_update'):
@@ -202,10 +215,9 @@ class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
     # @detail_route(methods=['get', 'post'])
     # def run(self, request, pk=None):
     #     """
-    #     Endpoint to allow execute unittests. 
+    #     Endpoint to allow execute unittests.
     #     No record stored in the database.
     #     Expected input param: code
-
 
     #     Sample output for successful run:
     #     {

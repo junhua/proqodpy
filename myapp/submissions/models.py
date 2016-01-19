@@ -60,7 +60,11 @@ class UnittestEntry(models.Model):
         _("is_correct"),
     )
 
-    inputs = models.CharField(max_length=255)
+    inputs = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True
+    )
 
     expected_output = models.CharField(
         _("expected_output"),
@@ -99,15 +103,9 @@ class CodeSubmission(Submission):
         on_delete=models.CASCADE,
     )
 
-    # def get_score(self):
-    #     score = None
-    #     code = self.code
-    #     unittest_set = self.question.unittests
-    #     correct, total = 0.0, len(unittest_set)
-
-    #     for unittest in unittest_set:
-    #         correct+=unittest.run.get('pass')
-    #     return score
+    def get_grade(self):
+        assert self.performance_report.correctness is not None
+        return max(0., self.performance_report.correctness)
 
 
 class BlankSubmission(Submission):
@@ -131,6 +129,13 @@ class BlankSubmission(Submission):
         help_text=_("list of blank evaluation")
     )
 
+    def get_grade(self):
+        assert type(self.evaluation) is list
+        assert len(self.evaluation) > 0
+        assert type(self.evaluation[0]) is bool
+
+        return round((sum(self.evaluation) + 0.) / len(self.evaluation), 2)
+
 
 class McqSubmission(Submission):
     question = models.ForeignKey(
@@ -142,6 +147,12 @@ class McqSubmission(Submission):
         "courses.MultipleChoice",
         related_name="+"
     )
+
+    def get_grade(self):
+        assert self.answer.is_correct is not None
+        assert type(self.answer.is_correct) is bool
+
+        return int(self.answer.is_correct)
 
 
 class CheckoffSubmission(Submission):
