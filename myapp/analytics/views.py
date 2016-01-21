@@ -12,6 +12,7 @@ class DefaultsMixin(object):
     Default settings for view auth, permissions, 
     filtering and pagination 
     """
+
     authentication_classes = (
         authentication.BasicAuthentication,
         authentication.TokenAuthentication,

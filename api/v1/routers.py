@@ -45,18 +45,3 @@ router.register(r'unittests', UnitTestViewSet,
                 base_name='unit tests')
 router.register(r'prog_qn_progress', ProgrammingQuestionProgressViewSet,
                 base_name='programming question progress')
-
-# router.register(r'acad_report', AcademicReportViewset,
-#                 base_name='academic report')
-
-# router.register(r'unittest_entry', UnittestEntryViewSet,
-#                 base_name='unittest entry')
-
-# Analytics
-
-# router.register(r'peer_rank_reports', PeerRankReportViewset,
-#                 base_name='Peer Rank Report Viewset')
-# router.register(r'peer_rank', PeerRankViewset,
-#                 base_name='peer rank')
-
-# Submissions

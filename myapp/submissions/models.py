@@ -89,7 +89,7 @@ class UnittestEntry(models.Model):
 class CodeSubmission(Submission):
     question = models.ForeignKey(
         "courses.ProgrammingQuestion",
-        related_name="+"
+        related_name="submissions"
     )
     code = models.TextField(
         _("code"),
@@ -111,7 +111,7 @@ class CodeSubmission(Submission):
 class BlankSubmission(Submission):
     question = models.ForeignKey(
         "courses.BlankQuestion",
-        related_name="+"
+        related_name="submissions"
     )
 
     blanks = ArrayField(
@@ -140,7 +140,7 @@ class BlankSubmission(Submission):
 class McqSubmission(Submission):
     question = models.ForeignKey(
         "courses.Mcq",
-        related_name="+"
+        related_name="submissions"
     )
 
     answer = models.OneToOneField(

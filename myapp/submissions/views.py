@@ -6,6 +6,7 @@ from .serializers import *
 from .models import *
 from myapp.courses.models import UnitTest
 from myapp.analytics.models import PerformanceReport
+from radon.metrics import mi_parameters
 import sys
 
 
@@ -69,11 +70,10 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         unittests = UnitTest.objects.filter(question=question)
         ut_entries = []
         ut_passed = 0
-        total_time = 0.0
-
+        total_time = 0.
+        memory = 0.
         for unittest in unittests:
             test = unittest.run(code)
-
             data = {
                 'visibility': unittest.visibility,
                 'inputs': ", ".join(unittest.inputs) if unittest.visibility else "-",
@@ -88,6 +88,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             if data['is_correct']:
                 ut_passed += 1
                 total_time += test['time']
+                memory = max(memory, test['memory'])
 
             ut_entry = UnittestEntrySerializer(data=data)
             if ut_entry.is_valid():
@@ -97,12 +98,18 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             else:
                 return Response(ut_entry.errors, 400)
 
-        # PERFORMANCE REPORT (To be edited)
-        complexity = -1
-        memory = -1
-        time = total_time / ut_passed if ut_passed > 0 else -2
+        complexity = 0.
+        time = (total_time / ut_passed) if ut_passed > 0 else -2
         correctness = round((ut_passed + 0.0) / len(ut_entries), 2)
         size = len(code)
+        # memory = 0.
+
+        # Complexity calculation
+        # Expect (Halstead volume, cyclomatic complexity, LLOC and comment
+        # density)
+        complexity_eval = mi_parameters(code)
+        if type(complexity_eval) == tuple:
+            complexity = complexity_eval[1]
 
         report = PerformanceReport(
             complexity=complexity,
@@ -114,7 +121,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         try:
             report.save()
-            print report.id
+
         except:
             return Response(
                 {"message": "Failed to create performance report"},
@@ -166,8 +173,7 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         data = request.data
 
         question = get_object_or_404(BlankQuestion, pk=data.get('question'))
-        solutions = BlankSolution.objects.filter(
-            question=question).order_by('seq')
+        solutions = BlankSolution.objects.filter(question=question)
         blanks = data.get('blanks', None)
 
         # Check submitted blanks
@@ -197,6 +203,7 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         assert subm is not None, "Cannot find submission"
 
         return Response(subm.get_grade(), status=200)
+
 
 class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 

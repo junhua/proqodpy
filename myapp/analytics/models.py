@@ -19,7 +19,8 @@ class PerformanceReport(models.Model):
         max_digits=5,
         null=True,
         blank=True,
-        help_text=_("complexity index, the higher the more complex"),
+        default=0.,
+        help_text=_("cyclomatric complexity index"),
     )
 
     memory = models.DecimalField(
@@ -28,6 +29,7 @@ class PerformanceReport(models.Model):
         max_digits=10,
         null=True,
         blank=True,
+        default=0.,
         help_text=_("memory used for the program"),
     )
 
@@ -37,6 +39,7 @@ class PerformanceReport(models.Model):
         max_digits=10,
         null=True,
         blank=True,
+        default=0.,
         help_text=_("time used for the program"),
     )
 
@@ -46,6 +49,7 @@ class PerformanceReport(models.Model):
         max_digits=5,
         null=True,
         blank=True,
+        default=0.,
         help_text=_("correctness index")
     )
 
@@ -55,15 +59,22 @@ class PerformanceReport(models.Model):
         max_digits=20,
         null=True,
         blank=True,
+        default=0.,
         help_text=_("file size")
     )
+
+    # radon metrics
+    # loc, lloc, sloc, comments, multi, blank
+    # radon.metrics.mi_parameters: 
+    # return the Halstead Volume,
+    # the Cyclomatic Complexity
+    # the number of LLOC (Logical Lines of Code)
+    # the percent of lines of comment
 
     date_created = models.DateTimeField(
         _('date created'),
         default=timezone.now
     )
-
-    # objects = PerormanceReportManger()
 
     def __str__(self):
         return str(self.id)
@@ -73,19 +84,6 @@ class PerformanceReport(models.Model):
         verbose_name = _('performance_report')
         verbose_name_plural = _('performance_reports')
         ordering = ['date_created']
-
-
-# class BlankEvaluation(models.Model):
-
-#     evaluation = ArrayField(
-#         models.BooleanField(),
-#         blank=True,
-#         null=True,
-#         help_text=_("list of blank evaluation")
-#     )
-
-#     class Meta:
-#         verbose_name = _('blank_evaluation')
 
 
 class PeerRankReport(models.Model):
@@ -120,6 +118,7 @@ class PeerRank(models.Model):
         (3, _("Brilliant")),
         (4, _("Genius"))
     )
+
     readability_rank = models.CharField(
         _("readability_rank"),
         max_length=1,
@@ -152,6 +151,22 @@ class PeerRank(models.Model):
         verbose_name = _('peer_rank')
         verbose_name_plural = _('peer_ranks')
 
+
+class Grade(models.Model):
+
+    grade = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=True,
+        blank=True
+    )
+
+    class Meta:
+        abstract = True
+
+
+class QuestionGrade(Grade):
+    pass
 
 # class SubmissionGradeReport(models.Model):
 
