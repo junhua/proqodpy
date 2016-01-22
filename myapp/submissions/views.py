@@ -100,6 +100,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         complexity = 0.
         time = (total_time / ut_passed) if ut_passed > 0 else -2
+        assert len(ut_entries) > 0, "no unittests found"
         correctness = round((ut_passed + 0.0) / len(ut_entries), 2)
         size = len(code)
         # memory = 0.
