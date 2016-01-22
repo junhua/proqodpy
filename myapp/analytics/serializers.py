@@ -16,6 +16,14 @@ class PerformanceReportSerializer(serializers.ModelSerializer):
             'memory',
             'correctness',
             'size',
+            'halstead_volume',
+            'lloc',
+            'loc',
+            'sloc',
+            'comment_lines',
+            'blank_lines',
+            'multi_lines',
+            'maintainability_index',
         )
 
 
@@ -94,7 +102,7 @@ class PeerRankReportSerializer(serializers.ModelSerializer):
 # class AcademicReportSerializer(serializers.ModelSerializer):
 
 #     """
-#     Structure: 
+#     Structure:
 
 #     AcademicReport
 #         - student (unique_together with course)

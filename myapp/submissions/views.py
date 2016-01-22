@@ -6,8 +6,9 @@ from .serializers import *
 from .models import *
 from myapp.courses.models import UnitTest
 from myapp.analytics.models import PerformanceReport
-from radon.metrics import mi_parameters
-import sys
+from radon.metrics import mi_parameters, mi_compute
+from radon import raw
+# import sys
 
 
 class DefaultsMixin(object):
@@ -108,16 +109,38 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         # Complexity calculation
         # Expect (Halstead volume, cyclomatic complexity, LLOC and comment
         # density)
+        loc, sloc, comments, multi, blank = [0 for _ in xrange(5)]
+        try:
+            raw_analysis = raw.analyze(code)
+            loc = raw_analysis.loc
+            sloc = raw_analysis.sloc
+            comments = raw_analysis.comments
+            multi = raw_analysis.multi
+            blank = raw_analysis.blank
+        except:
+            # log error
+            pass
+
         complexity_eval = mi_parameters(code)
         if type(complexity_eval) == tuple:
+            hv = complexity_eval[0]
             complexity = complexity_eval[1]
-
+            lloc = complexity_eval[2]
+            mi = mi_compute(hv, complexity, sloc, comments)
         report = PerformanceReport(
             complexity=complexity,
             memory=memory,
             time=time,
             correctness=correctness,
-            size=size
+            size=size,
+            halstead_volume=hv,
+            lloc=lloc,
+            loc=loc,
+            sloc=sloc,
+            comment_lines=comments,
+            blank_lines=blank,
+            multi_lines=multi,
+            maintainability_index=mi,
         )
 
         try:
