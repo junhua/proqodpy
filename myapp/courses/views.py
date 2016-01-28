@@ -42,7 +42,7 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating courses """
     queryset = Course.objects.order_by('date_created')
     serializer_class = CourseSerializer
-    filter_fields = ['participants']
+    filter_fields = ['course_batch', 'course_code', 'cohort_classes']
 
     permission_classes = [permissions.IsAuthenticated, ]
 
@@ -58,7 +58,7 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
         Endpoint to get participants by course
         """
 
-        queryset = get_user_model().objects.all()
+        queryset = get_user_model().objects.filters(user_type=0)
         participants = get_list_or_404(queryset, courses=pk)
 
         serializer = UserSerializer(participants, many=True)
@@ -83,6 +83,20 @@ class WeekViewSet(DefaultsMixin, viewsets.ModelViewSet):
         if self.action in ('create', 'update', 'destroy', 'partial_update'):
             self.permission_classes = [permissions.IsAdminUser, ]
         return super(self.__class__, self).get_permissions()
+
+
+class CohortClassViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """ API endpoint for listing and creating week """
+    queryset = CohortClass.objects.all()
+    serializer_class = CohortClassSerializer
+    filter_fields = ['course', 'label']
+
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()
+
 
 
 class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):

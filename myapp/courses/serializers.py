@@ -176,36 +176,39 @@ class CheckoffQuestionSerializer(serializers.ModelSerializer):
         )
 
 
-# class QuestionSerializer(serializers.ModelSerializer):
+class CohortClassSerializer(serializers.ModelSerializer):
+    course = serializers.PrimaryKeyRelatedField(
+        queryset=Course.objects.all()
+    )
+    teachers = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=User.objects.filter(user_type=1)
+    )
+    students = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=User.objects.filter(user_type=0)
+    )
 
-#     """docstring for QuestionSerializer"""
-#     assessment = serializers.PrimaryKeyRelatedField(
-#         queryset=Assessment.objects.all()
-#     )
-#     blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
-#     mcq_choices = MultipleChoiceSerializer(many=True, read_only=True)
+    class Meta:
+        model = CohortClass
+        fields = (
+            'id',
+            'label',
+            'teachers',
+            'students',
+            'course',
+        )
+        search_fields = ('school', )
+        ordering_fields = ('school', 'department', 'id', )
 
-#     class Meta:
-#         model = Question
-#         fields = (
-#             'id',
-#             'assessment',
-#             'question_num',
-#             'type',
-#             'title',
-#             'description',
-#             'solution',
-#             'default_code',
-#             'blank_parts',
-#             'mcq_choices',
-#             'code_signature',
-#         )
 
 
 class CourseSerializer(serializers.ModelSerializer):
 
-    participants = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=User.objects.order_by('id')
+    # participants = serializers.PrimaryKeyRelatedField(
+    #     many=True, queryset=User.objects.order_by('id')
+    # )
+
+    cohort_classes = CohortClassSerializer(
+        many=True, read_only=True
     )
 
     class Meta:
@@ -221,10 +224,13 @@ class CourseSerializer(serializers.ModelSerializer):
             'programming_language',
             'start_date',
             'end_date',
-            'participants',
+            'cohort_classes',
+            # 'participants',
         )
         search_fields = ('school', )
         ordering_fields = ('school', 'department', 'id', )
+
+
 
 
 class WeekSerializer(serializers.ModelSerializer):
@@ -245,6 +251,10 @@ class WeekSerializer(serializers.ModelSerializer):
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
+    cohort_class = serializers.PrimaryKeyRelatedField(
+        queryset=CohortClass.objects.all(), many=True
+    )
+
     week = serializers.PrimaryKeyRelatedField(
         queryset=Week.objects.all()
     )
@@ -280,6 +290,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
             'label',
             'start_datetime',
             'end_datetime',
+            'cohort_class',
             'week',
             'programmingquestion_set',
             'blankquestion_set',

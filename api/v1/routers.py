@@ -10,6 +10,7 @@ router = DefaultRouter()
 
 # Courses
 router.register(r'courses', CourseViewSet, base_name='courses')
+router.register(r'cohort_classes', CohortClassViewSet, base_name='cohort classes')
 router.register(r'weeks', WeekViewSet, base_name='weeks')
 router.register(r'assessments', AssessmentViewSet, base_name='assessments')
 

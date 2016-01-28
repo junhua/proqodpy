@@ -154,7 +154,12 @@ class PerformanceReport(models.Model):
         null=True,
         blank=True,
         default=0.,
-        help_text=_("Halstead Volume")
+        help_text=_(
+            """
+            Halstead Volume - the size of the implementation of an algorithm. 
+            The computation is based on the number of operations performed and 
+            operands handled in the algorithm."""
+        )
     )
 
     date_created = models.DateTimeField(
