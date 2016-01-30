@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import detail_route, list_route
 
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_list_or_404, get_object_or_404
 
 from .serializers import *
 from .models import *
@@ -54,6 +54,7 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     @detail_route(methods=['get'],
                   permission_classes=[permissions.IsAuthenticated, ])
+
     def participants(self, request, pk=None):
         """
         Endpoint to get participants by course
