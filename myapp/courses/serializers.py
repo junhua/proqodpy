@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_list_or_404
 from rest_framework import serializers
 from .models import *
 
@@ -200,15 +201,14 @@ class CohortClassSerializer(serializers.ModelSerializer):
         ordering_fields = ('school', 'department', 'id', )
 
 
-
 class CourseSerializer(serializers.ModelSerializer):
 
     # participants = serializers.PrimaryKeyRelatedField(
     #     many=True, queryset=User.objects.order_by('id')
     # )
 
-    cohort_classes = CohortClassSerializer(
-        many=True, read_only=True
+    cohort_classes = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=CohortClass.objects.all()
     )
 
     class Meta:
@@ -231,8 +231,6 @@ class CourseSerializer(serializers.ModelSerializer):
         ordering_fields = ('school', 'department', 'id', )
 
 
-
-
 class WeekSerializer(serializers.ModelSerializer):
     course = serializers.PrimaryKeyRelatedField(
         queryset=Course.objects.all()
@@ -251,8 +249,8 @@ class WeekSerializer(serializers.ModelSerializer):
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
-    cohort_class = serializers.PrimaryKeyRelatedField(
-        queryset=CohortClass.objects.all(), many=True
+    cohort_classes = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=CohortClass.objects.all()
     )
 
     week = serializers.PrimaryKeyRelatedField(
@@ -282,6 +280,22 @@ class AssessmentSerializer(serializers.ModelSerializer):
         many=True,
     )
 
+    # def create(self, validated_data):
+
+    #     cohort_classes = get_list_or_404(
+    #         CohortClass, pk__in=[cohort.id for cohort in validated_data['cohort_classes']])
+
+    #     assessment = Assessment.objects.create(
+    #         cohort_classes=cohort_classes,
+    #         type=validated_data['type'],
+    #         label=validated_data['label'],
+    #         start_datetime=validated_data['start_datetime'],
+    #         end_datetime=validated_data['end_datetime'],
+    #         week=validated_data['week'],
+    #     )
+
+    #     return assessment
+
     class Meta:
         model = Assessment
         fields = (
@@ -290,7 +304,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
             'label',
             'start_datetime',
             'end_datetime',
-            'cohort_class',
+            'cohort_classes',
             'week',
             'programmingquestion_set',
             'blankquestion_set',
