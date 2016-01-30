@@ -105,7 +105,7 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating assessment """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
-    filter_fields = ['week','cohort_classes']
+    filter_fields = ['week','cohort_classes', 'course']
 
     def get_permissions(self):
         if self.action in ('create', 'update', 'destroy', 'partial_update'):
