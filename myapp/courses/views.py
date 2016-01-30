@@ -9,6 +9,7 @@ from django.shortcuts import get_list_or_404
 from .serializers import *
 from .models import *
 from djoser.serializers import UserSerializer
+import datetime
 
 # import itertools
 
@@ -58,7 +59,7 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
         Endpoint to get participants by course
         """
 
-        queryset = get_user_model().objects.filters(user_type=0)
+        queryset = get_user_model().objects.filter(user_type=0)
         participants = get_list_or_404(queryset, courses=pk)
 
         serializer = UserSerializer(participants, many=True)
@@ -98,18 +99,40 @@ class CohortClassViewSet(DefaultsMixin, viewsets.ModelViewSet):
         return super(self.__class__, self).get_permissions()
 
 
-
 class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating assessment """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
-    filter_fields = ['week']
+    filter_fields = ['week','cohort_classes']
 
     def get_permissions(self):
         if self.action in ('create', 'update', 'destroy', 'partial_update'):
             self.permission_classes = [permissions.IsAdminUser, ]
         return super(self.__class__, self).get_permissions()
+
+    def list(self, request):
+        user = request.user
+        if user.user_type == 1 or user.is_admin == 1:
+            queryset = Assessment.objects.all()
+        else:
+            queryset = Assessment.objects.filter(
+                start_datetime__lte=datetime.datetime.now())
+
+        serializer = AssessmentSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        user = request.user
+        if user.user_type == 1 or user.is_admin == 1:
+            queryset = Assessment.objects.all()
+        else:
+            queryset = Assessment.objects.filter(
+                start_datetime__lte=datetime.datetime.now())
+
+        assessment = get_object_or_404(queryset, pk=pk)
+        serializer = AssessmentSerializer(assessment)
+        return Response(serializer.data)
 
 
 class McqViewSet(DefaultsMixin, viewsets.ModelViewSet):
