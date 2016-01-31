@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_list_or_404
 from rest_framework import serializers
+from authnz.serializers import UserSerializer
 from .models import *
 
 User = get_user_model()
@@ -207,8 +207,12 @@ class CourseSerializer(serializers.ModelSerializer):
     #     many=True, queryset=User.objects.order_by('id')
     # )
 
-    cohort_classes = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=CohortClass.objects.all()
+    # cohort_classes = serializers.PrimaryKeyRelatedField(
+    #     many=True, queryset=CohortClass.objects.all()
+    # )
+
+    cohort_classes = CohortClassSerializer(
+        many=True
     )
 
     class Meta:
@@ -283,7 +287,8 @@ class AssessmentSerializer(serializers.ModelSerializer):
     # def create(self, validated_data):
 
     #     cohort_classes = get_list_or_404(
-    #         CohortClass, pk__in=[cohort.id for cohort in validated_data['cohort_classes']])
+    # CohortClass, pk__in=[cohort.id for cohort in
+    # validated_data['cohort_classes']])
 
     #     assessment = Assessment.objects.create(
     #         cohort_classes=cohort_classes,

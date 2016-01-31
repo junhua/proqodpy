@@ -2,13 +2,13 @@ from rest_framework import viewsets, authentication, permissions, filters
 from rest_framework.response import Response
 
 from rest_framework.decorators import detail_route, list_route
-
-from django.contrib.auth import get_user_model
+# from djoser.serializers import UserSerializer
+# from django.contrib.auth import get_user_model
 from django.shortcuts import get_list_or_404, get_object_or_404
 
 from .serializers import *
 from .models import *
-from djoser.serializers import UserSerializer
+
 import datetime
 
 # import itertools
@@ -62,7 +62,7 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
         queryset = CohortClass.objects.all()
         cohort_classes = get_list_or_404(queryset, course=pk)
         serializer = CohortClassSerializer(cohort_classes, many=True)
-        teachers, students = [],[]
+        teachers, students = [], []
         for cc in serializer.data:
             teachers += cc.get('teachers')
             students += cc.get('students')
@@ -114,7 +114,7 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating assessment """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
-    filter_fields = ['week', 'cohort_classes']
+    filter_fields = ['week', 'cohort_classes', 'cohort_classes__courses']
 
     def get_permissions(self):
         if self.action in ('create', 'update', 'destroy', 'partial_update'):
