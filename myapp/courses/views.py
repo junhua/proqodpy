@@ -54,18 +54,26 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     @detail_route(methods=['get'],
                   permission_classes=[permissions.IsAuthenticated, ])
-
     def participants(self, request, pk=None):
         """
         Endpoint to get participants by course
         """
 
-        queryset = get_user_model().objects.filter(user_type=0)
-        participants = get_list_or_404(queryset, courses=pk)
+        queryset = CohortClass.objects.all()
+        cohort_classes = get_list_or_404(queryset, course=pk)
 
-        serializer = UserSerializer(participants, many=True)
-
-        return Response(serializer.data)
+        # queryset = get_user_model().objects.filter(
+        #     cohort_class__in=cohort_classes)
+        # participants = get_list_or_404(queryset, user_type=0)
+        
+        serializer = CohortClassSerializer(cohort_classes, many=True)
+        teachers = [cc.get('teachers') for cc in serializer.data]
+        students = [cc.get('students') for cc in serializer.data]
+        # return Response(serializer.data)
+        return Response({
+            'teachers': teachers,
+            'students': students
+            })
 
     def list(self, request, *args, **kwargs):
         return super(CourseViewSet, self).list(request, *args, **kwargs)
@@ -105,7 +113,7 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating assessment """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
-    filter_fields = ['week','cohort_classes', 'course']
+    filter_fields = ['week', 'cohort_classes', 'course']
 
     def get_permissions(self):
         if self.action in ('create', 'update', 'destroy', 'partial_update'):
