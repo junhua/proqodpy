@@ -6,11 +6,16 @@ from myapp.analytics.views import *
 
 from myapp.submissions.views import *
 
+from authnz.views import *
+
 router = DefaultRouter()
 
 # Courses
+router.register(
+    r'proqod_users', ProqodUserListRetrieveViewSet, base_name='custom_auth')
 router.register(r'courses', CourseViewSet, base_name='courses')
-router.register(r'cohort_classes', CohortClassViewSet, base_name='cohort classes')
+router.register(
+    r'cohort_classes', CohortClassViewSet, base_name='cohort classes')
 router.register(r'weeks', WeekViewSet, base_name='weeks')
 router.register(r'assessments', AssessmentViewSet, base_name='assessments')
 
