@@ -61,19 +61,20 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         queryset = CohortClass.objects.all()
         cohort_classes = get_list_or_404(queryset, course=pk)
-
-        # queryset = get_user_model().objects.filter(
-        #     cohort_class__in=cohort_classes)
-        # participants = get_list_or_404(queryset, user_type=0)
-        
         serializer = CohortClassSerializer(cohort_classes, many=True)
-        teachers = [cc.get('teachers') for cc in serializer.data]
-        students = [cc.get('students') for cc in serializer.data]
+        teachers, students = [],[]
+        for cc in serializer.data:
+            teachers += cc.get('teachers')
+            students += cc.get('students')
+
+        teachers = list(set(teachers))
+        students = list(set(students))
+
         # return Response(serializer.data)
         return Response({
             'teachers': teachers,
             'students': students
-            })
+        })
 
     def list(self, request, *args, **kwargs):
         return super(CourseViewSet, self).list(request, *args, **kwargs)
