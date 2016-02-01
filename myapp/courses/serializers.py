@@ -213,7 +213,7 @@ class CourseSerializer(serializers.ModelSerializer):
     # )
 
     cohort_classes = CohortClassSerializer(
-        many=True
+        many=True, read_only=True
     )
 
     class Meta:
