@@ -144,7 +144,7 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
         serializer = AssessmentSerializer(assessment)
         return Response(serializer.data)
 
-    @list_route(methods=['get'])
+    @list_route(methods=['get'], permission_classes=[permissions.IsAdminUser])
     def by_course(self, request):
         course = request.data.get(
             'course', None) or request.query_params.get('course', None)
