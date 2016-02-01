@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
 
+
 class PerformanceReport(models.Model):
 
     """
@@ -244,7 +245,6 @@ class PeerRank(models.Model):
 
 
 class Grade(models.Model):
-
     grade = models.DecimalField(
         max_digits=5,
         decimal_places=2,
@@ -263,7 +263,43 @@ class Grade(models.Model):
         abstract = True
 
 
-# class QuestionGrade(Grade):
-#     question_number = models.CharField(
-        
-#         )
+class GradeReportEntry(Grade):
+    week = models.PositiveSmallIntegerField(
+        _("week"),
+        null=False,
+        blank=False,
+    )
+
+    assessment = models.CharField(
+        _("assessment"),
+        max_length=50,
+        null=False,
+        blank=False
+    )
+
+    question = models.CharField(
+        _("question"),
+        max_length=10,
+        null=False,
+        blank=False,
+    )
+
+    report = models.ForeignKey(
+        "GradeReport",
+        related_name="entries"
+    )
+
+
+class GradeReport(Grade):
+    student = models.OneToOneField(
+        "authnz.ProqodUser",
+        related_name="grade",
+        )
+    course = models.OneToOneField(
+        "courses.Course",
+        related_name="+"
+        )
+    date_created = models.DateTimeField(
+        _('date created'),
+        default=timezone.now
+    )
