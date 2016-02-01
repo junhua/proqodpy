@@ -111,7 +111,11 @@ class CohortClassViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
 class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
-    """ API endpoint for listing and creating assessment """
+    """ 
+    API endpoint for listing and creating assessment.  
+
+    LAB, QUIZ, PROJECT, EXAM, COHORT, HOMEWORK, OPTIONAL = range(7)
+    """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
     filter_fields = ['week', 'cohort_classes']
@@ -159,7 +163,7 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
         cohort_classes = course_serializer.data.get('cohort_classes', None)
         if not cohort_classes:
             return Response(
-                {'Error': 'could not retrieve cohot classes'}, status=400)
+                {'Error': 'could not retrieve cohort classes'}, status=400)
 
         cc_ids = [cc.get('id') for cc in cohort_classes]
         assmts = get_list_or_404(

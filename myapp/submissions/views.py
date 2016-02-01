@@ -343,11 +343,9 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     #     data = request.data
     #     student = request.user
     #     question_id = data.get('question', None)
-
     #     if not student or not question_id:
     #         return Response(
     #             {"message": "student or question empty"}, status=404)
-
     #     try:
     #         question = ProgrammingQuestion.objects.get(id=question_id)
     #         progress, _ = ProgrammingQuestionProgress.objects.update_or_create(
@@ -357,7 +355,6 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     #                 'answer_last_saved': data.get('answer_last_saved', None)
     #             }
     #         )
-
     #         return Response(
     #             ProgrammingQuestionProgressSerializer(progress).data,
     #             status=200)
