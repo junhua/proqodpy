@@ -42,7 +42,7 @@ class ProqodUserListRetrieveViewSet(DefaultsMixin,
     """ API endpoint for users """
     queryset = ProqodUser.objects.all()
     serializer_class = UserSerializer
-    filter_fields = ['user_type', 'is_admin']
+    filter_fields = ['user_type', 'is_admin', 'id', 'sid']
 
     # def get_permissions(self):
     #     if self.action in ('create', 'update', 'destroy', 'partial_update'):
