@@ -22,7 +22,9 @@ class UserSerializer(serializers.ModelSerializer):
             User.USERNAME_FIELD,
             'cohort_classes_students',
             'cohort_classes_teachers',
+            'id'
         )
         read_only_fields = (
             User.USERNAME_FIELD,
         )
+        search_fields = ('id', 'sid')

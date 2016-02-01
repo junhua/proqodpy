@@ -188,6 +188,7 @@ class CohortClassSerializer(serializers.ModelSerializer):
         many=True, queryset=User.objects.filter(user_type=0)
     )
 
+
     class Meta:
         model = CohortClass
         fields = (
