@@ -101,7 +101,7 @@ class CohortClassViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating week """
     queryset = CohortClass.objects.all()
     serializer_class = CohortClassSerializer
-    filter_fields = ['course', 'label']
+    filter_fields = ['course', 'label', 'students', 'teachers']
 
     def get_permissions(self):
         if self.action in ('create', 'update', 'destroy', 'partial_update'):
