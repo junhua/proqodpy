@@ -4,6 +4,8 @@ from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
 
 from .serializers import *
 from .models import *
+from myapp.courses.models import *
+from myapp.courses.serializers import *
 
 
 class DefaultsMixin(object):
@@ -41,7 +43,7 @@ class PeerRankReportViewset(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Peer Rank Report """
     queryset = PeerRankReport.objects.all()
     serializer_class = PeerRankReportSerializer
-    filter = ('submission')
+    filter = ('submission',)
 
 
 class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):
@@ -51,64 +53,21 @@ class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = PeerRankSerializer
 
 
-# class AcademicReportViewset(DefaultsMixin, viewsets.ViewSet):
+# class GradeReportEntryViewset(DefaultsMixin, viewsets.ModelViewSet):
 
-#     """
-#     API endpoint for getting academic Report
-#     required input: student id, course id
-
-#     Structure:
-
-#     - AcademicReport:
-
-#         - student (unique_together with course)
-#         - course  (unique_together with student)
-#         - grade (bool)
-#         - assessment_grade_report_set
-#             - assessment
-#             - grade
-#             - question_grade_report_set
-#                 - question_id (unique_together with question_type)
-#                 - question_type (unique_together with question_id)
-#                 - grade
-#                 - submission_grade_report_set
-#                     - submission_id (unique_together with submission_type)
-#                     - submission_type (unique_together with submission_id)
-#                     - grade
-
-#     """
-#     queryset = AcademicReport.objects.all()
-#     serializer_class = AcademicReportSerializer
-#     filter_fields = ('student_id', 'course_id')
-
-#     def get_permissions(self):
-#         if self.action in ('create', 'update', 'destroy', 'partial_update'):
-#             self.permission_classes = [permissions.IsAdminUser, ]
-#         return super(self.__class__, self).get_permissions()
-
-#     def list(self, request):
-# data = request.data
-
-#         student_id = request.query_params.get('student_id', None)
-#         course_id = request.query_params.get('course_id', None)
+#     """ API endpoint for listing and creating Grade Report Entry """
+#     queryset = GradeReportEntry.objects.all()
+#     serializer_class = GradeReportEntrySerializer
+#     filter = ('week', 'assessment', 'question', 'report')
 
 
-#         return Response(
-#             {
-#                 'type1': {
-#                     'student_id': student_id,
-#                     'course_id': course_id
-#                 },
-#                 'type2': {
-#                     'student_id': student_id,
-#                     'course_id': course_id
-#                 }
-#             }
-#         )
+class GradeReportViewset(RetrieveModelMixin,
+                         DefaultsMixin,
+                         viewsets.GenericViewSet):
+    """ API endpoint for listing and creating Grade Report """
+    queryset = GradeReport.objects.all()
+    serializer_class = GradeReportSerializer
+    filter = ('student',)
 
-
-# class AcademicReportViewset(DefaultsMixin, viewsets.ModelViewSet):
-
-#     """API endpoint for listing and creating Peer Rank"""
-#     queryset = AcademicReport.objects.all()
-#     serializer_class = AcademicReportSerializer
+    # def retrieve(self, request, pk=None):
+        
