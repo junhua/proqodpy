@@ -44,6 +44,7 @@ class ProqodUserListRetrieveViewSet(DefaultsMixin,
     serializer_class = UserSerializer
     filter_fields = ['user_type', 'is_admin', 'id', 'sid']
 
+    # def by_
     # def get_permissions(self):
     #     if self.action in ('create', 'update', 'destroy', 'partial_update'):
     #         self.permission_classes = [permissions.IsAdminUser, ]

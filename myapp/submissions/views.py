@@ -361,7 +361,6 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     #     except ValueError as e:
     #         return Response({"error": "%s: %s" % (sys.exc_info()[0], e)},
     #                         status=400)
-
     #     return Response({"error": "oops..."}, status=400)
 
     @list_route(methods=['post'])
