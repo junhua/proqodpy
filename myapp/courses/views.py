@@ -154,25 +154,21 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
             'course', None) or request.query_params.get('course', None)
 
         if not course:
-            return Response({'Error': 'course not found'}, status=400)
+            return Response([], status=400)
 
-        course = get_object_or_404(Course, pk=course)
-        course_serializer = CourseSerializer(course)
+        try:
+            course = get_object_or_404(Course, pk=course)
+            course_serializer = CourseSerializer(course)
 
-        # try:
-        cohort_classes = course_serializer.data.get('cohort_classes', None)
-        if not cohort_classes:
-            return Response(
-                {'Error': 'could not retrieve cohort classes'}, status=400)
+            cohort_classes = course_serializer.data.get('cohort_classes', None)
 
-        cc_ids = [cc.get('id') for cc in cohort_classes]
-        assmts = get_list_or_404(
-            Assessment.objects.all(), cohort_classes__in=cc_ids)
-        serializer = AssessmentSerializer(assmts, many=True)
-        return Response(serializer.data, status=200)
-        # except:
-        #     return Response(
-        #         {'Error': 'could not retrieve assessment'}, status=400)
+            cc_ids = [cc.get('id') for cc in cohort_classes]
+            assmts = get_list_or_404(
+                Assessment.objects.all(), cohort_classes__in=cc_ids)
+            serializer = AssessmentSerializer(assmts, many=True)
+            return Response(serializer.data, status=200)
+        except:
+            return Response([], status=200)
 
 
 class McqViewSet(DefaultsMixin, viewsets.ModelViewSet):
