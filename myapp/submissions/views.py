@@ -363,7 +363,7 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     #                         status=400)
     #     return Response({"error": "oops..."}, status=400)
 
-    @list_route(methods=['post'])
+    @list_route(methods=['post', 'get', 'put'])
     def run(self, request):
         """
         Parameters: question(id), code
