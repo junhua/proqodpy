@@ -6,7 +6,9 @@ from .serializers import *
 from .models import *
 from myapp.courses.models import UnitTest
 from myapp.analytics.models import PerformanceReport
-import sys
+from radon.metrics import mi_parameters, mi_compute
+from radon import raw
+# import sys
 
 
 class DefaultsMixin(object):
@@ -69,11 +71,10 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         unittests = UnitTest.objects.filter(question=question)
         ut_entries = []
         ut_passed = 0
-        total_time = 0.0
-
+        total_time = 0.
+        memory = 0.
         for unittest in unittests:
             test = unittest.run(code)
-
             data = {
                 'visibility': unittest.visibility,
                 'inputs': ", ".join(unittest.inputs) if unittest.visibility else "-",
@@ -81,9 +82,14 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 'actual_output': test.get('output', test.get('error', None)) if unittest.visibility else "-",
                 'is_correct': test.get('pass', False),
             }
+
+            if data['inputs'] == "[u'[]']":
+                data['inputs'] = ""
+
             if data['is_correct']:
                 ut_passed += 1
                 total_time += test['time']
+                memory = max(memory, test['memory'])
 
             ut_entry = UnittestEntrySerializer(data=data)
             if ut_entry.is_valid():
@@ -93,25 +99,53 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             else:
                 return Response(ut_entry.errors, 400)
 
-        # PERFORMANCE REPORT (To be edited)
-        complexity = -1
-        memory = -1
-        # time = PerformanceReport.objects.time_exec(code)
-        time = total_time / ut_passed if ut_passed>0 else -2
+        complexity = 0.
+        time = (total_time / ut_passed) if ut_passed > 0 else -2
+        assert len(ut_entries) > 0, "no unittests found"
         correctness = round((ut_passed + 0.0) / len(ut_entries), 2)
         size = len(code)
+        # memory = 0.
 
+        # Complexity calculation
+        # Expect (Halstead volume, cyclomatic complexity, LLOC and comment
+        # density)
+        loc, sloc, comments, multi, blank = [0 for _ in xrange(5)]
+        try:
+            raw_analysis = raw.analyze(code)
+            loc = raw_analysis.loc
+            sloc = raw_analysis.sloc
+            comments = raw_analysis.comments
+            multi = raw_analysis.multi
+            blank = raw_analysis.blank
+        except:
+            # log error
+            pass
+
+        complexity_eval = mi_parameters(code)
+        if type(complexity_eval) == tuple:
+            hv = complexity_eval[0]
+            complexity = complexity_eval[1]
+            lloc = complexity_eval[2]
+            mi = mi_compute(hv, complexity, sloc, comments)
         report = PerformanceReport(
             complexity=complexity,
             memory=memory,
             time=time,
             correctness=correctness,
-            size=size
+            size=size,
+            halstead_volume=hv,
+            lloc=lloc,
+            loc=loc,
+            sloc=sloc,
+            comment_lines=comments,
+            blank_lines=blank,
+            multi_lines=multi,
+            maintainability_index=mi,
         )
 
         try:
             report.save()
-            print report.id
+
         except:
             return Response(
                 {"message": "Failed to create performance report"},
@@ -127,15 +161,6 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             'performance_report': report.id
         }
 
-        # subm = CodeSubmission(
-        #     created_by=user,
-        #     code=code,
-        #     question=question,
-        #     performance_report=report,
-        #     type=0,
-        #     unittest_entries=ut_entries
-        # )
-        # print subm.id
         subm = CodeSubmissionCreateSerializer(data=data)
 
         if subm.is_valid():
@@ -147,6 +172,13 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             return Response(data, status=201)
         else:
             return Response(subm.errors, status=400)
+
+    @detail_route(methods=['get'],)
+    def grade(self, request, pk=None):
+        subm = CodeSubmission.objects.get(id=pk)
+        assert subm is not None, "Cannot find submission"
+
+        return Response(subm.get_grade(), status=200)
 
 
 class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -165,8 +197,7 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         data = request.data
 
         question = get_object_or_404(BlankQuestion, pk=data.get('question'))
-        solutions = BlankSolution.objects.filter(
-            question=question).order_by('seq')
+        solutions = BlankSolution.objects.filter(question=question)
         blanks = data.get('blanks', None)
 
         # Check submitted blanks
@@ -190,6 +221,13 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         else:
             return Response(subm_serializer.errors, status=400)
 
+    @detail_route(methods=['get'],)
+    def grade(self, request, pk=None):
+        subm = BlankSubmission.objects.get(id=pk)
+        assert subm is not None, "Cannot find submission"
+
+        return Response(subm.get_grade(), status=200)
+
 
 class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
@@ -197,6 +235,13 @@ class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = McqSubmission.objects.order_by('date_created')
     serializer_class = McqSubmissionSerializer
     filter_fields = ['question', 'created_by']
+
+    @detail_route(methods=['get'],)
+    def grade(self, request, pk=None):
+        subm = McqSubmission.objects.get(id=pk)
+        assert subm is not None, "Cannot find submission"
+
+        return Response(subm.get_grade(), status=200)
 
 
 class CheckoffSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
@@ -291,38 +336,7 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = ProgrammingQuestionProgressSerializer
     filter_fields = ['question', 'student']
 
-    # def create(self, request):
-    #     """
-    #     Parameters: question(id), code
-    #     """
-    #     data = request.data
-    #     student = request.user
-    #     question_id = data.get('question', None)
-
-    #     if not student or not question_id:
-    #         return Response(
-    #             {"message": "student or question empty"}, status=404)
-
-    #     try:
-    #         question = ProgrammingQuestion.objects.get(id=question_id)
-    #         progress, _ = ProgrammingQuestionProgress.objects.update_or_create(
-    #             student=student,
-    #             question=question,
-    #             defaults={
-    #                 'answer_last_saved': data.get('answer_last_saved', None)
-    #             }
-    #         )
-
-    #         return Response(
-    #             ProgrammingQuestionProgressSerializer(progress).data,
-    #             status=200)
-    #     except ValueError as e:
-    #         return Response({"error": "%s: %s" % (sys.exc_info()[0], e)},
-    #                         status=400)
-
-    #     return Response({"error": "oops..."}, status=400)
-
-    @list_route(methods=['post'])
+    @list_route(methods=['post', 'get', 'put'])
     def run(self, request):
         """
         Parameters: question(id), code
@@ -342,7 +356,7 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
             question=question,
             answer_last_saved=data.get('answer_last_saved', None)
         )
-
+        
         unittests = UnitTest.objects.filter(
             question=question)
 
@@ -355,7 +369,6 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
             data = unittest.run(progress.answer_last_saved)
             result['is_correct'] = data.get('pass', False)
             result['visibility'] = unittest.visibility
-            print data.get('visibility', 'nth')
             result['inputs'] = ", ".join(
                 unittest.inputs) if result['visibility'] else "-"
             result['actual_output'] = data.get(

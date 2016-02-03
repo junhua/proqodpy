@@ -4,6 +4,8 @@ from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
 
 from .serializers import *
 from .models import *
+from myapp.courses.models import *
+from myapp.courses.serializers import *
 
 
 class DefaultsMixin(object):
@@ -12,6 +14,7 @@ class DefaultsMixin(object):
     Default settings for view auth, permissions, 
     filtering and pagination 
     """
+
     authentication_classes = (
         authentication.BasicAuthentication,
         authentication.TokenAuthentication,
@@ -40,14 +43,7 @@ class PeerRankReportViewset(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating Peer Rank Report """
     queryset = PeerRankReport.objects.all()
     serializer_class = PeerRankReportSerializer
-    filter = ('submission')
-
-
-# class BlankEvaluationViewset(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
-
-#     """ API endpoint for listing and creating Peer Rank Report """
-#     queryset = BlankEvaluation.objects.all()
-#     serializer_class = BlankEvaluationSerializer
+    filter = ('submission',)
 
 
 class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):
@@ -57,63 +53,21 @@ class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = PeerRankSerializer
 
 
-class AcademicReportViewset2(DefaultsMixin, viewsets.ViewSet):
+# class GradeReportEntryViewset(DefaultsMixin, viewsets.ModelViewSet):
 
-    """
-    API endpoint for getting academic Report
-    required input: student id, course id
-
-    Structure: 
-
-    - AcademicReport:
-
-        - student (unique_together with course)  
-        - course  (unique_together with student)  
-        - grade (bool)  
-        - assessment_grade_report_set  
-            - assessment  
-            - grade  
-            - override  
-            - question_grade_report_set  
-                - question_id (unique_together with question_type)  
-                - question_type (unique_together with question_id)  
-                - grade  
-                - override  
-                - submission_grade_report_set  
-                    - submission_id (unique_together with submission_type)  
-                    - submission_type (unique_together with submission_id)  
-                    - grade  
-                    - override  
-
-    """
-    # queryset = AcademicReport.objects.all()
-    # serializer_class = AcademicReportSerializer
-    filter_fields = ('student_id', 'course_id')
-
-    def list(self, request):
-        print request.data
-        student_id = request.query_params.get('student_id', None)
-        course_id = request.query_params.get('course_id', None)
-
-        # queryset = AcademicReport.objects.all()
-        # ar = get_object_or_404(queryset, pk=pk)
-        # serializer = AcademicReportSerializer(ar)
-        return Response(
-            {
-                'type1': {
-                    'student_id': student_id,
-                    'course_id': course_id
-                },
-                'type2': {
-                    'student_id': student_id,
-                    'course_id': course_id
-                }
-            }
-        )
+#     """ API endpoint for listing and creating Grade Report Entry """
+#     queryset = GradeReportEntry.objects.all()
+#     serializer_class = GradeReportEntrySerializer
+#     filter = ('week', 'assessment', 'question', 'report')
 
 
-class AcademicReportViewset(DefaultsMixin, viewsets.ModelViewSet):
+class GradeReportViewset(RetrieveModelMixin,
+                         DefaultsMixin,
+                         viewsets.GenericViewSet):
+    """ API endpoint for listing and creating Grade Report """
+    queryset = GradeReport.objects.all()
+    serializer_class = GradeReportSerializer
+    filter = ('student',)
 
-    """API endpoint for listing and creating Peer Rank"""
-    queryset = AcademicReport.objects.all()
-    serializer_class = AcademicReportSerializer
+    # def retrieve(self, request, pk=None):
+        

@@ -30,6 +30,7 @@ AUTH_USER_MODEL = 'authnz.ProqodUser'
 
 # Application definition
 
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -110,7 +111,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # LIB_DIR = os.path.join(BASE_DIR, 'libs')
 LOG_DIR = os.path.join(BASE_DIR, 'log')
+FIXTURE_DIR = (os.path.join(BASE_DIR, 'dev/data'),
 
+)
 
 # STATICFILES_DIRS = (
 #    os.path.join(BASE_DIR, 'static'),

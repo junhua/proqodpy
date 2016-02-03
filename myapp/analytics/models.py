@@ -4,30 +4,11 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
-import timeit
-import numpy as np
-import sys
-import StringIO
-
-
-# class PerormanceReportManger(models.Manager):
-
-#     def time_exec(self, code, times=10, lang="Python"):
-#         """
-#         Measure the execution time for a snippet in microsecond. 
-#         Taking average of 10 execution times by default.
-#         """
-#         try:
-#             record = np.mean(timeit.repeat(code, repeat=times))
-#             return record
-#         except:
-#             # Return -1 if there's an error
-#             return -1
 
 
 class PerformanceReport(models.Model):
 
-    """ 
+    """
     Performance report Model for programming specific measurement.
     Fields: complexity, memory, time(Micro-second), size(byte), correctness
     Fields that are under development will return -1 value
@@ -39,7 +20,8 @@ class PerformanceReport(models.Model):
         max_digits=5,
         null=True,
         blank=True,
-        help_text=_("complexity index, the higher the more complex"),
+        default=0.,
+        help_text=_("cyclomatric complexity index"),
     )
 
     memory = models.DecimalField(
@@ -48,6 +30,7 @@ class PerformanceReport(models.Model):
         max_digits=10,
         null=True,
         blank=True,
+        default=0.,
         help_text=_("memory used for the program"),
     )
 
@@ -57,6 +40,7 @@ class PerformanceReport(models.Model):
         max_digits=10,
         null=True,
         blank=True,
+        default=0.,
         help_text=_("time used for the program"),
     )
 
@@ -66,6 +50,7 @@ class PerformanceReport(models.Model):
         max_digits=5,
         null=True,
         blank=True,
+        default=0.,
         help_text=_("correctness index")
     )
 
@@ -75,15 +60,113 @@ class PerformanceReport(models.Model):
         max_digits=20,
         null=True,
         blank=True,
+        default=0.,
         help_text=_("file size")
+    )
+
+    # radon raw metrics
+    # loc, lloc, sloc, comments, multi, blank
+    # radon.metrics.mi_parameters:
+    # return the Halstead Volume,
+    # the Cyclomatic Complexity
+    # the number of LLOC (Logical Lines of Code)
+    # the percent of lines of comment
+
+    loc = models.DecimalField(
+        _("loc"),
+        decimal_places=2,
+        max_digits=20,
+        null=True,
+        blank=True,
+        default=0.,
+        help_text=_("line of code")
+    )
+
+    lloc = models.DecimalField(
+        _("lloc"),
+        decimal_places=2,
+        max_digits=20,
+        null=True,
+        blank=True,
+        default=0.,
+        help_text=_("logical line of code")
+    )
+
+    sloc = models.DecimalField(
+        _("sloc"),
+        decimal_places=2,
+        max_digits=20,
+        null=True,
+        blank=True,
+        default=0.,
+        help_text=_("source lines of code")
+    )
+
+    comment_lines = models.DecimalField(
+        _("comment_lines"),
+        decimal_places=2,
+        max_digits=20,
+        null=True,
+        blank=True,
+        default=0.,
+        help_text=_("number of lines of comments")
+    )
+
+    blank_lines = models.DecimalField(
+        _("blank_lines"),
+        decimal_places=2,
+        max_digits=20,
+        null=True,
+        blank=True,
+        default=0.,
+        help_text=_("number of blank lines")
+    )
+
+    multi_lines = models.DecimalField(
+        _("multi_lines"),
+        decimal_places=2,
+        max_digits=20,
+        null=True,
+        blank=True,
+        default=0.,
+        help_text=_("the number of lines which represent multi-line strings")
+    )
+
+    maintainability_index = models.DecimalField(
+        _("maintainability_index"),
+        decimal_places=2,
+        max_digits=20,
+        null=True,
+        blank=True,
+        default=0.,
+        help_text=_(
+            """
+            Maintainability index, Maintainability Index calculates 
+            an index value between 0 and 100 that represents the 
+            relative ease of maintaining the code. A high value 
+            means better maintainability.
+            """)
+    )
+
+    halstead_volume = models.DecimalField(
+        _("halstead_volume"),
+        decimal_places=2,
+        max_digits=20,
+        null=True,
+        blank=True,
+        default=0.,
+        help_text=_(
+            """
+            Halstead Volume - the size of the implementation of an algorithm. 
+            The computation is based on the number of operations performed and 
+            operands handled in the algorithm."""
+        )
     )
 
     date_created = models.DateTimeField(
         _('date created'),
         default=timezone.now
     )
-
-    # objects = PerormanceReportManger()
 
     def __str__(self):
         return str(self.id)
@@ -93,19 +176,6 @@ class PerformanceReport(models.Model):
         verbose_name = _('performance_report')
         verbose_name_plural = _('performance_reports')
         ordering = ['date_created']
-
-
-# class BlankEvaluation(models.Model):
-
-#     evaluation = ArrayField(
-#         models.BooleanField(),
-#         blank=True,
-#         null=True,
-#         help_text=_("list of blank evaluation")
-#     )
-
-#     class Meta:
-#         verbose_name = _('blank_evaluation')
 
 
 class PeerRankReport(models.Model):
@@ -140,6 +210,7 @@ class PeerRank(models.Model):
         (3, _("Brilliant")),
         (4, _("Genius"))
     )
+
     readability_rank = models.CharField(
         _("readability_rank"),
         max_length=1,
@@ -173,17 +244,18 @@ class PeerRank(models.Model):
         verbose_name_plural = _('peer_ranks')
 
 
-class GradeReport(models.Model):
+class Grade(models.Model):
     grade = models.DecimalField(
-        _("grade"),
         max_digits=5,
         decimal_places=2,
         null=True,
         blank=True
     )
-    override = models.BooleanField(
-        _("override"),
-        default=False,
+
+    total = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=True,
         blank=True
     )
 
@@ -191,102 +263,43 @@ class GradeReport(models.Model):
         abstract = True
 
 
-class AcademicReport(GradeReport):
-
-    """
-    Structure: 
-
-    AcademicReport
-        - student (unique_together with course)
-        - course  (unique_together with student)
-        - grade (bool)
-        - override (decimal - 5 max digits:, 2 decimal places)
-        - assessment_grade_report_set
-            - assessment
-            - grade
-            - override
-            - question_grade_report_set
-                - question_id (unique_together with question_type)
-                - question_type (unique_together with question_id)
-                - grade
-                - override
-                - submission_grade_report_set
-                    - submission_id (unique_together with submission_type)
-                    - submission_type (unique_together with submission_id)
-                    - grade
-                    - override
-    """
-
-    student = models.OneToOneField(
-        "authnz.ProqodUser",
-        related_name='academic_report',
-    )
-    course = models.OneToOneField(
-        "courses.course",
-        related_name="+"
-    )
-
-    class Meta:
-        verbose_name = _('academic_report')
-        unique_together = ('student', 'course',)
-
-
-class AssessmentGradeReport(GradeReport):
-    academic_report = models.ForeignKey(
-        "AcademicReport",
-        related_name="assessment_grade_set"
-    )
-    assessment = models.OneToOneField(
-        "courses.Assessment",
-        related_name="+"
-    )
-
-    class Meta:
-        verbose_name = _('assessment_grade_report')
-
-
-class QuestionGradeReport(GradeReport):
-    from myapp.courses.models import Question
-    assessment_grade_report = models.ForeignKey(
-        "AssessmentGradeReport",
-        related_name="question_grade_set"
-    )
-    question_id = models.PositiveIntegerField(
-        _("question_id"),
+class GradeReportEntry(Grade):
+    week = models.PositiveSmallIntegerField(
+        _("week"),
         null=False,
         blank=False,
     )
-    question_type = models.PositiveSmallIntegerField(
-        _("question_type"),
-        choices=Question.TYPE,
+
+    assessment = models.CharField(
+        _("assessment"),
+        max_length=50,
         null=False,
         blank=False
     )
 
-    class Meta:
-        verbose_name = _('question_grade_report')
-        unique_together = ('question_id', 'question_type')
-
-
-class SubmissionGradeReport(GradeReport):
-    from myapp.submissions.models import Submission
-    TYPE = Submission.TYPE
-    question_grade_report = models.ForeignKey(
-        "QuestionGradeReport",
-        related_name="submission_grade_set"
-    )
-    submission_id = models.PositiveIntegerField(
-        _("submission_id"),
+    question = models.CharField(
+        _("question"),
+        max_length=10,
         null=False,
-        blank=False
-    )
-    submission_type = models.PositiveSmallIntegerField(
-        _("submission_type"),
-        choices=TYPE,
-        null=False,
-        blank=False
+        blank=False,
     )
 
-    class Meta:
-        verbose_name = _('submission_grade_report')
-        unique_together = ('submission_id', 'submission_type')
+    report = models.ForeignKey(
+        "GradeReport",
+        related_name="entries"
+    )
+
+
+class GradeReport(Grade):
+    student = models.OneToOneField(
+        "authnz.ProqodUser",
+        related_name="grade",
+        )
+    course = models.OneToOneField(
+        "courses.Course",
+        related_name="+"
+        )
+    date_created = models.DateTimeField(
+        _('date created'),
+        default=timezone.now
+    )
