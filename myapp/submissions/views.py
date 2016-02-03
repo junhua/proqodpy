@@ -336,33 +336,6 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = ProgrammingQuestionProgressSerializer
     filter_fields = ['question', 'student']
 
-    # def create(self, request):
-    #     """
-    #     Parameters: question(id), code
-    #     """
-    #     data = request.data
-    #     student = request.user
-    #     question_id = data.get('question', None)
-    #     if not student or not question_id:
-    #         return Response(
-    #             {"message": "student or question empty"}, status=404)
-    #     try:
-    #         question = ProgrammingQuestion.objects.get(id=question_id)
-    #         progress, _ = ProgrammingQuestionProgress.objects.update_or_create(
-    #             student=student,
-    #             question=question,
-    #             defaults={
-    #                 'answer_last_saved': data.get('answer_last_saved', None)
-    #             }
-    #         )
-    #         return Response(
-    #             ProgrammingQuestionProgressSerializer(progress).data,
-    #             status=200)
-    #     except ValueError as e:
-    #         return Response({"error": "%s: %s" % (sys.exc_info()[0], e)},
-    #                         status=400)
-    #     return Response({"error": "oops..."}, status=400)
-
     @list_route(methods=['post', 'get', 'put'])
     def run(self, request):
         """
@@ -383,7 +356,7 @@ class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
             question=question,
             answer_last_saved=data.get('answer_last_saved', None)
         )
-
+        
         unittests = UnitTest.objects.filter(
             question=question)
 
