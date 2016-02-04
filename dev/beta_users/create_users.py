@@ -19,4 +19,6 @@ with open('beta_users.csv', 'rb') as csvfile:
             'user_type': user_type,
             'is_admin': is_admin
         }
+        print "\ncreated user: %s\n" % data
+
         response = requests.post(url, data=data)

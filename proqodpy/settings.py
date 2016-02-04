@@ -157,17 +157,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proqodpy.wsgi.application'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-# EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'log/email')
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'log/email')
 
-EMAIL_USE_TLS = True
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = "smtp.qq.com"
-EMAIL_HOST_USER = "founders@proqod.com"
-EMAIL_HOST_PASSWORD = "xyz31354"
-DEFAULT_FROM_EMAIL = "founders@proqod.com"
-SERVER_EMAIL = 'founders@proqod.com'
-EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = "smtp.qq.com"
+# EMAIL_HOST_USER = "founders@proqod.com"
+# EMAIL_HOST_PASSWORD = "xyz31354"
+# DEFAULT_FROM_EMAIL = "founders@proqod.com"
+# SERVER_EMAIL = 'founders@proqod.com'
+# EMAIL_PORT = 587
 
 # EMAIL_USE_SSL = True
 # EMAIL_TIMEOUT = 5

@@ -76,7 +76,7 @@ class ProqodUser(AbstractBaseUser):
     user_type = models.PositiveSmallIntegerField(
         default=STUDENT,
         choices=USER_TYPE,
-        editable=False,
+        # editable=False,
         help_text=_("0:student; 1:teacher")
     )
 
