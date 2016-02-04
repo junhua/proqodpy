@@ -164,8 +164,8 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
             cohort_classes = course_serializer.data.get('cohort_classes', None)
 
             cc_ids = [cc.get('id') for cc in cohort_classes]
-            assmts = get_list_or_404(
-                Assessment.objects.all(), cohort_classes__in=cc_ids)
+            assmts = list(set(get_list_or_404(
+                Assessment.objects.all(), cohort_classes__in=cc_ids)))
             serializer = AssessmentSerializer(assmts, many=True)
             return Response(serializer.data, status=200)
         except:
