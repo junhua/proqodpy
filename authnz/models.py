@@ -122,7 +122,7 @@ class ProqodUser(AbstractBaseUser):
         return self.first_name
 
     def __str__(self):              # __unicode__ on Python 2
-        return "%s" % self.id
+        return "id:%s sid: %s email: %s" % (self.id, self.sid, self.email)
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
