@@ -9,7 +9,7 @@ url = 'http://localhost:8000/v1/auth/register/'
 #     'is_admin' : '0',
 # }
 
-with open('beta_users.csv', 'rb') as csvfile:
+with open('beta_test_users.csv', 'rb') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=',')
     for [sid, user_type, is_admin, password] in spamreader:
         data = {
