@@ -5,7 +5,6 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
 
-
 class PerformanceReport(models.Model):
 
     """
@@ -294,11 +293,11 @@ class GradeReport(Grade):
     student = models.OneToOneField(
         "authnz.ProqodUser",
         related_name="grade",
-        )
+    )
     course = models.OneToOneField(
         "courses.Course",
         related_name="+"
-        )
+    )
     date_created = models.DateTimeField(
         _('date created'),
         default=timezone.now
