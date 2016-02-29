@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField
+from types import *
 
 
 class Submission(models.Model):
@@ -104,8 +105,10 @@ class CodeSubmission(Submission):
     )
 
     def get_grade(self):
-        assert self.performance_report.correctness is not None
-        return max(0., self.performance_report.correctness)
+        assert self.performance_report.correctness is not None, "correctness is null: %r" % self.performance_report.correctness
+        assert self.question.max_score is not None, "max_score is null: %r"  % self.question.max_score
+        assert type(self.question.max_score) is IntType, "max_score is not an integer: %r" % self.question.max_score
+        return max(0., self.performance_report.correctness * self.question.max_score)
 
 
 class BlankSubmission(Submission):
@@ -130,10 +133,11 @@ class BlankSubmission(Submission):
     )
 
     def get_grade(self):
-        assert type(self.evaluation) is list
-        assert len(self.evaluation) > 0
-        assert type(self.evaluation[0]) is bool
-
+        assert type(self.evaluation) is ListType, "evaluation is not list type: %r" %self.evaluation
+        assert len(self.evaluation) > 0, "evaluation is empty: %r"%self.evaluation
+        assert type(self.evaluation[0]) is BooleanType, "evaluation is not boolean: %r" % self.evaluation[0]
+        assert self.question.max_score is not None, "max_score is null: %r" % self.question.max_score
+        assert type(self.question.max_score) is IntType, "max_score is not an integer: %r" % self.question.max_score
         return round((sum(self.evaluation) + 0.) / len(self.evaluation), 2)
 
 

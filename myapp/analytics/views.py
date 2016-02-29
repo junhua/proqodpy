@@ -61,9 +61,9 @@ class PeerRankViewset(DefaultsMixin, viewsets.ModelViewSet):
 #     filter = ('week', 'assessment', 'question', 'report')
 
 
-class GradeReportViewset(DefaultsMixin,
-                         viewsets.ModelViewSet):
-    """ API endpoint for listing and creating Grade Report """
-    queryset = GradeReport.objects.all()
-    serializer_class = GradeReportSerializer
-    filter = ('student', 'course')
+# class GradeReportViewset(DefaultsMixin,
+#                          viewsets.ModelViewSet):
+#     """ API endpoint for listing and creating Grade Report """
+#     queryset = GradeReport.objects.all()
+#     serializer_class = GradeReportSerializer
+#     filter = ('student', 'course')

@@ -81,7 +81,8 @@ class McqSerializer(serializers.ModelSerializer):
             'type',
             'description',
             # 'solution',
-            'choices'
+            'choices',
+            'max_score',
         )
 
 
@@ -106,7 +107,8 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'description',
             # 'solution',
             'blank_parts',
-            'solution_set'
+            'solution_set',
+            'max_score'
         )
 
 
@@ -153,7 +155,8 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
             'solution',
             'default_code',
             'code_signature',
-            'unittests'
+            'unittests',
+            'max_score'
         )
 
 
@@ -171,6 +174,7 @@ class CheckoffQuestionSerializer(serializers.ModelSerializer):
             'number',
             'type',
             'description',
+            'max_score'
             # 'solution',
             # 'default_code',
             # 'code_signature',

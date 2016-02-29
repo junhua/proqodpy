@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
-
+from myapp.courses.models import Question
 
 class PerformanceReport(models.Model):
 
@@ -167,15 +167,14 @@ class PerformanceReport(models.Model):
         default=timezone.now
     )
 
-    def __str__(self):
-        return str(self.id)
-
     class Meta:
         # abstract = True
         verbose_name = _('performance_report')
         verbose_name_plural = _('performance_reports')
         ordering = ['date_created']
 
+    def __str__(self):
+        return str(self.id)
 
 class PeerRankReport(models.Model):
 
@@ -243,7 +242,15 @@ class PeerRank(models.Model):
         verbose_name_plural = _('peer_ranks')
 
 
-class Grade(models.Model):
+class QuestionGradeReport(models.Model):
+
+    TYPE = Question.TYPE
+
+    type = models.PositiveSmallIntegerField(
+        _("question type"),
+        choices=TYPE
+    )
+
     grade = models.DecimalField(
         max_digits=5,
         decimal_places=2,
@@ -251,54 +258,14 @@ class Grade(models.Model):
         blank=True
     )
 
-    total = models.DecimalField(
-        max_digits=5,
-        decimal_places=2,
-        null=True,
-        blank=True
-    )
-
-    class Meta:
-        abstract = True
-
-
-class GradeReportEntry(Grade):
-    week = models.PositiveSmallIntegerField(
-        _("week"),
+    question_id = models.PositiveIntegerField(
+        _("question id"),
         null=False,
         blank=False,
+        help_text="a question number unique together with the type"
     )
 
-    assessment = models.CharField(
-        _("assessment"),
-        max_length=50,
-        null=False,
-        blank=False
-    )
-
-    question = models.CharField(
-        _("question"),
-        max_length=10,
-        null=False,
-        blank=False,
-    )
-
-    report = models.ForeignKey(
-        "GradeReport",
-        related_name="entries"
-    )
-
-
-class GradeReport(Grade):
-    student = models.OneToOneField(
+    student = models.ForeignKey(
         "authnz.ProqodUser",
-        related_name="grade",
-    )
-    course = models.OneToOneField(
-        "courses.Course",
-        related_name="+"
-    )
-    date_created = models.DateTimeField(
-        _('date created'),
-        default=timezone.now
+        related_name="grades"
     )
