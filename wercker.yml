@@ -52,5 +52,5 @@ build:
 
   after-steps:
     - wantedly/pretty-slack-notify:
-        webhook_url: https://hooks.slack.com/services/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
+        webhook_url: "https://hooks.slack.com/services/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"
         channel: tech-notifications
