@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from myapp.courses.models import Question
 
+
 class PerformanceReport(models.Model):
 
     """
@@ -176,6 +177,7 @@ class PerformanceReport(models.Model):
     def __str__(self):
         return str(self.id)
 
+
 class PeerRankReport(models.Model):
 
     date_created = models.DateTimeField(
@@ -251,7 +253,7 @@ class QuestionGradeReport(models.Model):
         choices=TYPE
     )
 
-    grade = models.DecimalField(
+    score = models.DecimalField(
         max_digits=5,
         decimal_places=2,
         null=True,

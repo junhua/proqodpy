@@ -52,29 +52,14 @@ class PeerRankReportSerializer(serializers.ModelSerializer):
         )
 
 
-# class GradeReportEntrySerializer(serializers.ModelSerializer):
+class QuestionGradeReportSerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = GradeReportEntry
-#         fields = (
-#             'id',
-#             'week',
-#             'assessment',
-#             'question',
-#             'report',
-#             'grade',
-#             'total'
-#         )
-
-
-# class GradeReportSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = GradeReport
-#         fields = (
-#             'student',
-#             'entries',
-#             'grade',
-#             'total'
-            
-#         )
+    class Meta:
+        model = QuestionGradeReport
+        fields = (
+            'id',
+            'type',
+            'score',
+            'question_id',
+            'student',
+        )

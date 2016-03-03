@@ -106,8 +106,9 @@ class CodeSubmission(Submission):
 
     def get_grade(self):
         assert self.performance_report.correctness is not None, "correctness is null: %r" % self.performance_report.correctness
-        assert self.question.max_score is not None, "max_score is null: %r"  % self.question.max_score
-        assert type(self.question.max_score) is IntType, "max_score is not an integer: %r" % self.question.max_score
+        assert self.question.max_score is not None, "max_score is null: %r" % self.question.max_score
+        assert type(
+            self.question.max_score) is IntType, "max_score is not an integer: %r" % self.question.max_score
         return max(0., self.performance_report.correctness * self.question.max_score)
 
 
@@ -133,11 +134,15 @@ class BlankSubmission(Submission):
     )
 
     def get_grade(self):
-        assert type(self.evaluation) is ListType, "evaluation is not list type: %r" %self.evaluation
-        assert len(self.evaluation) > 0, "evaluation is empty: %r"%self.evaluation
-        assert type(self.evaluation[0]) is BooleanType, "evaluation is not boolean: %r" % self.evaluation[0]
+        assert type(
+            self.evaluation) is ListType, "evaluation is not list type: %r" % self.evaluation
+        assert len(
+            self.evaluation) > 0, "evaluation is empty: %r" % self.evaluation
+        assert type(self.evaluation[
+                    0]) is BooleanType, "evaluation is not boolean: %r" % self.evaluation[0]
         assert self.question.max_score is not None, "max_score is null: %r" % self.question.max_score
-        assert type(self.question.max_score) is IntType, "max_score is not an integer: %r" % self.question.max_score
+        assert type(
+            self.question.max_score) is IntType, "max_score is not an integer: %r" % self.question.max_score
         return round((sum(self.evaluation) + 0.) / len(self.evaluation), 2)
 
 
@@ -155,7 +160,9 @@ class McqSubmission(Submission):
     def get_grade(self):
         assert self.answer.is_correct is not None
         assert type(self.answer.is_correct) is bool
-
+        assert self.question.max_score is not None, "max_score is null: %r" % self.question.max_score
+        assert type(
+            self.question.max_score) is IntType, "max_score is not an integer: %r" % self.question.max_score
         return int(self.answer.is_correct)
 
 

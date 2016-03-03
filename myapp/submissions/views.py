@@ -45,29 +45,11 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = CodeSubmissionSerializer
     filter_fields = ['question', 'created_by']
 
-    def create(self, request):
+    def _test_with_fixed_unittest(self, question, code):
         """
-        Override default POST method:
-        1. create Submission
-        2. create Performance report
-
+        helper method:
+        test with static inputs and expected output
         """
-
-        data = request.data
-
-        try:
-            user = request.user
-            code = data.get('code', None)
-            question = ProgrammingQuestion.objects.get(
-                id=data.get('question', None))
-        except:
-            return Response(
-                {"message": "Required user, code and question params"},
-                status=400
-            )
-
-        # SCORE
-
         unittests = UnitTest.objects.filter(question=question)
         ut_entries = []
         ut_passed = 0
@@ -75,6 +57,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         memory = 0.
         for unittest in unittests:
             test = unittest.run(code)
+
             data = {
                 'visibility': unittest.visibility,
                 'inputs': ", ".join(unittest.inputs) if unittest.visibility else "-",
@@ -98,18 +81,14 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 ut_entries += [ute]
             else:
                 return Response(ut_entry.errors, 400)
+        time = (total_time / ut_passed) if ut_passed > 0 else '-1'
 
-        complexity = 0.
-        time = (total_time / ut_passed) if ut_passed > 0 else -2
-        assert len(ut_entries) > 0, "no unittests found"
-        correctness = round((ut_passed + 0.0) / len(ut_entries), 2)
-        size = len(code)
-        # memory = 0.
+        return ut_entries, ut_passed, time, memory
 
-        # Complexity calculation
-        # Expect (Halstead volume, cyclomatic complexity, LLOC and comment
-        # density)
-        loc, sloc, comments, multi, blank = [0 for _ in xrange(5)]
+    def _eval_code_quality_metrics(self, code):
+        complexity, loc, sloc, comments, multi, blank = [
+            '-' for _ in xrange(6)]
+
         try:
             raw_analysis = raw.analyze(code)
             loc = raw_analysis.loc
@@ -122,25 +101,71 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             pass
 
         complexity_eval = mi_parameters(code)
+
         if type(complexity_eval) == tuple:
-            hv = complexity_eval[0]
-            complexity = complexity_eval[1]
-            lloc = complexity_eval[2]
+            hv, complexity, lloc, _ = complexity_eval
             mi = mi_compute(hv, complexity, sloc, comments)
+
+        return {'complexity': complexity,
+                'loc': loc,
+                'sloc': sloc,
+                'comments': comments,
+                'multi': multi,
+                'blank': blank,
+                'mi': mi,
+                'hv': hv,
+                'lloc': lloc,
+                }
+
+    def create(self, request):
+        """
+        Override default POST method:
+        1. create Submission
+        2. create Performance report
+
+        """
+
+        data = request.data
+
+        try:
+            user = request.user
+            code = data.get('code', None)
+            question = ProgrammingQuestion.objects.get(
+                id=data.get('question', None))
+        except:
+            return Response(
+                {"message": "Required user, code and question params"},
+                status=400
+            )
+
+        # SCORE
+
+        ut_entries, ut_passed, time, memory = self._test_with_fixed_unittest(
+            question, code)
+
+        assert len(ut_entries) > 0, "no unittests found"
+
+        correctness = round((ut_passed + 0.0) / len(ut_entries), 2)
+        size = len(code)
+
+        # ==================== Quality Metrics ====================
+
+        quality_metrics = self._eval_code_quality_metrics(code)
+
         report = PerformanceReport(
-            complexity=complexity,
             memory=memory,
             time=time,
             correctness=correctness,
             size=size,
-            halstead_volume=hv,
-            lloc=lloc,
-            loc=loc,
-            sloc=sloc,
-            comment_lines=comments,
-            blank_lines=blank,
-            multi_lines=multi,
-            maintainability_index=mi,
+            complexity=quality_metrics['complexity'],
+            halstead_volume=quality_metrics['hv'],
+            lloc=quality_metrics['lloc'],
+            loc=quality_metrics['loc'],
+            sloc=quality_metrics['sloc'],
+            comment_lines=quality_metrics['comments'],
+            blank_lines=quality_metrics['blank'],
+            multi_lines=quality_metrics['multi'],
+            maintainability_index=quality_metrics['mi'],
         )
 
         try:
