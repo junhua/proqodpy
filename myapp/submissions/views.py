@@ -178,8 +178,8 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         # SCORE
 
         # if dynamic, call dynamic unit test
-        # tests = UnitTest.objects.filter(question=question)
-        tests = 0
+        tests = UnitTest.objects.filter(question=question)
+
         if not tests:
             tests = DynamicTest.objects.filter(question=question)
             ut_entries, ut_passed, time, memory = self._test_with_dynamic_unittest(
