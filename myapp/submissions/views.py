@@ -45,12 +45,12 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     serializer_class = CodeSubmissionSerializer
     filter_fields = ['question', 'created_by']
 
-    def _test_with_fixed_unittest(self, question, code):
+    def _test_with_fixed_unittest(self, unittests, code):
         """
         helper method:
         test with static inputs and expected output
         """
-        unittests = UnitTest.objects.filter(question=question)
+
         ut_entries = []
         ut_passed = 0
         total_time = 0.
@@ -84,6 +84,43 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         time = (total_time / ut_passed) if ut_passed > 0 else '-1'
 
         return ut_entries, ut_passed, time, memory
+
+    def _test_with_dynamic_unittest(self, tests, code):
+        """
+        helper method:
+        test with dynamic unit test
+        """
+
+        test_entries = []
+        test_passed = 0
+        total_time = 0.
+        memory = 0.
+        for test in tests:
+            test_result = test.dynamic_run(code)
+
+            data = {
+                'visibility': test.visibility,
+                'expected_output': test_result.get('expected_output', None) if test.visibility else "-",
+                'actual_output': test_result.get('output', test_result.get('error', None)) if test.visibility else "-",
+                'is_correct': test_result.get('pass', False),
+            }
+
+            if data['is_correct']:
+                test_passed += 1
+                total_time += test_result['time']
+                memory = max(memory, test_result['memory'])
+
+            test_entry = UnittestEntrySerializer(data=data)
+            if test_entry.is_valid():
+                test_entry.save()
+                ute = UnittestEntry.objects.get(
+                    id=test_entry.data['id'])
+                test_entries += [ute]
+            else:
+                return Response(test_entry.errors, 400)
+        time = (total_time / test_passed) if test_passed > 0 else '-1'
+
+        return test_entries, test_passed, time, memory
 
     def _eval_code_quality_metrics(self, code):
         complexity, loc, sloc, comments, multi, blank = [
@@ -140,8 +177,16 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         # SCORE
 
-        ut_entries, ut_passed, time, memory = self._test_with_fixed_unittest(
-            question, code)
+        # if dynamic, call dynamic unit test
+        # tests = UnitTest.objects.filter(question=question)
+        tests = 0
+        if not tests:
+            tests = DynamicTest.objects.filter(question=question)
+            ut_entries, ut_passed, time, memory = self._test_with_dynamic_unittest(
+                tests, code)
+        else:
+            ut_entries, ut_passed, time, memory = self._test_with_fixed_unittest(
+                tests, code)
 
         assert len(ut_entries) > 0, "no unittests found"
 

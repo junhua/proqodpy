@@ -360,3 +360,24 @@ class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
     #         {"result": test_code},
     #         status=(200 if test_code['pass'] else 400)
     #     )
+
+
+class DynamicTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
+
+    """
+    API endpoint for listing and creating test case  
+
+    ## Endpoints
+
+    raw() - REMOVED, used to return the raw code of the test case  
+    run(code) - REMOVED, moved to /prog_qn_progress/run/
+
+    """
+
+    queryset = DynamicTest.objects.all()
+    serializer_class = DynamicTestSerializer
+
+    def get_permissions(self):
+        if self.action in ('create', 'update', 'destroy', 'partial_update'):
+            self.permission_classes = [permissions.IsAdminUser, ]
+        return super(self.__class__, self).get_permissions()

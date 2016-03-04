@@ -112,6 +112,23 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
         )
 
 
+class DynamicTestSerializer(serializers.ModelSerializer):
+    question = serializers.PrimaryKeyRelatedField(
+        queryset=ProgrammingQuestion.objects.order_by('id')
+    )
+
+    class Meta:
+        model = DynamicTest
+        fields = (
+            'id',
+            'visibility',
+            'type',
+            'test_content',
+            'test_code',
+            'question',
+        )
+
+
 class UnitTestSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=ProgrammingQuestion.objects.order_by('id')
@@ -191,7 +208,6 @@ class CohortClassSerializer(serializers.ModelSerializer):
     students = serializers.PrimaryKeyRelatedField(
         many=True, queryset=User.objects.filter(user_type=0)
     )
-
 
     class Meta:
         model = CohortClass

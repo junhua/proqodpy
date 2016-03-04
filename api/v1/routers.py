@@ -49,5 +49,7 @@ router.register(r'performance_reports', PerformanceReportViewset,
                 base_name='perormance report')
 router.register(r'unittests', UnitTestViewSet,
                 base_name='unit tests')
+router.register(r'dynamictests', DynamicTestViewSet,
+                base_name='dynamic tests')
 router.register(r'prog_qn_progress', ProgrammingQuestionProgressViewSet,
                 base_name='programming question progress')
