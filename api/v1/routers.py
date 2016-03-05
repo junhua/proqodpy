@@ -47,6 +47,8 @@ router.register(r'code_submissions', CodeSubmissionViewSet,
                 base_name='code submissions')
 router.register(r'performance_reports', PerformanceReportViewset,
                 base_name='perormance report')
+router.register(r'question_grade_reports', QuestionGradeReportViewset,
+                base_name='question_grade report')
 router.register(r'unittests', UnitTestViewSet,
                 base_name='unit tests')
 router.register(r'dynamictests', DynamicTestViewSet,

@@ -4,6 +4,10 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField
 from types import *
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from myapp.analytics.models import QuestionGradeReport
+from myapp.courses.models import Question
 
 
 class Submission(models.Model):
@@ -248,3 +252,42 @@ class McqProgress(Progress):
     question = models.ForeignKey(
         "courses.Mcq",
     )
+
+
+@receiver(post_save, sender=CodeSubmission)
+def CodeSubmissionSaved(sender, **kwargs):
+    # create QuestionGradeReport
+
+    subm = kwargs.get('instance', None)
+    assert subm is not None, "Submission is empty"
+    # print subm.get_grade()
+    # print Question.PROGRAMMING
+    # print subm.question
+    # print subm.created_by
+
+    obj, created = QuestionGradeReport.objects.update_or_create(
+        student=subm.created_by,
+        question_id=subm.question.id,
+        type=Question.PROGRAMMING,
+        score__gte=subm.get_grade(),
+        defaults={'score': subm.get_grade()})
+
+    print obj, created
+
+
+@receiver(post_save, sender=McqSubmission)
+def McqSubmissionSaved(sender, **kwargs):
+    # create QuestionGradeReport
+    pass
+
+
+@receiver(post_save, sender=BlankSubmission)
+def BlankSubmissionSaved(sender, **kwargs):
+    # create QuestionGradeReport
+    pass
+
+
+@receiver(post_save, sender=CheckoffSubmission)
+def CheckoffSubmissionSaved(sender, **kwargs):
+    # create QuestionGradeReport
+    pass
