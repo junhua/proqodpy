@@ -4,6 +4,10 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField
 from types import *
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from myapp.analytics.models import QuestionGradeReport
+from myapp.courses.models import Question
 
 
 class Submission(models.Model):
@@ -248,3 +252,42 @@ class McqProgress(Progress):
     question = models.ForeignKey(
         "courses.Mcq",
     )
+
+
+def submission_saved(sender, **kwargs):
+    subm = kwargs.get('instance', None)
+    qn_type = kwargs.get('qn_type', None)
+    assert subm is not None, "Submission is empty"
+
+    obj, created = QuestionGradeReport.objects.update_or_create(
+        student=subm.created_by,
+        question_id=subm.question.id,
+        type=qn_type,
+        score__gte=subm.get_grade(),
+        defaults={'score': subm.get_grade()})
+
+    return obj, created
+
+
+@receiver(post_save, sender=CodeSubmission)
+def CodeSubmissionSaved(sender, **kwargs):
+    kwargs['qn_type'] = Question.PROGRAMMING
+    return submission_saved(sender,  **kwargs)
+
+
+@receiver(post_save, sender=McqSubmission)
+def McqSubmissionSaved(sender, **kwargs):
+    kwargs['qn_type'] = Question.MCQ
+    return submission_saved(sender,  **kwargs)
+
+
+@receiver(post_save, sender=BlankSubmission)
+def BlankSubmissionSaved(sender, **kwargs):
+    kwargs['qn_type'] = Question.BLANKS
+    return submission_saved(sender,  **kwargs)
+
+
+@receiver(post_save, sender=CheckoffSubmission)
+def CheckoffSubmissionSaved(sender, **kwargs):
+    kwargs['qn_type'] = Question.CHECKOFF
+    return submission_saved(sender,  **kwargs)
