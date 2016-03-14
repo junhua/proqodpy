@@ -4,7 +4,8 @@ Django==1.9
 django-cors-headers==1.1.0
 django-filter==0.11.0
 django-guardian==1.3.2
-djangorestframework==3.3.1
+djangorestframework==3.3.2
+djangorestframework-jwt==1.7.2
 djet==0.1.0
 djoser==0.4.0
 guppy==0.1.10
