@@ -177,6 +177,7 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'log/email')
 # EMAIL_SSL_CERTFILE
 
 import sys
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': 'True',
@@ -222,8 +223,8 @@ LOGGING = {
     'loggers': {
         'django.request': {
             'handlers': ['console', 'file'],
-            'level': 'ERROR',
-            'propogate': False,
+            'level': 'DEBUG',
+            'propogate': True,
         },
         'django.db': {
             'handlers': ['console'],

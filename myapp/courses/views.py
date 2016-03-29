@@ -229,7 +229,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
-    """ API endpoint for listing and creating Blank Question """
+    """ API endpoint for listing and creating Programming Question """
     queryset = ProgrammingQuestion.objects.all()
     serializer_class = ProgrammingQuestionSerializer
 
