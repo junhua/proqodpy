@@ -19,7 +19,7 @@ class UnittestEntrySerializer(serializers.ModelSerializer):
             'actual_output',
             'is_correct',
             'visibility',
-            )
+        )
 
 
 class CodeSubmissionSerializer(serializers.ModelSerializer):
@@ -182,7 +182,7 @@ class ProgrammingQuestionProgressSerializer(serializers.ModelSerializer):
         queryset=User.objects.filter(user_type=0)
     )
     question = serializers.PrimaryKeyRelatedField(
-        queryset=ProgrammingQuestion.objects.all() 
+        queryset=ProgrammingQuestion.objects.all()
     )
 
     class Meta:
