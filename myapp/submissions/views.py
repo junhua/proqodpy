@@ -8,6 +8,8 @@ from myapp.courses.models import UnitTest
 from myapp.analytics.models import PerformanceReport
 from radon.metrics import mi_parameters, mi_compute
 from radon import raw
+
+import rest_framework_jwt
 # import sys
 
 
@@ -18,8 +20,8 @@ class DefaultsMixin(object):
     filtering and pagination
     """
     authentication_classes = (
-        authentication.BasicAuthentication,
         authentication.TokenAuthentication,
+        rest_framework_jwt.authentication.JSONWebTokenAuthentication,
     )
     permission_classes = (
         permissions.IsAuthenticated,
