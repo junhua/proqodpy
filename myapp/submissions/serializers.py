@@ -17,8 +17,9 @@ class UnittestEntrySerializer(serializers.ModelSerializer):
             'inputs',
             'expected_output',
             'actual_output',
-            'is_correct'
-            )
+            'is_correct',
+            'visibility',
+        )
 
 
 class CodeSubmissionSerializer(serializers.ModelSerializer):
@@ -109,7 +110,6 @@ class BlankSubmissionSerializer(serializers.ModelSerializer):
     )
     type = serializers.IntegerField(
         default=Question.BLANKS, read_only=True)
-
     evaluation = serializers.ListField(
         child=serializers.BooleanField(),
     )

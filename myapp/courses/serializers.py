@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from authnz.serializers import UserSerializer
 from .models import *
 
 User = get_user_model()
@@ -79,8 +80,9 @@ class McqSerializer(serializers.ModelSerializer):
             'number',
             'type',
             'description',
-            'solution',
-            'choices'
+            # 'solution',
+            'choices',
+            'max_score',
         )
 
 
@@ -105,7 +107,25 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'description',
             # 'solution',
             'blank_parts',
-            'solution_set'
+            'solution_set',
+            'max_score'
+        )
+
+
+class DynamicTestSerializer(serializers.ModelSerializer):
+    question = serializers.PrimaryKeyRelatedField(
+        queryset=ProgrammingQuestion.objects.order_by('id')
+    )
+
+    class Meta:
+        model = DynamicTest
+        fields = (
+            'id',
+            'visibility',
+            'type',
+            'test_content',
+            'test_code',
+            'question',
         )
 
 
@@ -152,7 +172,8 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
             'solution',
             'default_code',
             'code_signature',
-            'unittests'
+            'unittests',
+            'max_score'
         )
 
 
@@ -170,42 +191,49 @@ class CheckoffQuestionSerializer(serializers.ModelSerializer):
             'number',
             'type',
             'description',
+            'max_score'
             # 'solution',
             # 'default_code',
             # 'code_signature',
         )
 
 
-# class QuestionSerializer(serializers.ModelSerializer):
+class CohortClassSerializer(serializers.ModelSerializer):
+    course = serializers.PrimaryKeyRelatedField(
+        queryset=Course.objects.all()
+    )
+    teachers = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=User.objects.filter(user_type=1)
+    )
+    students = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=User.objects.filter(user_type=0)
+    )
 
-#     """docstring for QuestionSerializer"""
-#     assessment = serializers.PrimaryKeyRelatedField(
-#         queryset=Assessment.objects.all()
-#     )
-#     blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
-#     mcq_choices = MultipleChoiceSerializer(many=True, read_only=True)
-
-#     class Meta:
-#         model = Question
-#         fields = (
-#             'id',
-#             'assessment',
-#             'question_num',
-#             'type',
-#             'title',
-#             'description',
-#             'solution',
-#             'default_code',
-#             'blank_parts',
-#             'mcq_choices',
-#             'code_signature',
-#         )
+    class Meta:
+        model = CohortClass
+        fields = (
+            'id',
+            'label',
+            'teachers',
+            'students',
+            'course',
+        )
+        search_fields = ('school', )
+        ordering_fields = ('school', 'department', 'id', )
 
 
 class CourseSerializer(serializers.ModelSerializer):
 
-    participants = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=User.objects.order_by('id')
+    # participants = serializers.PrimaryKeyRelatedField(
+    #     many=True, queryset=User.objects.order_by('id')
+    # )
+
+    # cohort_classes = serializers.PrimaryKeyRelatedField(
+    #     many=True, queryset=CohortClass.objects.all()
+    # )
+
+    cohort_classes = CohortClassSerializer(
+        many=True, read_only=True
     )
 
     class Meta:
@@ -221,15 +249,37 @@ class CourseSerializer(serializers.ModelSerializer):
             'programming_language',
             'start_date',
             'end_date',
-            'participants',
+            'cohort_classes',
+            # 'participants',
         )
         search_fields = ('school', )
         ordering_fields = ('school', 'department', 'id', )
 
 
-class AssessmentSerializer(serializers.ModelSerializer):
+class WeekSerializer(serializers.ModelSerializer):
     course = serializers.PrimaryKeyRelatedField(
         queryset=Course.objects.all()
+    )
+
+    class Meta:
+        model = Week
+        fields = (
+            'id',
+            'course',
+            'number',
+            'instruction'
+        )
+        search_fields = ('number', 'course')
+        ordering_fields = ('number', )
+
+
+class AssessmentSerializer(serializers.ModelSerializer):
+    cohort_classes = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=CohortClass.objects.all()
+    )
+
+    week = serializers.PrimaryKeyRelatedField(
+        queryset=Week.objects.all()
     )
 
     type = serializers.ChoiceField(
@@ -255,6 +305,23 @@ class AssessmentSerializer(serializers.ModelSerializer):
         many=True,
     )
 
+    # def create(self, validated_data):
+
+    #     cohort_classes = get_list_or_404(
+    # CohortClass, pk__in=[cohort.id for cohort in
+    # validated_data['cohort_classes']])
+
+    #     assessment = Assessment.objects.create(
+    #         cohort_classes=cohort_classes,
+    #         type=validated_data['type'],
+    #         label=validated_data['label'],
+    #         start_datetime=validated_data['start_datetime'],
+    #         end_datetime=validated_data['end_datetime'],
+    #         week=validated_data['week'],
+    #     )
+
+    #     return assessment
+
     class Meta:
         model = Assessment
         fields = (
@@ -263,7 +330,8 @@ class AssessmentSerializer(serializers.ModelSerializer):
             'label',
             'start_datetime',
             'end_datetime',
-            'course',
+            'cohort_classes',
+            'week',
             'programmingquestion_set',
             'blankquestion_set',
             'checkoffquestion_set',

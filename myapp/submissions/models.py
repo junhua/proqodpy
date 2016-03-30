@@ -3,6 +3,11 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.utils import timezone
 from django.contrib.postgres.fields import ArrayField
+from types import *
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from myapp.analytics.models import QuestionGradeReport
+from myapp.courses.models import Question
 
 
 class Submission(models.Model):
@@ -45,6 +50,11 @@ class Submission(models.Model):
 
 class UnittestEntry(models.Model):
 
+    visibility = models.BooleanField(
+        _('visibility'),
+        default=True
+    )
+
     actual_output = models.CharField(
         _("actual_output"),
         null=True,
@@ -55,7 +65,11 @@ class UnittestEntry(models.Model):
         _("is_correct"),
     )
 
-    inputs = models.CharField(max_length=255)
+    inputs = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True
+    )
 
     expected_output = models.CharField(
         _("expected_output"),
@@ -80,7 +94,7 @@ class UnittestEntry(models.Model):
 class CodeSubmission(Submission):
     question = models.ForeignKey(
         "courses.ProgrammingQuestion",
-        related_name="+"
+        related_name="submissions"
     )
     code = models.TextField(
         _("code"),
@@ -94,21 +108,18 @@ class CodeSubmission(Submission):
         on_delete=models.CASCADE,
     )
 
-    # def get_score(self):
-    #     score = None
-    #     code = self.code
-    #     unittest_set = self.question.unittests
-    #     correct, total = 0.0, len(unittest_set)
-
-    #     for unittest in unittest_set:
-    #         correct+=unittest.run.get('pass')
-    #     return score
+    def get_grade(self):
+        assert self.performance_report.correctness is not None, "correctness is null: %r" % self.performance_report.correctness
+        assert self.question.max_score is not None, "max_score is null: %r" % self.question.max_score
+        assert type(
+            self.question.max_score) is IntType, "max_score is not an integer: %r" % self.question.max_score
+        return max(0., self.performance_report.correctness * self.question.max_score)
 
 
 class BlankSubmission(Submission):
     question = models.ForeignKey(
         "courses.BlankQuestion",
-        related_name="+"
+        related_name="submissions"
     )
 
     blanks = ArrayField(
@@ -126,17 +137,37 @@ class BlankSubmission(Submission):
         help_text=_("list of blank evaluation")
     )
 
+    def get_grade(self):
+        assert type(
+            self.evaluation) is ListType, "evaluation is not list type: %r" % self.evaluation
+        assert len(
+            self.evaluation) > 0, "evaluation is empty: %r" % self.evaluation
+        assert type(self.evaluation[
+                    0]) is BooleanType, "evaluation is not boolean: %r" % self.evaluation[0]
+        assert self.question.max_score is not None, "max_score is null: %r" % self.question.max_score
+        assert type(
+            self.question.max_score) is IntType, "max_score is not an integer: %r" % self.question.max_score
+        return round((sum(self.evaluation) + 0.) / len(self.evaluation), 2)
+
 
 class McqSubmission(Submission):
     question = models.ForeignKey(
         "courses.Mcq",
-        related_name="+"
+        related_name="submissions"
     )
 
     answer = models.OneToOneField(
         "courses.MultipleChoice",
         related_name="+"
     )
+
+    def get_grade(self):
+        assert self.answer.is_correct is not None
+        assert type(self.answer.is_correct) is bool
+        assert self.question.max_score is not None, "max_score is null: %r" % self.question.max_score
+        assert type(
+            self.question.max_score) is IntType, "max_score is not an integer: %r" % self.question.max_score
+        return int(self.answer.is_correct)
 
 
 class CheckoffSubmission(Submission):
@@ -162,7 +193,8 @@ class Progress(models.Model):
     Models to store student's progress for each question.
     Student and Question is unique_together
     """
-    student = models.OneToOneField(
+
+    student = models.ForeignKey(
         "authnz.ProqodUser",
         related_name="+"
     )
@@ -182,7 +214,7 @@ class Progress(models.Model):
     )
 
     class Meta:
-        unique_together = ('student', 'question')
+        # unique_together = ('student', 'question')
         abstract = True
 
 
@@ -192,9 +224,8 @@ class ProgrammingQuestionProgress(Progress):
         null=True,
         blank=True,
     )
-    question = models.OneToOneField(
+    question = models.ForeignKey(
         "courses.ProgrammingQuestion",
-        related_name="+"
     )
 
 
@@ -206,20 +237,57 @@ class BlankQuestionProgress(Progress):
             null=True,
         )
     )
-    question = models.OneToOneField(
+    question = models.ForeignKey(
         "courses.BlankQuestion",
-        related_name="+"
     )
 
 
 class McqProgress(Progress):
-    choice = models.OneToOneField(
+    choice = models.ForeignKey(
         "courses.MultipleChoice",
         max_length=50,
         null=True,
         blank=True,
     )
-    question = models.OneToOneField(
+    question = models.ForeignKey(
         "courses.Mcq",
-        related_name="+"
     )
+
+
+def submission_saved(sender, **kwargs):
+    subm = kwargs.get('instance', None)
+    qn_type = kwargs.get('qn_type', None)
+    assert subm is not None, "Submission is empty"
+
+    obj, created = QuestionGradeReport.objects.update_or_create(
+        student=subm.created_by,
+        question_id=subm.question.id,
+        type=qn_type,
+        score__gte=subm.get_grade(),
+        defaults={'score': subm.get_grade()})
+
+    return obj, created
+
+
+@receiver(post_save, sender=CodeSubmission)
+def CodeSubmissionSaved(sender, **kwargs):
+    kwargs['qn_type'] = Question.PROGRAMMING
+    return submission_saved(sender,  **kwargs)
+
+
+@receiver(post_save, sender=McqSubmission)
+def McqSubmissionSaved(sender, **kwargs):
+    kwargs['qn_type'] = Question.MCQ
+    return submission_saved(sender,  **kwargs)
+
+
+@receiver(post_save, sender=BlankSubmission)
+def BlankSubmissionSaved(sender, **kwargs):
+    kwargs['qn_type'] = Question.BLANKS
+    return submission_saved(sender,  **kwargs)
+
+
+@receiver(post_save, sender=CheckoffSubmission)
+def CheckoffSubmissionSaved(sender, **kwargs):
+    kwargs['qn_type'] = Question.CHECKOFF
+    return submission_saved(sender,  **kwargs)
