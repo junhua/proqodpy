@@ -7,6 +7,7 @@ from .models import *
 from myapp.courses.models import *
 from myapp.courses.serializers import *
 
+import rest_framework_jwt
 
 class DefaultsMixin(object):
 
@@ -16,7 +17,7 @@ class DefaultsMixin(object):
     """
 
     authentication_classes = (
-        authentication.BasicAuthentication,
+        rest_framework_jwt.authentication.JSONWebTokenAuthentication,
         authentication.TokenAuthentication,
     )
     permission_classes = (

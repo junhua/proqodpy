@@ -10,6 +10,7 @@ from .serializers import *
 from .models import *
 
 import datetime
+import rest_framework_jwt
 
 # import itertools
 
@@ -22,8 +23,9 @@ class DefaultsMixin(object):
     """
 
     authentication_classes = (
-        authentication.BasicAuthentication,
+        # authentication.BasicAuthentication,
         authentication.TokenAuthentication,
+        rest_framework_jwt.authentication.JSONWebTokenAuthentication,
     )
     permission_classes = (
         permissions.IsAuthenticated,
@@ -227,7 +229,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
-    """ API endpoint for listing and creating Blank Question """
+    """ API endpoint for listing and creating Programming Question """
     queryset = ProgrammingQuestion.objects.all()
     serializer_class = ProgrammingQuestionSerializer
 

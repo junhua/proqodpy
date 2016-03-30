@@ -8,7 +8,7 @@ from rest_framework import (viewsets,
 from .models import ProqodUser
 
 from .serializers import UserSerializer
-
+import rest_framework_jwt
 
 class DefaultsMixin(object):
 
@@ -18,7 +18,7 @@ class DefaultsMixin(object):
     """
 
     authentication_classes = (
-        authentication.BasicAuthentication,
+        rest_framework_jwt.authentication.JSONWebTokenAuthentication,
         authentication.TokenAuthentication,
     )
     permission_classes = (

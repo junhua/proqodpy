@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = (
 
     # REST
     'rest_framework',
+    'rest_framework_jwt',
     'rest_framework.authtoken',
     'djoser',
     'django_filters',
@@ -83,7 +85,7 @@ CORS_ORIGIN_WHITELIST = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
@@ -175,6 +177,7 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'log/email')
 # EMAIL_SSL_CERTFILE
 
 import sys
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': 'True',
@@ -220,8 +223,8 @@ LOGGING = {
     'loggers': {
         'django.request': {
             'handlers': ['console', 'file'],
-            'level': 'ERROR',
-            'propogate': False,
+            'level': 'DEBUG',
+            'propogate': True,
         },
         'django.db': {
             'handlers': ['console'],
@@ -243,6 +246,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'proqod',
     }
+}
+
+# JWT
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=12),
 }
 
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
