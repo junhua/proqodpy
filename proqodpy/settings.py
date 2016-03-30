@@ -19,12 +19,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+^ya-4eus4sv&idx!-*1lol+5!^eker-&i@75yc%h$l(8)h5u4'
+# SECRET_KEY = '+^ya-4eus4sv&idx!-*1lol+5!^eker-&i@75yc%h$l(8)h5u4'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*.proqod.com','localhost']
+ALLOWED_HOSTS = ['*.proqod.com', 'localhost']
 
 AUTH_USER_MODEL = 'authnz.ProqodUser'
 
@@ -113,7 +114,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOG_DIR = os.path.join(BASE_DIR, 'log')
 FIXTURE_DIR = (os.path.join(BASE_DIR, 'dev/data'),
 
-)
+               )
 
 # STATICFILES_DIRS = (
 #    os.path.join(BASE_DIR, 'static'),
@@ -238,12 +239,24 @@ LOGGING = {
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'proqod',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'proqod',
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
+        'PASSWORD': os.environ['DB_PASS'],
+        'HOST': os.environ['DB_SERVICE'],
+        'PORT': os.environ['DB_PORT']
     }
 }
+
 
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
