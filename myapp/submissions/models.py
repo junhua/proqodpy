@@ -173,7 +173,7 @@ class McqSubmission(Submission):
 class CheckoffSubmission(Submission):
     question = models.ForeignKey(
         "courses.CheckoffQuestion",
-        related_name="+"
+        related_name="submissions"
     )
     checked = models.BooleanField(
         _("checked"),
@@ -226,6 +226,7 @@ class ProgrammingQuestionProgress(Progress):
     )
     question = models.ForeignKey(
         "courses.ProgrammingQuestion",
+        related_name="progress"
     )
 
 
@@ -239,6 +240,7 @@ class BlankQuestionProgress(Progress):
     )
     question = models.ForeignKey(
         "courses.BlankQuestion",
+        related_name="progress"
     )
 
 
@@ -251,6 +253,7 @@ class McqProgress(Progress):
     )
     question = models.ForeignKey(
         "courses.Mcq",
+        related_name="progress"
     )
 
 

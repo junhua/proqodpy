@@ -17,9 +17,9 @@ import rest_framework_jwt
 
 class DefaultsMixin(object):
 
-    """ 
-    Default settings for view auth, permissions, 
-    filtering and pagination 
+    """
+    Default settings for view auth, permissions,
+    filtering and pagination
     """
 
     authentication_classes = (
@@ -113,10 +113,15 @@ class CohortClassViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
 class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
-    """ 
-    API endpoint for listing and creating assessment.  
+    """
+    API endpoint for listing and creating assessment.
 
     LAB, QUIZ, PROJECT, EXAM, COHORT, HOMEWORK, OPTIONAL = range(7)
+
+    If sp_required is included in the header or param (e.g. True), 
+    Assessment will return question sets with submissions and progress.
+    This only applies to single assessment retrieval
+
     """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
@@ -141,6 +146,7 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     def retrieve(self, request, pk=None):
         user = request.user
+
         if user.user_type == 1 or user.is_admin == 1:
             queryset = Assessment.objects.all()
         else:
@@ -148,7 +154,11 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 start_datetime__lte=datetime.datetime.now())
 
         assessment = get_object_or_404(queryset, pk=pk)
-        serializer = AssessmentSerializer(assessment)
+        if request.query_params("sp_required") or request.get("sp_required"):
+            serializer = AssessmentWithSubmissionAndProgressSerializer(
+                assessment)
+        else:
+            serializer = AssessmentSerializer(assessment)
         return Response(serializer.data)
 
     @list_route(methods=['get'], permission_classes=[permissions.IsAdminUser])
@@ -177,15 +187,6 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 permission_classes=[permissions.IsAuthenticated]
                 )
     def by_cohort_class(self, request):
-        # user = request.user
-        # if user.user_type == 1 or user.is_admin == 1:
-        #     queryset = Assessment.objects.all()
-        # else:
-        #     queryset = Assessment.objects.filter(
-        #         start_datetime__lte=datetime.datetime.now())
-
-        # serializer = AssessmentSerializer(queryset, many=True)
-        # return Response(serializer.data)
 
         cohort_class = request.data.get(
             'cohort_class', None) or request.query_params.get(
@@ -290,11 +291,11 @@ class BlankSolutionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """
-    API endpoint for listing and creating test case  
+    API endpoint for listing and creating test case
 
-    ## Endpoints
+    # Endpoints
 
-    raw() - REMOVED, used to return the raw code of the test case  
+    raw() - REMOVED, used to return the raw code of the test case
     run(code) - REMOVED, moved to /prog_qn_progress/run/
 
     """
@@ -367,11 +368,11 @@ class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class DynamicTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """
-    API endpoint for listing and creating test case  
+    API endpoint for listing and creating test case
 
-    ## Endpoints
+    # Endpoints
 
-    raw() - REMOVED, used to return the raw code of the test case  
+    raw() - REMOVED, used to return the raw code of the test case
     run(code) - REMOVED, moved to /prog_qn_progress/run/
 
     """
