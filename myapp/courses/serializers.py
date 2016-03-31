@@ -48,7 +48,10 @@ class BlankSolutionSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=BlankQuestion.objects.all()
     )
-
+    submissions = BlankSubmissionSerializer(
+        many=True, read_only=True
+        )
+    from myapp.submissions.serializers import BlankSubmissionSerializer
     class Meta:
         model = BlankSolution
         fields = (
@@ -56,11 +59,11 @@ class BlankSolutionSerializer(serializers.ModelSerializer):
             'seq',
             'content',
             'question',
+            'submissions'
         )
 
     def __str__(self):
         return "%s" % self.id
-
 
 class McqSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
@@ -84,10 +87,12 @@ class McqSerializer(serializers.ModelSerializer):
             # 'solution',
             'choices',
             'max_score',
+
         )
 
 
-class McqWithSubmissionAndProgressSerializer(serializers.ModelSerializer):
+
+class McqWithSubmissionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()
     )
@@ -99,12 +104,9 @@ class McqWithSubmissionAndProgressSerializer(serializers.ModelSerializer):
     )
 
     submissions = McqSubmissionSerializer(
-        many=True, read_only=True
-    )
-
-    progress = McqProgressSerializer(
-        read_only=True
-    )
+        many=True, read_only=True)
+    # progress = McqProgressSerializer(
+    #     many=True, read_only=True)
 
     class Meta:
         model = Mcq
@@ -118,7 +120,7 @@ class McqWithSubmissionAndProgressSerializer(serializers.ModelSerializer):
             'choices',
             'max_score',
             'submissions',
-            'progress'
+            # 'progress'
         )
 
 
@@ -148,7 +150,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
         )
 
 
-class BlankQuestionWithSubmissionAndProgressSerializer(serializers.ModelSerializer):
+class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()
     )
@@ -166,9 +168,9 @@ class BlankQuestionWithSubmissionAndProgressSerializer(serializers.ModelSerializ
         many=True, read_only=True
     )
 
-    progress = BlankQuestionProgressSerializer(
-        read_only=True
-    )
+    # progress = BlankQuestionProgressSerializer(
+    #     read_only=True
+    # )
 
     class Meta:
         model = BlankQuestion
@@ -183,7 +185,7 @@ class BlankQuestionWithSubmissionAndProgressSerializer(serializers.ModelSerializ
             'solution_set',
             'max_score',
             'submissions',
-            'progress'
+            # 'progress'
         )
 
 
@@ -252,7 +254,7 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
         )
 
 
-class ProgrammingQuestionWithSubmissionAndProgressSerializer(serializers.ModelSerializer):
+class ProgrammingQuestionWithSubmissionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()
     )
@@ -265,9 +267,10 @@ class ProgrammingQuestionWithSubmissionAndProgressSerializer(serializers.ModelSe
     submissions = CodeSubmissionSerializer(
         many=True, read_only=True
     )
-    progress = ProgrammingQuestionProgressSerializer(
-        read_only=True
-    )
+
+    # progress = ProgrammingQuestionProgressSerializer(
+    #     read_only=True
+    # )
 
     class Meta:
         model = ProgrammingQuestion
@@ -283,7 +286,7 @@ class ProgrammingQuestionWithSubmissionAndProgressSerializer(serializers.ModelSe
             'unittests',
             'max_score',
             'submissions',
-            'progress'
+            # 'progress'
         )
 
 
@@ -316,7 +319,7 @@ class CheckoffQuestionWithSubmissionSerializer(serializers.ModelSerializer):
 
     # though single submissibon is allowed, using name submissions for
     # consistency with other types of questions
-    submissions = CheckoffSubmissionSerializer(read_only=True)
+    submissions = CheckoffSubmissionSerializer(many=True, read_only=True)
 
     class Meta:
         model = CheckoffQuestion
@@ -455,7 +458,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
         )
 
 
-class AssessmentWithSubmissionAndProgressSerializer(serializers.ModelSerializer):
+class AssessmentWithSubmissionSerializer(serializers.ModelSerializer):
     cohort_classes = serializers.PrimaryKeyRelatedField(
         many=True, queryset=CohortClass.objects.all()
     )
@@ -468,16 +471,16 @@ class AssessmentWithSubmissionAndProgressSerializer(serializers.ModelSerializer)
         choices=Assessment.TYPE
     )
 
-    programmingquestion_set = ProgrammingQuestionWithSubmissionAndProgressSerializer(
+    programmingquestion_set = ProgrammingQuestionWithSubmissionSerializer(
         read_only=True,
         many=True,
     )
 
-    blankquestion_set = BlankQuestionWithSubmissionAndProgressSerializer(
+    blankquestion_set = BlankQuestionWithSubmissionSerializer(
         read_only=True,
         many=True,
     )
-    mcq_set = McqWithSubmissionAndProgressSerializer(
+    mcq_set = McqWithSubmissionSerializer(
         read_only=True,
         many=True,
     )

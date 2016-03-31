@@ -229,7 +229,6 @@ class ProgrammingQuestionProgress(Progress):
         related_name="progress"
     )
 
-
 class BlankQuestionProgress(Progress):
     answer_last_saved = ArrayField(
         models.CharField(

@@ -141,6 +141,7 @@ class McqSubmissionSerializer(serializers.ModelSerializer):
         queryset=MultipleChoice.objects.all()
     )
 
+
     class Meta:
         model = McqSubmission
         fields = (
@@ -158,6 +159,7 @@ class CheckoffSubmissionSerializer(serializers.ModelSerializer):
     created_by = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all()
     )
+
     question = serializers.PrimaryKeyRelatedField(
         queryset=CheckoffQuestion.objects.all()
     )
@@ -198,11 +200,11 @@ class ProgrammingQuestionProgressSerializer(serializers.ModelSerializer):
 
 
 class BlankQuestionProgressSerializer(serializers.ModelSerializer):
-    answer_last_saved = serializers.ListField(
-        child=serializers.CharField(max_length=255)
-    )
     student = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.filter(user_type=0)
+    )
+    answer_last_saved = serializers.ListField(
+        child=serializers.CharField(max_length=255)
     )
     question = serializers.PrimaryKeyRelatedField(
         queryset=BlankQuestion.objects.all()
