@@ -154,7 +154,7 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 start_datetime__lte=datetime.datetime.now())
 
         assessment = get_object_or_404(queryset, pk=pk)
-        if request.query_params("sp_required") or request.get("sp_required"):
+        if request.META.get("sp_required"):
             serializer = AssessmentWithSubmissionAndProgressSerializer(
                 assessment)
         else:
