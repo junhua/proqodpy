@@ -330,7 +330,7 @@ class CheckoffSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Mcq Progress """
-    queryset = McqProgress.objects.all()
+    queryset = McqProgress.objects.order_by('date_last_updated')
     serializer_class = McqProgressSerializer
     filter_fields = ['question', 'student']
 
@@ -338,7 +338,7 @@ class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Blank question progress """
-    queryset = BlankQuestionProgress.objects.all()
+    queryset = BlankQuestionProgress.objects.order_by('date_last_updated')
     serializer_class = BlankQuestionProgressSerializer
     filter_fields = ['question', 'student']
 
@@ -346,7 +346,7 @@ class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Programming Question Progress """
-    queryset = ProgrammingQuestionProgress.objects.all()
+    queryset = ProgrammingQuestionProgress.objects.order_by('date_last_updated')
     serializer_class = ProgrammingQuestionProgressSerializer
     filter_fields = ['question', 'student']
 
