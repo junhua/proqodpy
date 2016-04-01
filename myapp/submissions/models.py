@@ -179,6 +179,8 @@ class CheckoffSubmission(Submission):
         _("checked"),
         default=False,
     )
+    def get_grade(self):
+        return 1
 
 
 class Progress(models.Model):
