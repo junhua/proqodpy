@@ -245,7 +245,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 if index % 2:
                     # it is solution, save to database
                     solutions.append(BlankSolution(
-                        index=full_content.index(item),
+                        # index=full_content.index(item),
                         content=item))
                     content += "(bl)(/bl)"
                 else:
@@ -288,7 +288,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 if index % 2:
                     # it is solution, save to database
                     solutions.append(BlankSolution(
-                        index=full_content.index(item),
+                        # index=full_content.index(item),
                         content=item,
                         question_id=pk))
                     content += "(bl)(/bl)"
