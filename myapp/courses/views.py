@@ -11,6 +11,7 @@ from .models import *
 
 import datetime
 import rest_framework_jwt
+import re
 
 # import itertools
 
@@ -229,6 +230,84 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             self.permission_classes = [permissions.IsAdminUser, ]
         return super(self.__class__, self).get_permissions()
 
+    @list_route(methods=['post'], permission_classes=[permissions.IsAdminUser, ])
+    def create_with_content(self, request, pk=None):
+        try:
+
+            # scan through full_content for blanks (bl)(/bl) and split with regex.
+            # the answers will be in odd indexes.
+            full_content = request.data.get("fullContent", "")
+            content = ""
+            solutions = []
+
+            chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", full_content)]
+            for index, item in enumerate(chunked_array):
+                if index % 2:
+                    # it is solution, save to database
+                    solutions.append(BlankSolution(
+                        # index=full_content.index(item),
+                        content=item))
+                    content += "(bl)(/bl)"
+                else:
+                    content += item
+                    # it is content around the solution
+
+            bq = BlankQuestion.objects.create(
+                description=request.data["description"],
+                number=request.data["number"],
+                assessment_id=request.data["assessment"],
+                content=content,
+                full_content=full_content,
+                type=2)
+            bq.save()
+
+            for solution in solutions:
+                solution.question_id = bq.id
+
+            BlankSolution.objects.bulk_create(solutions)
+
+            serializer = BlankQuestionSerializer(bq)
+
+            return Response(serializer.data, status=200)
+        except Exception as e:
+            return Response(e.message, status=400)
+            
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAdminUser, ])
+    def update_with_content(self, request, pk=None):
+
+        try:
+            # scan through full_content for blanks (bl)(/bl) and split with regex.
+
+            full_content = request.data.get("fullContent", "")
+            content = ""
+            solutions = []
+
+            chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", full_content)]
+
+            for index, item in enumerate(chunked_array):
+                if index % 2:
+                    # it is solution, save to database
+                    solutions.append(BlankSolution(
+                        # index=full_content.index(item),
+                        content=item,
+                        question_id=pk))
+                    content += "(bl)(/bl)"
+                else:
+                    content += item
+                    # it is content around the solution
+            
+            # simplest way to recreate all solutions
+            BlankSolution.objects.filter(question_id=pk).delete()
+            BlankSolution.objects.bulk_create(solutions)
+
+            BlankQuestion.objects.filter(id=pk).update(
+                description=request.data["description"],
+                content=content,
+                full_content=full_content)
+
+            return Response([], status=200)
+        except Exception as e:
+            return Response(e.message, status=400)
 
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
@@ -266,16 +345,16 @@ class MultipleChoiceViewSet(DefaultsMixin, viewsets.ModelViewSet):
         return super(self.__class__, self).get_permissions()
 
 
-class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
+# class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
-    """ API endpoint for listing and creating multiple choice """
-    queryset = BlankQuestionContent.objects.all().order_by('part_seq')
-    serializer_class = BlankQuestionContentSerializer
+#     """ API endpoint for listing and creating multiple choice """
+#     queryset = BlankQuestionContent.objects.all().order_by('part_seq')
+#     serializer_class = BlankQuestionContentSerializer
 
-    def get_permissions(self):
-        if self.action in ('create', 'update', 'destroy', 'partial_update'):
-            self.permission_classes = [permissions.IsAdminUser, ]
-        return super(self.__class__, self).get_permissions()
+#     def get_permissions(self):
+#         if self.action in ('create', 'update', 'destroy', 'partial_update'):
+#             self.permission_classes = [permissions.IsAdminUser, ]
+#         return super(self.__class__, self).get_permissions()
 
 
 class BlankSolutionViewSet(DefaultsMixin, viewsets.ModelViewSet):

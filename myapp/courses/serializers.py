@@ -25,25 +25,6 @@ class MultipleChoiceSerializer(serializers.ModelSerializer):
         return "%s" % (self.id)
 
 
-class BlankQuestionContentSerializer(serializers.ModelSerializer):
-    question = serializers.PrimaryKeyRelatedField(
-        queryset=BlankQuestion.objects.all()
-    )
-
-    class Meta:
-        model = BlankQuestionContent
-        fields = (
-            'id',
-            'part_seq',
-            'content',
-            'question',
-        )
-        # read_only_fields = ('type',)
-
-    def __str__(self):
-        return "Q%s Number %s" % (self.question, self.seq)
-
-
 class BlankSolutionSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=BlankQuestion.objects.all()
@@ -56,7 +37,6 @@ class BlankSolutionSerializer(serializers.ModelSerializer):
         model = BlankSolution
         fields = (
             'id',
-            'seq',
             'content',
             'question',
             'submissions'
@@ -131,8 +111,6 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
 
     type = serializers.IntegerField(default=Question.BLANKS, read_only=True)
 
-    blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
-
     solution_set = BlankSolutionSerializer(many=True, read_only=True)
 
     class Meta:
@@ -143,10 +121,10 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'number',
             'type',
             'description',
-            # 'solution',
-            'blank_parts',
             'solution_set',
-            'max_score'
+            'max_score',
+            'full_content',
+            'content'
         )
 
 
@@ -158,8 +136,6 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
     type = serializers.IntegerField(
         default=Question.BLANKS, read_only=True)
 
-    blank_parts = BlankQuestionContentSerializer(
-        many=True, read_only=True)
 
     solution_set = BlankSolutionSerializer(
         many=True, read_only=True)
@@ -167,7 +143,6 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
     submissions = BlankSubmissionSerializer(
         many=True, read_only=True
     )
-
     # progress = BlankQuestionProgressSerializer(
     #     read_only=True
     # )
@@ -181,10 +156,10 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
             'type',
             'description',
             # 'solution',
-            'blank_parts',
             'solution_set',
             'max_score',
             'submissions',
+            'content'
             # 'progress'
         )
 
