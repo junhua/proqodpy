@@ -39,8 +39,7 @@ class BlankSolutionSerializer(serializers.ModelSerializer):
             'id',
             'content',
             'question',
-            'submissions',
-            'index'
+            'submissions'
         )
 
     def __str__(self):
