@@ -235,33 +235,43 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         print "*"*20
         print request.data
         # try:
+
+        # scan through fullContent for blanks (bl)(/bl) and split with regex.
+        # the answers will be in odd indexes.
+        fullContent = request.data.get("fullContent", "")
+        content = ""
+        solutions = []
+
+        chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", fullContent)]
+        for index, item in enumerate(chunked_array):
+            if index % 2:
+                # it is solution, save to database
+                solutions.append(BlankSolution(
+                    index=fullContent.index(item),
+                    content=item))
+            else:
+                content = content.join(item)
+                # it is content around the solution
+
         bq = BlankQuestion.objects.create(
             description=request.data["description"],
             number=request.data["number"],
             assessment_id=request.data["assessment"],
+            content=content,
             type=2)
         bq.save()
 
-        # scan through fullContent for blanks (bl)(/bl) and split with regex.
-        # the answers will be in odd indexes.
-        content = request.data.get("fullContent", "")
+        for solution in solutions:
+            solution.question_id = bq.id
 
-        chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", content)]
-        for index, item in enumerate(chunked_array):
-            if index % 2:
-                # it is the content around the blank
-                print "content is %s", item
-            else:
-                # it is the solution to the blank
-                print "solution is %s", item
+        BlankSolution.objects.bulk_create(solutions)
 
+        serializer = BlankQuestionSerializer(bq)
 
-        seralizer = BlankQuestionSerializer(bq)
-
-        return Response(bq.data, status=200)
+        return Response(serializer.data, status=200)
         # except:
         #     return Response([], status=400)
-        
+
 
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 

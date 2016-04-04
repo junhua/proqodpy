@@ -56,7 +56,6 @@ class BlankSolutionSerializer(serializers.ModelSerializer):
         model = BlankSolution
         fields = (
             'id',
-            'seq',
             'content',
             'question',
             'submissions'
@@ -131,8 +130,6 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
 
     type = serializers.IntegerField(default=Question.BLANKS, read_only=True)
 
-    # blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
-
     solution_set = BlankSolutionSerializer(many=True, read_only=True)
 
     class Meta:
@@ -143,8 +140,6 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'number',
             'type',
             'description',
-            # 'solution',
-            'blank_parts',
             'solution_set',
             'max_score'
         )
@@ -158,8 +153,6 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
     type = serializers.IntegerField(
         default=Question.BLANKS, read_only=True)
 
-    # blank_parts = BlankQuestionContentSerializer(
-    #     many=True, read_only=True)
 
     solution_set = BlankSolutionSerializer(
         many=True, read_only=True)
@@ -181,7 +174,6 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
             'type',
             'description',
             # 'solution',
-            'blank_parts',
             'solution_set',
             'max_score',
             'submissions',
