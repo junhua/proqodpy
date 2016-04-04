@@ -11,6 +11,7 @@ from .models import *
 
 import datetime
 import rest_framework_jwt
+import re
 
 # import itertools
 
@@ -229,6 +230,37 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             self.permission_classes = [permissions.IsAdminUser, ]
         return super(self.__class__, self).get_permissions()
 
+    @list_route(methods=['post'], permission_classes=[permissions.IsAdminUser, ])
+    def create_with_content(self, request, pk=None):
+        print "*"*20
+        print request.data
+        # try:
+        bq = BlankQuestion.objects.create(
+            description=request.data["description"],
+            number=request.data["number"],
+            assessment_id=request.data["assessment"],
+            type=2)
+        bq.save()
+
+        # scan through fullContent for blanks (bl)(/bl) and split with regex.
+        # the answers will be in odd indexes.
+        content = request.data.get("fullContent", "")
+
+        chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", content)]
+        for index, item in enumerate(chunked_array):
+            if index % 2:
+                # it is the content around the blank
+                print "content is %s", item
+            else:
+                # it is the solution to the blank
+                print "solution is %s", item
+
+
+        seralizer = BlankQuestionSerializer(bq)
+
+        return Response(bq.data, status=200)
+        # except:
+        #     return Response([], status=400)
 
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
