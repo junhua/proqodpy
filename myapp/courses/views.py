@@ -345,30 +345,6 @@ class MultipleChoiceViewSet(DefaultsMixin, viewsets.ModelViewSet):
         return super(self.__class__, self).get_permissions()
 
 
-# class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
-
-#     """ API endpoint for listing and creating multiple choice """
-#     queryset = BlankQuestionContent.objects.all().order_by('part_seq')
-#     serializer_class = BlankQuestionContentSerializer
-
-#     def get_permissions(self):
-#         if self.action in ('create', 'update', 'destroy', 'partial_update'):
-#             self.permission_classes = [permissions.IsAdminUser, ]
-#         return super(self.__class__, self).get_permissions()
-
-
-class BlankSolutionViewSet(DefaultsMixin, viewsets.ModelViewSet):
-
-    """ API endpoint for listing and creating multiple choice """
-    queryset = BlankSolution.objects.all()
-    serializer_class = BlankSolutionSerializer
-
-    def get_permissions(self):
-        if self.action in ('create', 'update', 'destroy', 'partial_update'):
-            self.permission_classes = [permissions.IsAdminUser, ]
-        return super(self.__class__, self).get_permissions()
-
-
 class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """
