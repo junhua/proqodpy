@@ -144,7 +144,6 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
     submissions = BlankSubmissionSerializer(
         many=True, read_only=True
     )
-
     # progress = BlankQuestionProgressSerializer(
     #     read_only=True
     # )

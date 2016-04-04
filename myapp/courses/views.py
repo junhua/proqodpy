@@ -247,6 +247,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                     solutions.append(BlankSolution(
                         index=full_content.index(item),
                         content=item))
+                    content += "(bl)(/bl)"
                 else:
                     content += item
                     # it is content around the solution
@@ -273,39 +274,39 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAdminUser, ])
     def update_with_content(self, request, pk=None):
-        
-        # try:
-        # scan through full_content for blanks (bl)(/bl) and split with regex.
 
-        full_content = request.data.get("fullContent", "")
-        content = ""
-        solutions = []
+        try:
+            # scan through full_content for blanks (bl)(/bl) and split with regex.
 
-        chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", full_content)]
+            full_content = request.data.get("fullContent", "")
+            content = ""
+            solutions = []
 
-        for index, item in enumerate(chunked_array):
-            if index % 2:
-                # it is solution, save to database
-                solutions.append(BlankSolution(
-                    index=full_content.index(item),
-                    content=item,
-                    question_id=pk))
-            else:
-                content += item
-                # it is content around the solution
-        
-        # simplest way to recreate all solutions
-        BlankSolution.objects.filter(question_id=pk).delete()
-        BlankSolution.objects.bulk_create(solutions)
+            chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", full_content)]
 
-        BlankQuestion.objects.filter(id=pk).update(
-            description=request.data["description"],
-            content=content,
-            full_content=full_content)
+            for index, item in enumerate(chunked_array):
+                if index % 2:
+                    # it is solution, save to database
+                    solutions.append(BlankSolution(
+                        index=full_content.index(item),
+                        content=item,
+                        question_id=pk))
+                else:
+                    content += item
+                    # it is content around the solution
+            
+            # simplest way to recreate all solutions
+            BlankSolution.objects.filter(question_id=pk).delete()
+            BlankSolution.objects.bulk_create(solutions)
 
-        return Response([], status=200)
-        # except:
-        #     return Response([], status=400)
+            BlankQuestion.objects.filter(id=pk).update(
+                description=request.data["description"],
+                content=content,
+                full_content=full_content)
+
+            return Response([], status=200)
+        except:
+            return Response([], status=400)
 
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
