@@ -291,6 +291,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                         index=full_content.index(item),
                         content=item,
                         question_id=pk))
+                    content += "(bl)(/bl)"
                 else:
                     content += item
                     # it is content around the solution
