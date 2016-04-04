@@ -269,9 +269,9 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             serializer = BlankQuestionSerializer(bq)
 
             return Response(serializer.data, status=200)
-        except:
-            return Response([], status=400)
-
+        except Exception as e:
+            return Response(e.message, status=400)
+            
     @detail_route(methods=['put'], permission_classes=[permissions.IsAdminUser, ])
     def update_with_content(self, request, pk=None):
 
@@ -306,8 +306,8 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 full_content=full_content)
 
             return Response([], status=200)
-        except:
-            return Response([], status=400)
+        except Exception as e:
+            return Response(e.message, status=400)
 
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
