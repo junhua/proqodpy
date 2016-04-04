@@ -236,18 +236,18 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         print request.data
         # try:
 
-        # scan through fullContent for blanks (bl)(/bl) and split with regex.
+        # scan through full_content for blanks (bl)(/bl) and split with regex.
         # the answers will be in odd indexes.
-        fullContent = request.data.get("fullContent", "")
+        full_content = request.data.get("fullContent", "")
         content = ""
         solutions = []
 
-        chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", fullContent)]
+        chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", full_content)]
         for index, item in enumerate(chunked_array):
             if index % 2:
                 # it is solution, save to database
                 solutions.append(BlankSolution(
-                    index=fullContent.index(item),
+                    index=full_content.index(item),
                     content=item))
             else:
                 content += item
@@ -258,6 +258,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             number=request.data["number"],
             assessment_id=request.data["assessment"],
             content=content,
+            full_content=full_content,
             type=2)
         bq.save()
 

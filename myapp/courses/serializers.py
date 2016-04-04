@@ -124,6 +124,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'description',
             'solution_set',
             'max_score',
+            'full_content',
             'content'
         )
 
