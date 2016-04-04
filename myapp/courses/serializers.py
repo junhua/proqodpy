@@ -131,7 +131,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
 
     type = serializers.IntegerField(default=Question.BLANKS, read_only=True)
 
-    blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
+    # blank_parts = BlankQuestionContentSerializer(many=True, read_only=True)
 
     solution_set = BlankSolutionSerializer(many=True, read_only=True)
 
@@ -158,8 +158,8 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
     type = serializers.IntegerField(
         default=Question.BLANKS, read_only=True)
 
-    blank_parts = BlankQuestionContentSerializer(
-        many=True, read_only=True)
+    # blank_parts = BlankQuestionContentSerializer(
+    #     many=True, read_only=True)
 
     solution_set = BlankSolutionSerializer(
         many=True, read_only=True)
