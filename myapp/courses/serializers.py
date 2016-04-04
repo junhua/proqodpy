@@ -25,25 +25,6 @@ class MultipleChoiceSerializer(serializers.ModelSerializer):
         return "%s" % (self.id)
 
 
-# class BlankQuestionContentSerializer(serializers.ModelSerializer):
-#     question = serializers.PrimaryKeyRelatedField(
-#         queryset=BlankQuestion.objects.all()
-#     )
-
-#     class Meta:
-#         model = BlankQuestionContent
-#         fields = (
-#             'id',
-#             'part_seq',
-#             'content',
-#             'question',
-#         )
-#         # read_only_fields = ('type',)
-
-#     def __str__(self):
-#         return "Q%s Number %s" % (self.question, self.seq)
-
-
 class BlankSolutionSerializer(serializers.ModelSerializer):
     question = serializers.PrimaryKeyRelatedField(
         queryset=BlankQuestion.objects.all()
@@ -58,7 +39,8 @@ class BlankSolutionSerializer(serializers.ModelSerializer):
             'id',
             'content',
             'question',
-            'submissions'
+            'submissions',
+            'index'
         )
 
     def __str__(self):
@@ -141,7 +123,8 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'type',
             'description',
             'solution_set',
-            'max_score'
+            'max_score',
+            'content'
         )
 
 
@@ -177,6 +160,7 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
             'solution_set',
             'max_score',
             'submissions',
+            'content'
             # 'progress'
         )
 

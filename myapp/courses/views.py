@@ -250,7 +250,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                     index=fullContent.index(item),
                     content=item))
             else:
-                content = content.join(item)
+                content += item
                 # it is content around the solution
 
         bq = BlankQuestion.objects.create(
