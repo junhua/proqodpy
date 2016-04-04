@@ -261,6 +261,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         return Response(bq.data, status=200)
         # except:
         #     return Response([], status=400)
+        
 
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
