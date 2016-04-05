@@ -256,19 +256,19 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     def create_with_content(self, request, pk=None):
         try:
 
-            # scan through full_content for blanks (bl)(/bl) and split with regex.
+            # scan through full_content for blanks <blank></blank> and split with regex.
             # the answers will be in odd indexes.
 
             full_content = request.data.get("fullContent", "")
             content = ""
             solutions = []
 
-            chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", full_content)]
+            chunked_array = [s.strip() for s in re.split("<blank>|<\/blank>", full_content)]
             for index, item in enumerate(chunked_array):
                 if index % 2:
                     # append if it is solution, add blank tags to content
                     solutions.append(item)
-                    content += "(bl)(/bl)"
+                    content += "<blank></blank>"
                 else:
                     content += item
                     # it is content around the solution
@@ -293,19 +293,19 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     def update_with_content(self, request, pk=None):
 
         try:
-            # scan through full_content for blanks (bl)(/bl) and split with regex.
+            # scan through full_content for blanks <blank></blank> and split with regex.
 
             full_content = request.data.get("fullContent", "")
             content = ""
             solutions = []
 
-            chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", full_content)]
+            chunked_array = [s.strip() for s in re.split("<blank>|<\/blank>", full_content)]
 
             for index, item in enumerate(chunked_array):
                 if index % 2:
                     # it is solution, save to database
                     solutions.append(item)
-                    content += "(bl)(/bl)"
+                    content += "<blank></blank>"
                 else:
                     content += item
                     # it is content around the solution
