@@ -110,6 +110,7 @@ class BlankSubmissionSerializer(serializers.ModelSerializer):
     )
     type = serializers.IntegerField(
         default=Question.BLANKS, read_only=True)
+    
     evaluation = serializers.ListField(
         child=serializers.BooleanField(),
     )

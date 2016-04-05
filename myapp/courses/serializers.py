@@ -115,9 +115,6 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
     submissions = BlankSubmissionSerializer(
         many=True, read_only=True
     )
-    # progress = BlankQuestionProgressSerializer(
-    #     read_only=True
-    # )
 
     class Meta:
         model = BlankQuestion
@@ -127,11 +124,9 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
             'number',
             'type',
             'description',
-            'solutions',
             'max_score',
             'submissions',
             'content'
-            # 'progress'
         )
 
 
