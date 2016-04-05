@@ -295,7 +295,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         try:
             # scan through full_content for blanks <blank></blank> and split with regex.
 
-            full_content = request.data.get("fullContent", "")
+            full_content = request.data.get("full_content", "")
             content = ""
             solutions = []
 
