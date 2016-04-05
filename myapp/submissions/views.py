@@ -60,30 +60,32 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         for unittest in unittests:
             test = unittest.run(code)
 
-            data = {
-                'visibility': unittest.visibility,
-                'inputs': ", ".join(unittest.inputs) if unittest.visibility else "-",
-                'expected_output': unittest.expected_output if unittest.visibility else "-",
-                'actual_output': test.get('output', test.get('error', None)) if unittest.visibility else "-",
-                'is_correct': test.get('pass', False),
-            }
+            if not test.get('runtime_err'):
 
-            if data['inputs'] == "[u'[]']":
-                data['inputs'] = ""
+                data = {
+                    'visibility': unittest.visibility,
+                    'inputs': ", ".join(unittest.inputs) if unittest.visibility else "-",
+                    'expected_output': unittest.expected_output if unittest.visibility else "-",
+                    'actual_output': test.get('output', test.get('error', None)) if unittest.visibility else "-",
+                    'is_correct': test.get('pass', False),
+                }
 
-            if data['is_correct']:
-                ut_passed += 1
-                total_time += test['time']
-                memory = max(memory, test['memory'])
+                if data['inputs'] == "[u'[]']":
+                    data['inputs'] = ""
 
-            ut_entry = UnittestEntrySerializer(data=data)
-            if ut_entry.is_valid():
-                ut_entry.save()
-                ute = UnittestEntry.objects.get(id=ut_entry.data['id'])
-                ut_entries += [ute]
-            else:
-                return Response(ut_entry.errors, 400)
-        time = (total_time / ut_passed) if ut_passed > 0 else '-1'
+                if data['is_correct']:
+                    ut_passed += 1
+                    total_time += test['time']
+                    memory = max(memory, test['memory'])
+
+                ut_entry = UnittestEntrySerializer(data=data)
+                if ut_entry.is_valid():
+                    ut_entry.save()
+                    ute = UnittestEntry.objects.get(id=ut_entry.data['id'])
+                    ut_entries += [ute]
+                else:
+                    return Response(ut_entry.errors, 400)
+            time = (total_time / ut_passed) if ut_passed > 0 else 0
 
         return ut_entries, ut_passed, time, memory
 
@@ -195,6 +197,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         correctness = round((ut_passed + 0.0) / len(ut_entries), 2)
         size = len(code)
 
+
         # ==================== Quality Metrics ====================
 
         quality_metrics = self._eval_code_quality_metrics(code)
@@ -269,7 +272,7 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         data = request.data
 
         question = get_object_or_404(BlankQuestion, pk=data.get('question'))
-        solutions = BlankSolution.objects.filter(question=question)
+        solutions = question.solutions
         blanks = data.get('blanks', None)
 
         # Check submitted blanks
@@ -279,7 +282,7 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         if len(blanks) > len(solutions):
             return Response({"Detail": "too many blanks"}, status=404)
 
-        checks = [str(blanks[i]) == solutions[i].content
+        checks = [str(blanks[i]) == solutions[i]
                   for i in xrange(len(blanks))]
         checks += [False for _ in xrange(len(solutions) - len(blanks))]
 
@@ -299,7 +302,6 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         assert subm is not None, "Cannot find submission"
 
         return Response(subm.get_grade(), status=200)
-
 
 class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
@@ -327,7 +329,7 @@ class CheckoffSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Mcq Progress """
-    queryset = McqProgress.objects.order_by('date_created')
+    queryset = McqProgress.objects.order_by('date_last_updated')
     serializer_class = McqProgressSerializer
     filter_fields = ['question', 'student']
 
@@ -335,7 +337,7 @@ class McqProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Blank question progress """
-    queryset = BlankQuestionProgress.objects.order_by('date_created')
+    queryset = BlankQuestionProgress.objects.order_by('date_last_updated')
     serializer_class = BlankQuestionProgressSerializer
     filter_fields = ['question', 'student']
 
@@ -343,7 +345,7 @@ class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Programming Question Progress """
-    queryset = ProgrammingQuestionProgress.objects.order_by('date_created')
+    queryset = ProgrammingQuestionProgress.objects.order_by('date_last_updated')
     serializer_class = ProgrammingQuestionProgressSerializer
     filter_fields = ['question', 'student']
 

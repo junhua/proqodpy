@@ -21,12 +21,10 @@ router.register(r'assessments', AssessmentViewSet, base_name='assessments')
 
 router.register(r'blank_qns',
                 BlankQuestionViewSet, base_name='blank questions')
-router.register(r'blank_qn_content', BlankQuestionContentViewSet,
-                base_name='blank question content')
 router.register(r'blanks_submissions', BlankSubmissionViewSet,
                 base_name='blanks submissions')
-router.register(r'blank_solution', BlankSolutionViewSet,
-                base_name='blank solution')
+router.register(r'blanks_solutions', BlankSolutionViewSet,
+                base_name='blanks solutions')
 router.register(r'blank_qn_progress', BlankQuestionProgressViewSet,
                 base_name='blank qustion progress')
 router.register(r'checkoff_qns', CheckoffQuestionViewSet,
