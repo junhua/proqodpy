@@ -282,7 +282,7 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         if len(blanks) > len(solutions):
             return Response({"Detail": "too many blanks"}, status=404)
 
-        checks = [str(blanks[i]) == solutions[i].content
+        checks = [str(blanks[i]) == solutions[i]
                   for i in xrange(len(blanks))]
         checks += [False for _ in xrange(len(solutions) - len(blanks))]
 
