@@ -272,7 +272,7 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         data = request.data
 
         question = get_object_or_404(BlankQuestion, pk=data.get('question'))
-        solutions = BlankSolution.objects.filter(question=question)
+        solutions = question.solutions
         blanks = data.get('blanks', None)
 
         # Check submitted blanks
