@@ -24,27 +24,6 @@ class MultipleChoiceSerializer(serializers.ModelSerializer):
     def __str__(self):
         return "%s" % (self.id)
 
-
-class BlankSolutionSerializer(serializers.ModelSerializer):
-    question = serializers.PrimaryKeyRelatedField(
-        queryset=BlankQuestion.objects.all()
-    )
-    submissions = BlankSubmissionSerializer(
-        many=True, read_only=True
-        )
-    from myapp.submissions.serializers import BlankSubmissionSerializer
-    class Meta:
-        model = BlankSolution
-        fields = (
-            'id',
-            'content',
-            'question',
-            'submissions'
-        )
-
-    def __str__(self):
-        return "%s" % self.id
-
 class McqSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()
@@ -103,6 +82,12 @@ class McqWithSubmissionSerializer(serializers.ModelSerializer):
             # 'progress'
         )
 
+class BlankSolutionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlankQuestion
+        fields = (
+            'solutions',
+        )
 
 class BlankQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
@@ -110,8 +95,6 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
     )
 
     type = serializers.IntegerField(default=Question.BLANKS, read_only=True)
-
-    solution_set = BlankSolutionSerializer(many=True, read_only=True)
 
     class Meta:
         model = BlankQuestion
@@ -121,7 +104,7 @@ class BlankQuestionSerializer(serializers.ModelSerializer):
             'number',
             'type',
             'description',
-            'solution_set',
+            'solutions',
             'max_score',
             'full_content',
             'content'
@@ -136,16 +119,9 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
     type = serializers.IntegerField(
         default=Question.BLANKS, read_only=True)
 
-
-    solution_set = BlankSolutionSerializer(
-        many=True, read_only=True)
-
     submissions = BlankSubmissionSerializer(
         many=True, read_only=True
     )
-    # progress = BlankQuestionProgressSerializer(
-    #     read_only=True
-    # )
 
     class Meta:
         model = BlankQuestion
@@ -155,12 +131,9 @@ class BlankQuestionWithSubmissionSerializer(serializers.ModelSerializer):
             'number',
             'type',
             'description',
-            # 'solution',
-            'solution_set',
             'max_score',
             'submissions',
             'content'
-            # 'progress'
         )
 
 

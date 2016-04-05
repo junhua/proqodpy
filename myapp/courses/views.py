@@ -219,6 +219,28 @@ class McqViewSet(DefaultsMixin, viewsets.ModelViewSet):
         return super(self.__class__, self).get_permissions()
 
 
+class BlankSolutionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
+    """ API endpoint for getting blank solutions only after the user has submitted"""
+
+    def get_queryset(self):
+        user = self.request.user
+        submitted_id = self.request.query_params.get('created_by', None)
+        question_id = self.request.query_params.get('question', None)
+        if (user.id == int(submitted_id)):
+            print "HERE"
+            return BlankQuestion.objects.filter(id=question_id, submissions__created_by_id=user.id)
+        return BlankQuestion.objects.none()
+
+    serializer_class = BlankSolutionsSerializer
+
+    def get_permissions(self):
+        return super(self.__class__, self).get_permissions()
+
+    """ Don't index solutions"""
+    def index(self, request):
+        return Response([], status=400)
+
+
 class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Blank Question """
@@ -234,20 +256,19 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     def create_with_content(self, request, pk=None):
         try:
 
-            # scan through full_content for blanks (bl)(/bl) and split with regex.
+            # scan through full_content for blanks <blank></blank> and split with regex.
             # the answers will be in odd indexes.
+
             full_content = request.data.get("fullContent", "")
             content = ""
             solutions = []
 
-            chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", full_content)]
+            chunked_array = [s.strip() for s in re.split("<blank>|<\/blank>", full_content)]
             for index, item in enumerate(chunked_array):
                 if index % 2:
-                    # it is solution, save to database
-                    solutions.append(BlankSolution(
-                        # index=full_content.index(item),
-                        content=item))
-                    content += "(bl)(/bl)"
+                    # append if it is solution, add blank tags to content
+                    solutions.append(item)
+                    content += "<blank></blank>"
                 else:
                     content += item
                     # it is content around the solution
@@ -258,13 +279,9 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 assessment_id=request.data["assessment"],
                 content=content,
                 full_content=full_content,
+                solutions=solutions,
                 type=2)
             bq.save()
-
-            for solution in solutions:
-                solution.question_id = bq.id
-
-            BlankSolution.objects.bulk_create(solutions)
 
             serializer = BlankQuestionSerializer(bq)
 
@@ -276,34 +293,28 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
     def update_with_content(self, request, pk=None):
 
         try:
-            # scan through full_content for blanks (bl)(/bl) and split with regex.
+            # scan through full_content for blanks <blank></blank> and split with regex.
 
             full_content = request.data.get("fullContent", "")
             content = ""
             solutions = []
 
-            chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", full_content)]
+            chunked_array = [s.strip() for s in re.split("<blank>|<\/blank>", full_content)]
 
             for index, item in enumerate(chunked_array):
                 if index % 2:
                     # it is solution, save to database
-                    solutions.append(BlankSolution(
-                        # index=full_content.index(item),
-                        content=item,
-                        question_id=pk))
-                    content += "(bl)(/bl)"
+                    solutions.append(item)
+                    content += "<blank></blank>"
                 else:
                     content += item
                     # it is content around the solution
-            
-            # simplest way to recreate all solutions
-            BlankSolution.objects.filter(question_id=pk).delete()
-            BlankSolution.objects.bulk_create(solutions)
 
             BlankQuestion.objects.filter(id=pk).update(
                 description=request.data["description"],
                 content=content,
-                full_content=full_content)
+                full_content=full_content,
+                solutions=solutions)
 
             return Response([], status=200)
         except Exception as e:
@@ -338,30 +349,6 @@ class MultipleChoiceViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """ API endpoint for listing and creating multiple choice """
     queryset = MultipleChoice.objects.all()
     serializer_class = MultipleChoiceSerializer
-
-    def get_permissions(self):
-        if self.action in ('create', 'update', 'destroy', 'partial_update'):
-            self.permission_classes = [permissions.IsAdminUser, ]
-        return super(self.__class__, self).get_permissions()
-
-
-# class BlankQuestionContentViewSet(DefaultsMixin, viewsets.ModelViewSet):
-
-#     """ API endpoint for listing and creating multiple choice """
-#     queryset = BlankQuestionContent.objects.all().order_by('part_seq')
-#     serializer_class = BlankQuestionContentSerializer
-
-#     def get_permissions(self):
-#         if self.action in ('create', 'update', 'destroy', 'partial_update'):
-#             self.permission_classes = [permissions.IsAdminUser, ]
-#         return super(self.__class__, self).get_permissions()
-
-
-class BlankSolutionViewSet(DefaultsMixin, viewsets.ModelViewSet):
-
-    """ API endpoint for listing and creating multiple choice """
-    queryset = BlankSolution.objects.all()
-    serializer_class = BlankSolutionSerializer
 
     def get_permissions(self):
         if self.action in ('create', 'update', 'destroy', 'partial_update'):
