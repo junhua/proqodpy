@@ -82,6 +82,13 @@ class McqWithSubmissionSerializer(serializers.ModelSerializer):
             # 'progress'
         )
 
+class BlankSolutionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlankQuestion
+        fields = (
+            'solutions',
+        )
+
 class BlankQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()

@@ -219,6 +219,28 @@ class McqViewSet(DefaultsMixin, viewsets.ModelViewSet):
         return super(self.__class__, self).get_permissions()
 
 
+class BlankSolutionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
+    """ API endpoint for getting blank solutions only after the user has submitted"""
+
+    def get_queryset(self):
+        user = self.request.user
+        submitted_id = self.request.query_params.get('created_by', None)
+        question_id = self.request.query_params.get('question', None)
+        if (user.id == int(submitted_id)):
+            print "HERE"
+            return BlankQuestion.objects.filter(id=question_id, submissions__created_by_id=user.id)
+        return BlankQuestion.objects.none()
+
+    serializer_class = BlankSolutionsSerializer
+
+    def get_permissions(self):
+        return super(self.__class__, self).get_permissions()
+
+    """ Don't index solutions"""
+    def index(self, request):
+        return Response([], status=400)
+
+
 class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Blank Question """

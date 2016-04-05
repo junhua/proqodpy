@@ -110,7 +110,7 @@ class BlankSubmissionSerializer(serializers.ModelSerializer):
     )
     type = serializers.IntegerField(
         default=Question.BLANKS, read_only=True)
-    
+
     evaluation = serializers.ListField(
         child=serializers.BooleanField(),
     )
@@ -124,7 +124,7 @@ class BlankSubmissionSerializer(serializers.ModelSerializer):
             'created_by',
             'question',
             'date_created',
-            'evaluation',
+            'evaluation'
         )
 
 

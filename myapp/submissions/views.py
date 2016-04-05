@@ -303,7 +303,6 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         return Response(subm.get_grade(), status=200)
 
-
 class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Code Submission """
