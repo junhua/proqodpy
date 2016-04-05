@@ -119,7 +119,7 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
     LAB, QUIZ, PROJECT, EXAM, COHORT, HOMEWORK, OPTIONAL = range(7)
 
     If sp_required is included in the header or param (e.g. True), 
-    Assessment will return question sets with submissions.
+    Assessment will return question sets with submissions and progress.
     This only applies to single assessment retrieval
 
     """
@@ -155,12 +155,11 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         assessment = get_object_or_404(queryset, pk=pk)
 
-        if request.query_params.get("sp_required"):
-            serializer = AssessmentWithSubmissionSerializer(
+        if request.query_params("sp_required") or request.get("sp_required"):
+            serializer = AssessmentWithSubmissionAndProgressSerializer(
                 assessment)
         else:
             serializer = AssessmentSerializer(assessment)
-
         return Response(serializer.data)
 
     @list_route(methods=['get'], permission_classes=[permissions.IsAdminUser])
