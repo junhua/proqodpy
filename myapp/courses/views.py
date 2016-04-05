@@ -236,6 +236,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
             # scan through full_content for blanks (bl)(/bl) and split with regex.
             # the answers will be in odd indexes.
+
             full_content = request.data.get("fullContent", "")
             content = ""
             solutions = []
@@ -243,10 +244,8 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             chunked_array = [s.strip() for s in re.split("\(bl\)|\(/bl\)", full_content)]
             for index, item in enumerate(chunked_array):
                 if index % 2:
-                    # it is solution, save to database
-                    solutions.append(BlankSolution(
-                        # index=full_content.index(item),
-                        content=item))
+                    # append if it is solution, add blank tags to content
+                    solutions.append(item)
                     content += "(bl)(/bl)"
                 else:
                     content += item
@@ -258,13 +257,9 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
                 assessment_id=request.data["assessment"],
                 content=content,
                 full_content=full_content,
+                solutions=solutions,
                 type=2)
             bq.save()
-
-            for solution in solutions:
-                solution.question_id = bq.id
-
-            BlankSolution.objects.bulk_create(solutions)
 
             serializer = BlankQuestionSerializer(bq)
 
