@@ -282,23 +282,17 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             for index, item in enumerate(chunked_array):
                 if index % 2:
                     # it is solution, save to database
-                    solutions.append(BlankSolution(
-                        # index=full_content.index(item),
-                        content=item,
-                        question_id=pk))
+                    solutions.append(item)
                     content += "(bl)(/bl)"
                 else:
                     content += item
                     # it is content around the solution
-            
-            # simplest way to recreate all solutions
-            BlankSolution.objects.filter(question_id=pk).delete()
-            BlankSolution.objects.bulk_create(solutions)
 
             BlankQuestion.objects.filter(id=pk).update(
                 description=request.data["description"],
                 content=content,
-                full_content=full_content)
+                full_content=full_content,
+                solutions=solutions)
 
             return Response([], status=200)
         except Exception as e:
