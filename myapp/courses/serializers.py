@@ -400,6 +400,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
             'id',
             'type',
             'label',
+            'description',
             'start_datetime',
             'end_datetime',
             'cohort_classes',
