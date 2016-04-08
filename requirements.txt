@@ -26,4 +26,4 @@ RestrictedPython==3.6.0
 singledispatch==3.4.0.3
 six==1.10.0
 wrapt==1.10.5
-
+django-dotenv==1.4.1
