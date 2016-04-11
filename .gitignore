@@ -66,3 +66,6 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+# Environment File because it differs from system to system
+.env

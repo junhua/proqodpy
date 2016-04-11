@@ -389,12 +389,18 @@ class AssessmentSerializer(serializers.ModelSerializer):
         many=True,
     )
 
+    question_count = serializers.SerializerMethodField()
+
+    def get_question_count(self, obj):
+        return obj.programmingquestion_set.count() + obj.blankquestion_set.count() + obj.checkoffquestion_set.count() + obj.mcq_set.count()
+
     class Meta:
         model = Assessment
         fields = (
             'id',
             'type',
             'label',
+            'description',
             'start_datetime',
             'end_datetime',
             'cohort_classes',
@@ -403,6 +409,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
             'blankquestion_set',
             'checkoffquestion_set',
             'mcq_set',
+            'question_count',
         )
 
 
@@ -438,6 +445,12 @@ class AssessmentWithSubmissionSerializer(serializers.ModelSerializer):
         many=True,
     )
 
+
+    question_count = serializers.SerializerMethodField()
+
+    def get_question_count(self, obj):
+        return obj.programmingquestion_set.count() + obj.blankquestion_set.count() + obj.checkoffquestion_set.count() + obj.mcq_set.count()
+
     class Meta:
         model = Assessment
         fields = (
@@ -452,4 +465,5 @@ class AssessmentWithSubmissionSerializer(serializers.ModelSerializer):
             'blankquestion_set',
             'checkoffquestion_set',
             'mcq_set',
+            'question_count'
         )

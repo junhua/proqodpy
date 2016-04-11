@@ -154,8 +154,8 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         assessment = get_object_or_404(queryset, pk=pk)
 
-        if request.query_params("sp_required") or request.get("sp_required"):
-            serializer = AssessmentWithSubmissionAndProgressSerializer(
+        if request.query_params.get("sp_required"):
+            serializer = AssessmentWithSubmissionSerializer(
                 assessment)
         else:
             serializer = AssessmentSerializer(assessment)
