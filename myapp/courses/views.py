@@ -2,8 +2,6 @@ from rest_framework import viewsets, authentication, permissions, filters
 from rest_framework.response import Response
 
 from rest_framework.decorators import detail_route, list_route
-# from djoser.serializers import UserSerializer
-# from django.contrib.auth import get_user_model
 from django.shortcuts import get_list_or_404, get_object_or_404
 
 from .serializers import *
@@ -236,6 +234,7 @@ class BlankSolutionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
         return super(self.__class__, self).get_permissions()
 
     """ Don't index solutions"""
+
     def index(self, request):
         return Response([], status=400)
 
@@ -262,7 +261,8 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             content = ""
             solutions = []
 
-            chunked_array = [s.strip() for s in re.split("<blank>|<\/blank>", full_content)]
+            chunked_array = [s.strip() for s in re.split(
+                "<blank>|<\/blank>", full_content)]
             for index, item in enumerate(chunked_array):
                 if index % 2:
                     # append if it is solution, add blank tags to content
@@ -287,18 +287,20 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             return Response(serializer.data, status=200)
         except Exception as e:
             return Response(e.message, status=400)
-            
+
     @detail_route(methods=['put'], permission_classes=[permissions.IsAdminUser, ])
     def update_with_content(self, request, pk=None):
 
         try:
-            # scan through full_content for blanks <blank></blank> and split with regex.
+            # scan through full_content for blanks <blank></blank> and split
+            # with regex.
 
             full_content = request.data.get("full_content", "")
             content = ""
             solutions = []
 
-            chunked_array = [s.strip() for s in re.split("<blank>|<\/blank>", full_content)]
+            chunked_array = [s.strip() for s in re.split(
+                "<blank>|<\/blank>", full_content)]
 
             for index, item in enumerate(chunked_array):
                 if index % 2:
@@ -318,6 +320,7 @@ class BlankQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
             return Response([], status=200)
         except Exception as e:
             return Response(e.message, status=400)
+
 
 class ProgrammingQuestionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
