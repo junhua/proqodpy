@@ -24,6 +24,7 @@ class MultipleChoiceSerializer(serializers.ModelSerializer):
     def __str__(self):
         return "%s" % (self.id)
 
+
 class McqSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
         queryset=Assessment.objects.all()
@@ -48,7 +49,6 @@ class McqSerializer(serializers.ModelSerializer):
             'max_score',
 
         )
-
 
 
 class McqWithSubmissionSerializer(serializers.ModelSerializer):
@@ -82,12 +82,15 @@ class McqWithSubmissionSerializer(serializers.ModelSerializer):
             # 'progress'
         )
 
+
 class BlankSolutionsSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = BlankQuestion
         fields = (
             'solutions',
         )
+
 
 class BlankQuestionSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(
@@ -168,6 +171,7 @@ class UnitTestSerializer(serializers.ModelSerializer):
             'id',
             'visibility',
             'type',
+            'language',
             'test_content',
             'inputs',
             'expected_output',
@@ -444,7 +448,6 @@ class AssessmentWithSubmissionSerializer(serializers.ModelSerializer):
         read_only=True,
         many=True,
     )
-
 
     question_count = serializers.SerializerMethodField()
 

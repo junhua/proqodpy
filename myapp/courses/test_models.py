@@ -1,48 +1,54 @@
-# import json
-# from django.core.urlresolvers import reverse
-# from django.test import TestCase
-# from rest_framework.test import APIRequestFactory, APITestCase
-# from .models import Course, Assessment
-# from authnz.models import ProqodUser
-
-# from .views import CourseViewSet
+from django.test import TestCase
+from datetime import datetime
+from models import (UnitTest, ProgrammingQuestion, Assessment)
 
 
-# class CourseModelTests (APITestCase):
+class UnittestTestCase(TestCase):
 
-#     def setUp(self):
+    def setUp(self):
+        Assessment.objects.create(
+            type=0,
+            label=1,
+            description="",
+            start_datetime=datetime.now(),
+            end_datetime=datetime.now(),
+        )
 
-#         Course.objects.get_or_create(
-#             course_batch="test_batch",
-#             course_code="CS101",
-#             school="ProQod Institute",
-#             department="ProQod Dept",
-#             title="Intro to CS",
-#             description="Introduction course to computer science",
-#             programming_language="Python",
-#             start_date="2015-12-01",
-#             end_date="2016-01-01",
-#         )
+        ProgrammingQuestion.objects.create(
+            assessment=Assessment.objects.all()[0],
+            number=1,
+            type=0,
+            description="",
+            solution="",
+            default_code="",
+            code_signature="plus",
 
-#         ProqodUser.objects.create_user(
-#             email="test1@proqod.com",
-#             sid="10001",
-#             password="pw",
+        )
+        UnitTest.objects.create(
+            visibility=0,
+            type=0,
+            language=0,
+            test_content='',
+            inputs=[1, 2],
+            expected_output=3,
+            question=ProgrammingQuestion.objects.all()[0],
+        )
 
-#         )
+    def test_unittest_can_run(self):
+        """ unit test can run """
+        unittest = UnitTest.objects.all()[0]
+        code = "def plus(a,b): return a+b"
 
-#         ProqodUser.objects.create_user(
-#             email="test2@proqod.com",
-#             sid="10002",
-#             password="pw"
-#         )
+        result = unittest.run(code)
+        assert type(result) is dict
 
-#         ProqodUser.objects.create_user(
-#             email="test3@proqod.com",
-#             sid="10003",
-#             password="pw"
-#         )
+    def test_unittest_can_execute(self):
+        """ unit test can execute correctly """
+        unittest = UnitTest.objects.all()[0]
+        code = "def plus(a,b): return a+b"
 
-    # def test_create_course(self):
+        result = unittest.execute(code)
 
-    #     self.assertEqual()
+        assert result is not None
+        # assert result == unittest.expected_output, "result: %s \n expected output: %s" % (
+        #     result, unittest.expected_output)

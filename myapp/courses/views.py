@@ -378,62 +378,6 @@ class UnitTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
             self.permission_classes = [permissions.IsAdminUser, ]
         return super(self.__class__, self).get_permissions()
 
-    # @detail_route(methods=['get'])
-    # def raw(self, request, pk=None):
-    #     """
-    #     Endpoint to get raw unittest code
-    #     """
-
-    #     unittest = self.get_object()
-    #     test_code = unittest.get_test()
-    #     return Response(test_code, status=200)
-
-    # @detail_route(methods=['get', 'post'])
-    # def run(self, request, pk=None):
-    #     """
-    #     Endpoint to allow execute unittests.
-    #     No record stored in the database.
-    #     Expected input param: code
-
-    #     Sample output for successful run:
-    #     {
-    #         pass: True,
-    #         output: actual_output
-    #     }
-
-    #     Sample output for unsuccessful run:
-    #     {
-    #         pass: False,
-    #         output: actual_output
-    #     }
-
-    #     Sample output for error:
-    #     {
-    #         pass: False,
-    #         error: error_message
-    #     }
-    #     """
-    #     code = request.query_params.get('code', None)
-
-    #     if not code:
-    #         return Response(
-    #             {"pass": False,
-    #              "error": "code not found from params"
-    #              },
-    #             status=404
-    #         )
-
-    #     unittest = self.get_object()
-
-    #     test_code = unittest.run(code)
-
-    #     print test_code
-
-    #     return Response(
-    #         {"result": test_code},
-    #         status=(200 if test_code['pass'] else 400)
-    #     )
-
 
 class DynamicTestViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
