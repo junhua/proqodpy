@@ -42,7 +42,7 @@ class DefaultsMixin(object):
 class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating courses """
-    queryset = Course.objects.order_by('date_created')
+    queryset = Course.objects.order_by('start_date')
     serializer_class = CourseSerializer
     filter_fields = ['course_batch', 'course_code', 'cohort_classes']
 
@@ -197,7 +197,7 @@ class AssessmentViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         try:
             assmts = get_list_or_404(
-                Assessment.objects.all(), cohort_classes=cohort_class)
+                Assessment.objects.order_by("start_datetime").all(), cohort_classes=cohort_class)
             serializer = AssessmentSerializer(assmts, many=True)
             return Response(serializer.data, status=200)
         except:
