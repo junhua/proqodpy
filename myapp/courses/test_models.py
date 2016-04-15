@@ -40,7 +40,7 @@ class UnittestTestCase(TestCase):
         code = "def plus(a,b): return a+b"
 
         result = unittest.run(code)
-        assert type(result) is dict
+        self.assertEqual(type(result), dict)
 
     def test_unittest_can_execute(self):
         """ unit test can execute correctly """
@@ -49,6 +49,5 @@ class UnittestTestCase(TestCase):
 
         result = unittest.execute(code)
 
-        assert result is not None
-        # assert result == unittest.expected_output, "result: %s \n expected output: %s" % (
-        #     result, unittest.expected_output)
+        self.assertNotEqual(result, None)
+        # self.assertEqual(result[0], unittest.expected_output)
