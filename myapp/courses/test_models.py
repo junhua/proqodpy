@@ -35,17 +35,18 @@ class UnittestTestCase(TestCase):
         )
         self.code = "def plus(a,b): return a+b"
 
-    def test_unittest_can_run(self):
-        """ unit test can run """
-        unittest = UnitTest.objects.first()
-
-        result = unittest.run(self.code)
-        self.assertEqual(type(result), dict)
-
     def test_unittest_can_execute(self):
         """ unit test can execute correctly """
-        unittest = UnitTest.objects.first()
 
-        result = unittest.execute(self.code)
+        unittest = UnitTest.objects.first()
+        result = unittest._execute_python(self.code)
 
         self.assertNotEqual(result, None)
+
+    def test_unittest_can_run(self):
+        """ unit test can run """
+
+        unittest = UnitTest.objects.first()
+        result = unittest.run(self.code)
+
+        self.assertEqual(type(result), dict)
