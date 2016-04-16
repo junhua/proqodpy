@@ -50,3 +50,4 @@ class UnittestTestCase(TestCase):
         result = unittest.run(self.code)
 
         self.assertEqual(type(result), dict)
+        self.assertEqual(result.get("output"), unittest.expected_output)
