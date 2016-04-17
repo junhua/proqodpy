@@ -197,7 +197,6 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         correctness = round((ut_passed + 0.0) / len(ut_entries), 2)
         size = len(code)
 
-
         # ==================== Quality Metrics ====================
 
         quality_metrics = self._eval_code_quality_metrics(code)
@@ -303,6 +302,7 @@ class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         return Response(subm.get_grade(), status=200)
 
+
 class McqSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Code Submission """
@@ -345,7 +345,8 @@ class BlankQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class ProgrammingQuestionProgressViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
     """ API endpoint for listing and creating Programming Question Progress """
-    queryset = ProgrammingQuestionProgress.objects.order_by('date_last_updated')
+    queryset = ProgrammingQuestionProgress.objects.order_by(
+        'date_last_updated')
     serializer_class = ProgrammingQuestionProgressSerializer
     filter_fields = ['question', 'student']
 

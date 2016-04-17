@@ -42,6 +42,7 @@ class UnittestTestCase(TestCase):
         result = unittest._execute_python(self.code)
 
         self.assertNotEqual(result, None)
+        self.assertEqual(result[0], unittest.expected_output)
 
     def test_unittest_can_run(self):
         """ unit test can run """
