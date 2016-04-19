@@ -26,7 +26,6 @@ radon==1.2.2
 redis==2.10.5
 requests==2.9.1
 RestrictedPython==3.6.0
-rpy2==2.7.8
 singledispatch==3.4.0.3
 six==1.10.0
 wrapt==1.10.5
