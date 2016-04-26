@@ -52,7 +52,7 @@ INSTALLED_APPS = (
     'myapp.courses',
     'myapp.analytics',
     'myapp.submissions',
-
+    'myapp.common.util',
     'api.v1',
 )
 

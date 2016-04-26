@@ -8,7 +8,7 @@ from myapp.courses.models import UnitTest
 from myapp.analytics.models import PerformanceReport
 from radon.metrics import mi_parameters, mi_compute
 from radon import raw
-
+from myapp.common.util import cmd
 import rest_framework_jwt
 # import sys
 
@@ -253,6 +253,15 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         assert subm is not None, "Cannot find submission"
 
         return Response(subm.get_grade(), status=200)
+
+    @detail_route(methods=['get', 'post'],)
+    def test_r(self, request, pk=None):
+        title = request.data.get(
+            'title', None) or request.query_params.get('title', None)
+        code = request.data.get(
+            'code', None) or request.query_params.get('code', None)
+        result = cmd.run_r(username=request.user, title=title, code=code)
+        return result
 
 
 class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
