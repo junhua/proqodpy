@@ -171,7 +171,6 @@ class UnitTestSerializer(serializers.ModelSerializer):
             'id',
             'visibility',
             'type',
-            'language',
             'test_content',
             'inputs',
             'expected_output',
@@ -201,6 +200,7 @@ class ProgrammingQuestionSerializer(serializers.ModelSerializer):
             'solution',
             'default_code',
             'code_signature',
+            'language',
             'unittests',
             'max_score'
         )
