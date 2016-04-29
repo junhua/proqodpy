@@ -261,7 +261,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         code = request.data.get(
             'code', None) or request.query_params.get('code', None)
         result = cmd.run_r(username=request.user, title=title, code=code)
-        return result
+        return Response(result, status=200)
 
 
 class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
