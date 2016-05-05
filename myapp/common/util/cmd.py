@@ -43,6 +43,7 @@ class RunCmd(threading.Thread):
 ##########################################################################
 
 def run_r(username, title, code):
+
     directory = "submissions/r/%s" % username
     file_dir = "%s/%s" % (directory, title)
 
@@ -73,8 +74,9 @@ def run_r(username, title, code):
         except:
             pass
 
-        start_index = result.find("error:")
-        result = result[start_index:]
+        start_index = result.find("[1]")
+        end_index = result.rfind("\n>")
+        result = result[start_index:end_index]
         return result
 
     # current_task.request.hostname

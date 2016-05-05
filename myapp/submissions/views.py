@@ -254,14 +254,16 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         return Response(subm.get_grade(), status=200)
 
-    @detail_route(methods=['get', 'post'],)
+    @list_route(methods=['get', 'post'],)
     def test_r(self, request, pk=None):
+
         title = request.data.get(
             'title', None) or request.query_params.get('title', None)
         code = request.data.get(
             'code', None) or request.query_params.get('code', None)
-        result = cmd.run_r(username=request.user, title=title, code=code)
-        return Response(result, status=200)
+        result = cmd.run_r(username=request.user.sid, title=title, code=code)
+        return Response({"title": title, "code": code, "result": result})
+        # return Response(result, status=200)
 
 
 class BlankSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
