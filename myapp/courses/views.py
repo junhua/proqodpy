@@ -80,7 +80,12 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         participant = request.query_params.get('participants')
         if participant:
-            queryset = Course.objects.filter(Q(cohort_classes__students=participant) | Q(cohort_classes__teachers=participant)).distinct()
+
+            if request.user.user_type == 1 or request.user.is_admin == 1:
+                queryset = Course.objects.all()
+            else:
+                queryset = Course.objects.filter(cohort_classes__students=participant).distinct()
+            
             serializer = CourseSerializer(queryset, many=True)
             return Response(serializer.data)
         else:
