@@ -3,6 +3,7 @@ from rest_framework.response import Response
 
 from rest_framework.decorators import detail_route, list_route
 from django.shortcuts import get_list_or_404, get_object_or_404
+from django.db.models import Q
 
 from .serializers import *
 from .models import *
@@ -59,7 +60,6 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
         """
         Endpoint to get participants by course
         """
-
         queryset = CohortClass.objects.all()
         cohort_classes = get_list_or_404(queryset, course=pk)
         serializer = CohortClassSerializer(cohort_classes, many=True)
@@ -78,7 +78,13 @@ class CourseViewSet(DefaultsMixin, viewsets.ModelViewSet):
         })
 
     def list(self, request, *args, **kwargs):
-        return super(CourseViewSet, self).list(request, *args, **kwargs)
+        participant = request.query_params.get('participants')
+        if participant:
+            queryset = Course.objects.filter(Q(cohort_classes__students=participant) | Q(cohort_classes__teachers=participant)).distinct()
+            serializer = CourseSerializer(queryset, many=True)
+            return Response(serializer.data)
+        else:
+            return super(CourseViewSet, self).list(request, *args, **kwargs)
 
     def retrieve(self, request, *args, **kwargs):
         return super(CourseViewSet, self).retrieve(request, *args, **kwargs)
@@ -224,7 +230,6 @@ class BlankSolutionViewSet(DefaultsMixin, viewsets.ReadOnlyModelViewSet):
         submitted_id = self.request.query_params.get('created_by', None)
         question_id = self.request.query_params.get('question', None)
         if (user.id == int(submitted_id)):
-            print "HERE"
             return BlankQuestion.objects.filter(id=question_id, submissions__created_by_id=user.id)
         return BlankQuestion.objects.none()
 
