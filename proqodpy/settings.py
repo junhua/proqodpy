@@ -278,5 +278,5 @@ USE_L10N = True
 USE_TZ = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '+^ya-4eus4sv&idx!-*1lol+5!^eker-&i@75yc%h$l(8)h5u4'
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = '+^ya-4eus4sv&idx!-*1lol+5!^eker-&i@75yc%h$l(8)h5u4'
+# SECRET_KEY = os.environ['SECRET_KEY']

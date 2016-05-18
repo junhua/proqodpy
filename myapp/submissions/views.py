@@ -89,7 +89,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
         return ut_entries, ut_passed, time, memory
 
-    def _test_with_dynamic_unittest(self, tests, code):
+    def _test_with_dynamic_unittest(self, tests, code, language='python'):
         """
         helper method:
         test with dynamic unit test
@@ -99,8 +99,9 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         test_passed = 0
         total_time = 0.
         memory = 0.
+
         for test in tests:
-            test_result = test.dynamic_run(code)
+            test_result = test.dynamic_run(code, language)
 
             data = {
                 'visibility': test.visibility,
@@ -171,17 +172,33 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         try:
             user = request.user
             code = data.get('code', None)
+            language = data.get('language', None) or data.query_params.get(
+                'language', 'python')
+
             question = ProgrammingQuestion.objects.get(
                 id=data.get('question', None))
+
         except:
             return Response(
                 {"message": "Required user, code and question params"},
                 status=400
             )
 
-        # SCORE
+        ############################################################
+        ############################ R #############################
+        ############################################################
 
-        # if dynamic, call dynamic unit test
+        if language == 'r':
+            # Only dynamic test for r
+            tests = DynamicTest.objects.filter(question=question)
+
+        ############################################################
+        ########################## PYTHON ##########################
+        ############################################################
+
+            # SCORE
+
+            # if dynamic, call dynamic unit test
         tests = UnitTest.objects.filter(question=question)
 
         if not tests:
@@ -255,7 +272,7 @@ class CodeSubmissionViewSet(DefaultsMixin, viewsets.ModelViewSet):
         return Response(subm.get_grade(), status=200)
 
     @list_route(methods=['get', 'post'],)
-    def test_r(self, request, pk=None):
+    def _test_r(self, request, pk=None):
 
         title = request.data.get(
             'title', None) or request.query_params.get('title', None)
